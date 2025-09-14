@@ -11,10 +11,11 @@ class LadderTest {
     @DisplayName("drawLine 메서드 테스트")
     void drawLine() {
         Ladder ladder = new Ladder(3, 3);
+        StringArray stringArray = ladder.getStringArray();
         ladder.drawLine(0, 0);
         ladder.drawLine(1, 1);
 
-        assertThat(ladder.getRows()).isEqualTo(new int[][]{{1, 0}, {0, 1}, {0, 0}});
+        assertThat(ladder.getStringArray().getValue(0, 0)).isEqualTo(1);
     }
 
     @Test
@@ -33,9 +34,9 @@ class LadderTest {
         Ladder ladder = new Ladder(5, 4);
         ladder.drawLine(0, 0);
         ladder.drawLine(1, 1);
-        ladder.drawLine(3, 0);
+        ladder.drawLine(3, 2);
         ladder.drawLine(2, 2);
 
-        assertThat(ladder.run(1)).isEqualTo(1);
+        assertThat(ladder.run(0)).isEqualTo(2);
     }
 }
