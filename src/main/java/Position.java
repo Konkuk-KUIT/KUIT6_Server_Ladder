@@ -1,23 +1,23 @@
 public class Position {
-    private int height;
-    private int row;
+    private NoneNegative height;
+    private NoneNegative row;
     private boolean isToLeft;
 
-    public Position(int height, int row){
+    public Position(NoneNegative height, NoneNegative row){
         this.height = height;
         this.row = row;
         this.isToLeft = false;
     }
-    public Position(int height, int row, boolean isToLeft){
+    public Position(NoneNegative height, NoneNegative row, boolean isToLeft){
         this.height = height;
         this.row = row;
         this.isToLeft = isToLeft;
     }
 
-    public int getHeight(){
+    public NoneNegative getHeight(){
         return height;
     }
-    public int getRow(){
+    public NoneNegative getRow(){
         return row;
     }
     public boolean getIsToLeft(){
