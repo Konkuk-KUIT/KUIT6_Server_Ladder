@@ -2,6 +2,7 @@ package board;
 
 import exceptions.DuplicateLineException;
 import exceptions.InvalidCoordinateException;
+import exceptions.ErrorMessage;
 import position.Coordinate;
 import wrap.PersonCount;
 import wrap.LadderHeight;
@@ -35,24 +36,24 @@ public class LadderBoard implements Board {
 
     private void validateCoordinateRange(Coordinate coordinate) {
         if (coordinate == null) {
-            throw new InvalidCoordinateException("좌표는 null일 수 없습니다");
+            throw new InvalidCoordinateException(ErrorMessage.NULL_COORDINATE.getMessage());
         }
 
         int y = coordinate.getY();
         int x = coordinate.getX();
 
         if (!ladderHeight.isValidRow(y)) {
-            throw new InvalidCoordinateException("Y 좌표가 범위를 벗어났습니다: " + y + " (0-" + (ladderHeight.getValue()-1) + ")");
+            throw new InvalidCoordinateException(ErrorMessage.INVALID_COORDINATE_Y.format(y, ladderHeight.getValue()-1));
         }
 
         if (!personCount.isValidLineIndex(x)) {
-            throw new InvalidCoordinateException("X 좌표가 범위를 벗어났습니다: " + x + " (0-" + (personCount.getMaxLineIndex()-1) + ")");
+            throw new InvalidCoordinateException(ErrorMessage.INVALID_COORDINATE_X.format(x, personCount.getMaxLineIndex()-1));
         }
     }
 
     private void validateNoDuplicateLine(Coordinate coordinate) {
         if (hasConnection(coordinate)) {
-            throw new DuplicateLineException("이미 선이 존재합니다: (" + coordinate.getY() + ", " + coordinate.getX() + ")");
+            throw new DuplicateLineException(ErrorMessage.DUPLICATE_LINE.format(coordinate.getY(), coordinate.getX()));
         }
     }
     

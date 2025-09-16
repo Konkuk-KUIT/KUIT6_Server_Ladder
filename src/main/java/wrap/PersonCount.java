@@ -1,6 +1,7 @@
 package wrap;
 
 import exceptions.InvalidPersonCountException;
+import exceptions.ErrorMessage;
 
 public class PersonCount {
 
@@ -8,7 +9,7 @@ public class PersonCount {
 
     public PersonCount(int value) {
         if (value <= 0) {
-            throw new InvalidPersonCountException("사람의 수가 0 이하인 경우 게임 진행이 불가합니다");
+            throw new InvalidPersonCountException(ErrorMessage.INVALID_PERSON_COUNT.getMessage());
         };
         this.value = value;
     }

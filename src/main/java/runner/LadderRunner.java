@@ -1,6 +1,7 @@
 package runner;
 
 import exceptions.InvalidStartPositionException;
+import exceptions.ErrorMessage;
 import board.Board;
 import position.Position;
 
@@ -27,15 +28,15 @@ public class LadderRunner implements GameRunner {
     
     private void validateGameExecution(Board board, int startPosition) {
         if (board == null) {
-            throw new IllegalArgumentException("보드는 null일 수 없습니다");
+            throw new IllegalArgumentException(ErrorMessage.NULL_BOARD.getMessage());
         }
 
         if (startPosition < 0) {
-            throw new InvalidStartPositionException("시작 위치가 음수일 수 없습니다: " + startPosition + " < 0");
+            throw new InvalidStartPositionException(ErrorMessage.INVALID_START_POSITION_NEGATIVE.format(startPosition));
         }
         
         if (startPosition >= board.getNumberOfPerson()) {
-            throw new InvalidStartPositionException("시작 위치가 사람 수를 초과합니다: " + startPosition + " >= " + board.getNumberOfPerson());
+            throw new InvalidStartPositionException(ErrorMessage.INVALID_START_POSITION_EXCEED.format(startPosition, board.getNumberOfPerson()));
         }
     }
 }

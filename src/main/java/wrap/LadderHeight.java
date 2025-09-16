@@ -1,11 +1,13 @@
 package wrap;
 
+import exceptions.ErrorMessage;
+
 public class LadderHeight {
     private final int value;
 
     public LadderHeight(int value) {
         if (value <= 0) {
-            throw new IllegalArgumentException("사다리 높이는 0보다 커야 합니다");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_HEIGHT.getMessage());
         }
         this.value = value;
     }
