@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
@@ -43,6 +44,13 @@ class LadderTest {
         assertThrows(IllegalArgumentException.class, () -> new Ladder(0, 6));
         assertThrows(IllegalArgumentException.class, () -> new Ladder(-1, -1));
         assertThrows(IllegalArgumentException.class, () -> new Ladder(0, 0));
+    }
+
+    @Test
+    @DisplayName("초기화안된 사다리에 run()했을 경우")
+    void runInEmptyLadder() {
+        Ladder ladder = new Ladder(5, 6);
+        assertThat(ladder.run(3)).isEqualTo(0); //자바에선 기본적으로 0으로 초기화되기에, 0이 return된다.
     }
 
 }
