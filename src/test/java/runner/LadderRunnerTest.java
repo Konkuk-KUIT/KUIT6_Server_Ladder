@@ -6,6 +6,9 @@ import position.Position;
 import exceptions.InvalidStartPositionException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import wrap.LadderHeight;
+import wrap.PersonCount;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderRunnerTest {
@@ -17,7 +20,9 @@ class LadderRunnerTest {
     void setUp() {
         runner = new LadderRunner();
         // Given: 4명이 참여하고 높이가 3인 사다리 보드
-        board = new LadderBoard(4, 3);
+        PersonCount personCount = new PersonCount(4);
+        LadderHeight ladderHeight = new LadderHeight(3);
+        board = new LadderBoard(personCount, ladderHeight);
     }
 
     @Test

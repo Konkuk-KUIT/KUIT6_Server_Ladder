@@ -4,6 +4,9 @@ import exceptions.InvalidCoordinateException;
 import exceptions.DuplicateLineException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import wrap.LadderHeight;
+import wrap.PersonCount;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderBoardTest {
@@ -13,7 +16,9 @@ class LadderBoardTest {
     @BeforeEach
     void setUp() {
         // Given: 4명이 참여하고 높이가 3인 사다리 보드
-        board = new LadderBoard(4, 3);
+        PersonCount p = new PersonCount(4);
+        LadderHeight l = new LadderHeight(3);
+        board = new LadderBoard(p, l);
     }
 
     @Test

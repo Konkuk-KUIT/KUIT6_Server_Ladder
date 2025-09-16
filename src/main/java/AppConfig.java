@@ -2,11 +2,13 @@ import board.Board;
 import board.LadderBoard;
 import runner.GameRunner;
 import runner.LadderRunner;
+import wrap.PersonCount;
+import wrap.LadderHeight;
 
 public class AppConfig {
     
-    public Board createBoard(int numberOfPerson, int height) {
-        return new LadderBoard(numberOfPerson, height);
+    public Board createBoard(PersonCount personCount, LadderHeight ladderHeight) {
+        return new LadderBoard(personCount, ladderHeight);
     }
     
     public GameRunner createRunner() {
@@ -14,6 +16,8 @@ public class AppConfig {
     }
     
     public Ladder createLadder(int numberOfPerson, int height) {
-        return new Ladder(createBoard(numberOfPerson, height), createRunner());
+        PersonCount personCount = new PersonCount(numberOfPerson);
+        LadderHeight ladderHeight = new LadderHeight(height);
+        return new Ladder(createBoard(personCount, ladderHeight), createRunner());
     }
 }

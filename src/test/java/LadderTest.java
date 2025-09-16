@@ -1,6 +1,10 @@
+import exceptions.InvalidCoordinateException;
 import position.Position;
 import exceptions.InvalidStartPositionException;
 import org.junit.jupiter.api.Test;
+import wrap.LadderHeight;
+import wrap.PersonCount;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
@@ -27,7 +31,7 @@ class LadderTest {
         Position nullCoordinate = null;
         
         // When & Then: 예외가 발생한다
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(InvalidCoordinateException.class, () -> {
             ladder.drawLine(nullCoordinate);
         });
     }

@@ -3,17 +3,19 @@ package board;
 import exceptions.DuplicateLineException;
 import exceptions.InvalidCoordinateException;
 import position.Coordinate;
+import wrap.PersonCount;
+import wrap.LadderHeight;
 
 public class LadderBoard implements Board {
     
     private final int[][] rows;
-    private final int numberOfPerson;
-    private final int height;
+    private final PersonCount personCount;
+    private final LadderHeight ladderHeight;
     
-    public LadderBoard(int numberOfPerson, int height) {
-        this.numberOfPerson = numberOfPerson;
-        this.height = height;
-        this.rows = new int[height][numberOfPerson - 1];
+    public LadderBoard(PersonCount personCount, LadderHeight ladderHeight) {
+        this.personCount = personCount;
+        this.ladderHeight = ladderHeight;
+        this.rows = new int[ladderHeight.getValue()][personCount.getMaxLineIndex()];
     }
     
     public void drawLine(Coordinate coordinate) {
@@ -25,7 +27,7 @@ public class LadderBoard implements Board {
     public boolean hasConnection(Coordinate coordinate) {
         int y = coordinate.getY();
         int x = coordinate.getX();
-        if (y < 0 || y >= height || x < 0 || x >= numberOfPerson - 1) {
+        if (!ladderHeight.isValidRow(y) || !personCount.isValidLineIndex(x)) {
             return false;
         }
         return rows[y][x] == 1;
@@ -33,18 +35,18 @@ public class LadderBoard implements Board {
 
     private void validateCoordinateRange(Coordinate coordinate) {
         if (coordinate == null) {
-            throw new IllegalArgumentException("좌표는 null일 수 없습니다");
+            throw new InvalidCoordinateException("좌표는 null일 수 없습니다");
         }
 
         int y = coordinate.getY();
         int x = coordinate.getX();
 
-        if (y < 0 || y >= height) {
-            throw new InvalidCoordinateException("Y 좌표가 범위를 벗어났습니다: " + y + " (0-" + (height-1) + ")");
+        if (!ladderHeight.isValidRow(y)) {
+            throw new InvalidCoordinateException("Y 좌표가 범위를 벗어났습니다: " + y + " (0-" + (ladderHeight.getValue()-1) + ")");
         }
 
-        if (x < 0 || x >= numberOfPerson - 1) {
-            throw new InvalidCoordinateException("X 좌표가 범위를 벗어났습니다: " + x + " (0-" + (numberOfPerson-2) + ")");
+        if (!personCount.isValidLineIndex(x)) {
+            throw new InvalidCoordinateException("X 좌표가 범위를 벗어났습니다: " + x + " (0-" + (personCount.getMaxLineIndex()-1) + ")");
         }
     }
 
@@ -55,10 +57,10 @@ public class LadderBoard implements Board {
     }
     
     public int getHeight() {
-        return height;
+        return ladderHeight.getValue();
     }
 
     public int getNumberOfPerson() {
-        return numberOfPerson;
+        return personCount.getValue();
     }
 }
