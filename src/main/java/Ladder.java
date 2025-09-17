@@ -15,9 +15,8 @@ public class Ladder {
      */
     private final int[][] rows;
 
-    public Ladder(int row, int numberOfPerson) {
-        if (row <= 0 || numberOfPerson <= 0) {throw new IllegalArgumentException();}
-        rows = new int[row][numberOfPerson];
+    public Ladder(NaturalNumber row, NaturalNumber numberOfPerson) {
+        rows = new int[row.getNumber()][numberOfPerson.getNumber()];
     }
 
     /**
@@ -44,7 +43,8 @@ public class Ladder {
     /**
      * drawLine()으로 만들어진 사다리를 타고, 내려가 결과값을 반환해준다.
     **/
-    public int run(int col) {//shift + F6누르면, 변수 이름 한번에 변경 가능
+    public int run(NaturalNumber col_natural) {//shift + F6누르면, 변수 이름 한번에 변경 가능
+        int col = col_natural.getNumber();
         col -= 1; //실제 좌표 0~rows[0].length-1이 사용자한텐 1~rows[0].length일 것을 고려한다.
         if(col < 0 || col > rows[0].length-1) {
             throw new IllegalArgumentException();
@@ -57,20 +57,7 @@ public class Ladder {
         return col;
     }
 
-    /**
-     * rows에 들어있는 사다리를 출력하는 형태이다.
-     * 별도의 형식 없이, 원본 그대로 출력한다(줄바꿈, 띄어쓰기 정도만 적용)
-     */
-    public void drawLadder() {
-        for (int c = 1; c < rows[0].length+1; c++) { System.out.print(c + " "); }
-        System.out.println("\n" + "-".repeat(rows[0].length*2));
-        for (int[] row : rows) {
-            for (int i : row) {
-                System.out.print(i+1 + " ");
-            }
-            System.out.println();
-        }
-    }
+
 
     /**
      * @return
@@ -106,5 +93,17 @@ public class Ladder {
                 rows[r][c] = c;
             }
         }
+    }
+
+    /**
+     * LadderView에 출력을 위해 rows 자체가 아닌 복제본을 넘겨줌
+     * @return
+     */
+    public int[][] snapshot() {
+        int[][] copy = new int[rows.length][];
+        for (int i = 0; i < rows.length; i++) {
+            copy[i] = rows[i].clone();
+        }
+        return copy;
     }
 }
