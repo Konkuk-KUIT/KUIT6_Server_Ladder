@@ -4,7 +4,7 @@ public class Ladder {
     private final int[][] rows;
     private final Liner liner;
 
-    public Ladder(int row, int numberOfPerson, Liner liner) {
+    private Ladder(int row, int numberOfPerson, Liner liner) {
         this.row = row;
         this.numberOfPerson = numberOfPerson;
         this.liner = liner;
