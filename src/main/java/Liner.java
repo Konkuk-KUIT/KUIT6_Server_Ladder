@@ -1,5 +1,6 @@
 import validator.HeightValidator;
 import validator.LadderNumberValidator;
+import validator.LinerValidator;
 import validator.SequenceValidator;
 
 public class Liner {
@@ -7,6 +8,7 @@ public class Liner {
     private final int numberOfPerson;
 
     public Liner(int row, int numberOfPerson) {
+        LinerValidator.validateLiner(row, numberOfPerson);
         this.row = row;
         this.numberOfPerson = numberOfPerson;
     }
