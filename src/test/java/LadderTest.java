@@ -54,4 +54,12 @@ class LadderTest {
         assertThat(ladder.run(NaturalNumber.from(3))).isEqualTo(0); //자바에선 기본적으로 0으로 초기화되기에, 0이 return된다.
     }
 
+    @Test
+    @DisplayName("사용자가 1인 사다리")
+    void onePersonLadder() {
+        Ladder ladder = new Ladder(NaturalNumber.from(5), NaturalNumber.from(1));
+        ladder.drawLine();
+        assertThat(ladder.run(NaturalNumber.from(1))).isEqualTo(1);
+    }
+
 }

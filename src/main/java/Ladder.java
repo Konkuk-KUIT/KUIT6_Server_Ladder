@@ -54,7 +54,7 @@ public class Ladder {
                 col = row[col];
             }
         }
-        return col;
+        return (col+1);
     }
 
 
