@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Ladder {
-    
+
     private StringArray stringArray;
 
     public Ladder(int row, int numberOfPerson) {
@@ -27,7 +27,7 @@ public class Ladder {
             if (curPos[1] == 0) {
                 // 첫 열인 경우
                 if (stringArray.getValue(i, curPos[1]) == 1) {
-                    curPos[1] = 1;
+                    curPos[1] += 1;
                 }
             } else if (curPos[1] != 0 && curPos[1] != stringArray.getColumnsLength()) {
                 // 첫 열과 마지막 열 사이인 경우
