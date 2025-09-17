@@ -1,5 +1,6 @@
 import exception.IllegalHeightException;
 import exception.IllegalLadderNumberException;
+import exception.IllegalLinerException;
 import exception.IllegalSequenceException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,14 @@ class LadderTest {
 
         // when & then
         assertThat(ladderGame.run(1)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("올바르지 않은 조건으로 라이너를 만들시 IllegalLinerException 발생한다.")
+    void illegal_liner(){
+
+        // when & then
+        assertThatThrownBy(()->new Liner(-5,3)).isInstanceOf(IllegalLinerException.class);
     }
 
     @Test
