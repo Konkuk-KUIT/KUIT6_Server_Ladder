@@ -6,10 +6,6 @@ public class StringArray {
         this.stringArray = new int[row][numberOfPerson - 1]; // 줄의 수는 사람 수보다 1 적음
     }
 
-    public int[][] getStringArray() {
-        return stringArray;
-    }
-
     public int getRowsLength() {
         return stringArray.length;
     }
@@ -23,6 +19,17 @@ public class StringArray {
     }
 
     public void setValue(int row, int column) {
+        if (row < 0 || row >= stringArray.length || column < 0 || column >= stringArray[0].length) {
+            throw new IllegalArgumentException("올바른 범위의 줄의 위치가 아닙니다");
+        }
+        for (int i = 0; i < stringArray[row].length; i++) {
+            if (i == column) {
+                continue;
+            }
+            if (stringArray[row][i] == 1) {
+                throw new IllegalArgumentException("이미 사용중인 줄입니다.");
+            }
+        }
         stringArray[row][column] = 1;
     }
 }

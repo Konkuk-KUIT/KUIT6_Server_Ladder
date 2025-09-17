@@ -1,14 +1,9 @@
 import java.util.Arrays;
 
 public class Ladder {
-
-//    private final int[][] stringArray; // 줄의 위치를 저장하는 배열
-
+    
     private StringArray stringArray;
 
-    //    public Ladder(int row, int numberOfPerson) {
-//        stringArray = new int[row][numberOfPerson - 1];
-//    }
     public Ladder(int row, int numberOfPerson) {
         this.stringArray = new StringArray(row, numberOfPerson);
     }
@@ -17,8 +12,8 @@ public class Ladder {
         return stringArray;
     }
 
-    public void drawLine(int x, int y) {
-        stringArray.setValue(x, y);
+    public void drawLine(int row, int column) {
+        stringArray.setValue(row, column);
     }
 
     public int run(int number) {
@@ -42,6 +37,7 @@ public class Ladder {
                     curPos[1] += 1;
                 }
             } else if (curPos[1] == stringArray.getColumnsLength()) {
+                // 마지막 열인 경우
                 if (stringArray.getValue(i, curPos[1] - 1) == 1) {
                     curPos[1] -= 1;
                 }

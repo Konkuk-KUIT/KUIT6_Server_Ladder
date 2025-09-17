@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
     @Test
-    @DisplayName("drawLine 메서드 테스트")
+    @DisplayName("drawLine 메서드 테스트 1")
     void drawLine() {
         Ladder ladder = new Ladder(3, 3);
         StringArray stringArray = ladder.getStringArray();
@@ -16,6 +16,17 @@ class LadderTest {
         ladder.drawLine(1, 1);
 
         assertThat(ladder.getStringArray().getValue(0, 0)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("drawLine 메서드 테스트 1")
+    void drawLine2() {
+        Ladder ladder = new Ladder(6, 4);
+        StringArray stringArray = ladder.getStringArray();
+        ladder.drawLine(3, 2);
+        assertThrows(IllegalArgumentException.class, () -> {
+            ladder.drawLine(3, 3);
+        });
     }
 
     @Test
@@ -29,7 +40,7 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("run 메서드 테스트2")
+    @DisplayName("run 메서드 테스트 2")
     void run2() {
         Ladder ladder = new Ladder(5, 4);
         ladder.drawLine(0, 0);
