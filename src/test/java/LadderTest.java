@@ -16,7 +16,7 @@ class LadderTest {
         // given
         Liner liner = new Liner(5,1);
         Ladder ladder = Ladder.from(liner);
-        LadderGame ladderGame = new LadderGame(ladder);
+        LadderGame ladderGame = LadderGame.of(ladder, liner);
 
         // when & then
         assertThat(ladderGame.run(1)).isEqualTo(1);
@@ -59,7 +59,7 @@ class LadderTest {
         // given
         Liner liner = new Liner(5,3);
         Ladder ladder = Ladder.from(liner);
-        LadderGame ladderGame = new LadderGame(ladder);
+        LadderGame ladderGame = LadderGame.of(ladder, liner);
 
         // when & then
         assertThatThrownBy(()->ladderGame.run(5)).isInstanceOf(IllegalLadderNumberException.class);
@@ -72,7 +72,7 @@ class LadderTest {
         Liner liner = new Liner(5,2);
         Ladder ladder = Ladder.from(liner);
         ladder.drawLine(1,2,3);
-        LadderGame ladderGame = new LadderGame(ladder);
+        LadderGame ladderGame = LadderGame.of(ladder, liner);
 
         // when & then
         assertThat(ladderGame.run(1)).isEqualTo(2);
@@ -87,7 +87,7 @@ class LadderTest {
         Ladder ladder = Ladder.from(liner);
         ladder.drawLine(1,2,1);
         ladder.drawLine(2,3,4);
-        LadderGame ladderGame = new LadderGame(ladder);
+        LadderGame ladderGame = LadderGame.of(ladder, liner);
 
         // when & then
         assertThat(ladderGame.run(1)).isEqualTo(3);

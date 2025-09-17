@@ -5,16 +5,17 @@ public class LadderGame {
     private final int numberOfPerson;
     private final int[][] rows;
 
-    private final Ladder ladder;
-
-    public LadderGame(Ladder ladder) {
-        this.ladder = ladder;
-        this.row = ladder.getRow();
-        this.rows = ladder.getRows();
-        this.numberOfPerson = ladder.getNumberOfPerson();
+    private LadderGame(int row, int[][] rows, int numberOfPerson) {
+        this.row = row;
+        this.rows = rows;
+        this.numberOfPerson = numberOfPerson;
     }
 
-    public int run(int ladderNum){
+    public static LadderGame of(Ladder ladder, Liner liner) {
+        return new LadderGame(liner.getRow(), ladder.getRows(), liner.getNumberOfPerson());
+    }
+
+    public int run(int ladderNum) {
         LadderNumberValidator.validateLadderNumber(ladderNum, numberOfPerson);
         int col = ladderNum - 1;
         for (int height = 0; height < row; height++) {
