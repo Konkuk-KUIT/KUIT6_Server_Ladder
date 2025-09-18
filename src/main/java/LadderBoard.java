@@ -8,8 +8,15 @@ public final class LadderBoard {
     public int rows() { return grid.length; }
     public int cols() { return grid[0].length; }
 
-    public int get(int r, int c) { return grid[r][c]; }
-    public void set(int r, int c, int v) { grid[r][c] = v; }
+    public boolean isNotZero(int r, int c) { return grid[r][c] != 0; }
+    public void createLeftBridge(int r, int c){
+        grid[r][c] = -1;
+        grid[r][c-1] = 1;
+    }
+    public void createRightBridge(int r, int c){
+        grid[r][c] = 1;
+        grid[r][c+1] = -1;
+    }
 
     public int checkBoard(int row, int col) {
 
@@ -24,6 +31,7 @@ public final class LadderBoard {
         return col;
     }
 
+    // test 전용
     public void printGrid(){
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid[0].length; j++){

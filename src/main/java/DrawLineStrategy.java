@@ -23,19 +23,20 @@ public interface DrawLineStrategy {
     }
 
     default void leftCreateBridge(int row, int col, LadderBoard ladderBoard) {
-        if(ladderBoard.get(row, col-1) != 0){
+        if(ladderBoard.isNotZero(row, col-1)) {
             return;
         }
-        ladderBoard.set(row, col, -1);
-        ladderBoard.set(row, col-1, 1);
-
+//        ladderBoard.set(row, col, -1);
+//        ladderBoard.set(row, col-1, 1);
+        ladderBoard.createLeftBridge(row, col);
     }
 
     default void rightCreateBridge(int row, int col, LadderBoard ladderBoard) {
-        if(ladderBoard.get(row, col+1) != 0){
+        if(ladderBoard.isNotZero(row, col+1)) {
             return;
         }
-        ladderBoard.set(row, col, 1);
-        ladderBoard.set(row, col+1, -1);
+//        ladderBoard.set(row, col, 1);
+//        ladderBoard.set(row, col+1, -1);
+        ladderBoard.createRightBridge(row, col);
     }
 }

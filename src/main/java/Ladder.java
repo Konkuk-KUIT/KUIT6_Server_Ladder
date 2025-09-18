@@ -33,6 +33,7 @@ public class Ladder {
         return numberFactory;
     }
 
+    // test 전용
     public LadderBoard getBoard() {
         return board;
     }

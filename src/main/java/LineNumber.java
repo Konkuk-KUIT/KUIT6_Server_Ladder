@@ -16,6 +16,7 @@ public class LineNumber {
 
     public int getNumber() {
         return number.getNumber();
+
     }
 
     public DrawLineStrategyType getDrawLineStrategyType() {
