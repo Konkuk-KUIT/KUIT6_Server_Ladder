@@ -19,22 +19,22 @@ class LadderTest {
         
         //When
         ladder.drawLine(NaturalNumber.from(2), NaturalNumber.from(3));
-        LadderDirections[] directions = ladder.getRows()[2].getLadderStates();
+        LadderDirections[] directions = ladder.getRows()[1].getLadderStates();
 
         //Then
         assertEquals(LadderDirections.CENTER, directions[0]);
         assertEquals(LadderDirections.CENTER, directions[1]);
-        assertEquals(LadderDirections.CENTER, directions[2]);
-        assertEquals(LadderDirections.RIGHT, directions[3]);
-        assertEquals(LadderDirections.LEFT, directions[4]);
+        assertEquals(LadderDirections.RIGHT, directions[2]);
+        assertEquals(LadderDirections.LEFT, directions[3]);
+        assertEquals(LadderDirections.CENTER, directions[4]);
     }
     
     @Test
     @DisplayName("사다리 수가 유효하지 않은 경우 테스트")
     public void numberOfLadder_valid () throws Exception {
 
-        assertThrows(IllegalArgumentException.class, () -> new Ladder(NaturalNumber.from(0), NaturalNumber.from(3)));
-        assertThrows(IllegalArgumentException.class, () -> new Ladder(NaturalNumber.from(5), NaturalNumber.from(1)));
+        assertThrows(IllegalArgumentException.class, () -> new Ladder(NaturalNumber.from(4), NaturalNumber.from(-3)));
+        assertThrows(IllegalArgumentException.class, () -> new Ladder(NaturalNumber.from(5), NaturalNumber.from(0)));
     }
     
 }

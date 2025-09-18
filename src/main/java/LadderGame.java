@@ -8,11 +8,13 @@ public class LadderGame
 
         // numberOfLadder가 이미 자연수니까 1 이상
         // -> position은 0 이상이니 따로 boolean에 조건 추가 x
-        boolean canStartGame = position <= numberOfLadder.getNumber();
-
         Row[] rows = ladder.getRows();
+        boolean canStartGame = numberOfLadder.getNumber() <= ladder.getRows()[0].getLadderStates().length;;
 
-        if (!canStartGame) throw new IllegalArgumentException("해당 사다리는 존재하지 않습니다.");
+
+
+        if (!canStartGame)
+            throw new IllegalArgumentException("해당 사다리는 존재하지 않습니다.");
 
         // 위치 변경
         for (int i = 0; i < rows.length; i++) {
