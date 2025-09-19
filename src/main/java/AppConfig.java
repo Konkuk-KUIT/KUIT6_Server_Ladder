@@ -1,4 +1,4 @@
-import board.LadderBoard;
+import board.Board;
 import board.LadderCreator;
 import runner.GameRunner;
 import runner.LadderRunner;
@@ -7,7 +7,7 @@ import wrap.LadderHeight;
 
 public class AppConfig {
     
-    public LadderBoard createBoard(PersonCount personCount, LadderHeight ladderHeight) {
+    public Board createBoard(PersonCount personCount, LadderHeight ladderHeight) {
         return new LadderCreator(personCount, ladderHeight);
     }
     
