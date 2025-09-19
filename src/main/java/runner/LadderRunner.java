@@ -1,5 +1,6 @@
 package runner;
 
+import exceptions.InvalidBoardNullException;
 import exceptions.InvalidStartPositionException;
 import exceptions.ErrorMessage;
 import board.LadderBoard;
@@ -29,7 +30,7 @@ public class LadderRunner implements GameRunner {
     
     private void validateGameExecution(LadderBoard ladderBoard, int startPosition) {
         if (ladderBoard == null) {
-            throw new IllegalArgumentException(ErrorMessage.NULL_BOARD.getMessage());
+            throw new InvalidBoardNullException(ErrorMessage.NULL_BOARD.getMessage());
         }
 
         if (startPosition < 0) {
