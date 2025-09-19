@@ -1,4 +1,4 @@
-import board.Board;
+import ladderboard.board.Board;
 import position.Coordinate;
 import runner.GameRunner;
 

@@ -1,4 +1,4 @@
-package board;
+package ladderboard.board;
 
 import exceptions.InvalidCoordinateException;
 import exceptions.ErrorMessage;

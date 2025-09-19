@@ -1,5 +1,8 @@
-package board;
+package ladderboard;
 
+import ladderboard.board.Board;
+import ladderboard.board.LadderBoard;
+import ladderboard.board.Row;
 import position.Coordinate;
 import wrap.PersonCount;
 import wrap.LadderHeight;

@@ -3,7 +3,7 @@ package runner;
 import exceptions.InvalidBoardNullException;
 import exceptions.InvalidStartPositionException;
 import exceptions.ErrorMessage;
-import board.Board;
+import ladderboard.board.Board;
 import position.Position;
 
 public class LadderRunner implements GameRunner {

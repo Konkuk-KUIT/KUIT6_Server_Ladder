@@ -1,4 +1,4 @@
-package board;
+package ladderboard;
 import position.Position;
 import exceptions.InvalidCoordinateException;
 import exceptions.DuplicateLineException;

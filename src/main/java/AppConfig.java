@@ -1,5 +1,5 @@
-import board.Board;
-import board.LadderCreator;
+import ladderboard.board.Board;
+import ladderboard.LadderCreator;
 import runner.GameRunner;
 import runner.LadderRunner;
 import wrap.PersonCount;

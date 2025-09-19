@@ -1,6 +1,6 @@
 package runner;
 
-import board.Board;
+import ladderboard.board.Board;
 
 public interface GameRunner {
     int run(Board board, int startPosition);

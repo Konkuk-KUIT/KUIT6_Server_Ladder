@@ -1,7 +1,7 @@
 package runner;
 
-import board.Board;
-import board.LadderCreator;
+import ladderboard.board.Board;
+import ladderboard.LadderCreator;
 import exceptions.InvalidBoardNullException;
 import position.Position;
 import exceptions.InvalidStartPositionException;
