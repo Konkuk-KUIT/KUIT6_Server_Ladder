@@ -26,9 +26,12 @@ public class Ladder {
             throw new ArrayIndexOutOfBoundsException("Invalid start position");
         }
         int finalX = startX;
-        for (int depth = 0; depth < rows.length; depth++) {
-            finalX += rows[depth][finalX];
+        for (int[] row : rows) {
+            finalX += row[finalX];
         }
+//        for (int depth = 0; depth < rows.length; depth++) {
+//            finalX += rows[depth][finalX];
+//        }
         return finalX;
     }
 }
