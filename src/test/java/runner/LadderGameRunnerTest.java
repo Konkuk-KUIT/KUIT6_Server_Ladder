@@ -2,6 +2,7 @@ package runner;
 
 import board.Board;
 import board.LadderCreator;
+import exceptions.InvalidBoardNullException;
 import position.Position;
 import exceptions.InvalidStartPositionException;
 import org.junit.jupiter.api.Test;
@@ -136,7 +137,7 @@ class LadderGameRunnerTest {
         Board nullBoard = null;
 
         // When & Then: 예외가 발생한다
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(InvalidBoardNullException.class, () -> {
             runner.run(nullBoard, 0);
         });
     }

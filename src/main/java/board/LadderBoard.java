@@ -26,10 +26,10 @@ public class LadderBoard implements Board {
     }
     
     public void drawLine(Coordinate coordinate) {
+        validateCoordinateRange(coordinate);
+        
         int y = coordinate.getY();
         int x = coordinate.getX();
-        
-        validateCoordinateRange(coordinate);
         rows[y].connectNode(x);
     }
     
