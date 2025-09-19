@@ -5,6 +5,7 @@ import exceptions.ErrorMessage;
 import position.Coordinate;
 import wrap.PersonCount;
 import wrap.LadderHeight;
+import wrap.NodeIndex;
 
 public class LadderBoard implements Board {
     
@@ -15,13 +16,13 @@ public class LadderBoard implements Board {
     public LadderBoard(PersonCount personCount, LadderHeight ladderHeight) {
         this.personCount = personCount;
         this.ladderHeight = ladderHeight;
-        this.rows = new Row[ladderHeight.getValue()];
+        this.rows = new Row[ladderHeight.value()];
         initializeRows();
     }
     
     private void initializeRows() {
         for (int i = 0; i < rows.length; i++) {
-            rows[i] = new Row(personCount.getMaxLineIndex(), i);
+            rows[i] = new Row(personCount, i);
         }
     }
     
@@ -30,21 +31,21 @@ public class LadderBoard implements Board {
         
         int y = coordinate.getY();
         int x = coordinate.getX();
-        rows[y].connectNode(x);
+        rows[y].connectNode(new NodeIndex(x));
     }
     
     public boolean hasConnection(Coordinate coordinate) {
         int y = coordinate.getY();
         int x = coordinate.getX();
         
-        if (!ladderHeight.isValidRow(y) || !personCount.isValidLineIndex(x)) {
+        if (ladderHeight.isValidRow(y) || !personCount.isValidLineIndex(x)) {
             return false;
         }
-        return rows[y].hasConnection(x);
+        return rows[y].hasConnection(new NodeIndex(x));
     }
     
     public int getHeight() {
-        return ladderHeight.getValue();
+        return ladderHeight.value();
     }
     
     public int getNumberOfPerson() {
@@ -63,8 +64,8 @@ public class LadderBoard implements Board {
         int y = coordinate.getY();
         int x = coordinate.getX();
 
-        if (!ladderHeight.isValidRow(y)) {
-            throw new InvalidCoordinateException(ErrorMessage.INVALID_COORDINATE_Y.format(y, ladderHeight.getValue()-1));
+        if (ladderHeight.isValidRow(y)) {
+            throw new InvalidCoordinateException(ErrorMessage.INVALID_COORDINATE_Y.format(y, ladderHeight.value()-1));
         }
 
         if (!personCount.isValidLineIndex(x)) {

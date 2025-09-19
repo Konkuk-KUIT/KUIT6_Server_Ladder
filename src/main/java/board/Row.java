@@ -2,14 +2,18 @@ package board;
 
 import exceptions.DuplicateLineException;
 import exceptions.ErrorMessage;
+import wrap.NodeIndex;
+import wrap.PersonCount;
 
 public class Row {
     
     private final Node[] nodes;
     private final int rowIndex;
+    private final PersonCount personCount;
     
-    public Row(int nodeCount, int rowIndex) {
-        this.nodes = new Node[nodeCount];
+    public Row(PersonCount personCount, int rowIndex) {
+        this.personCount = personCount;
+        this.nodes = new Node[personCount.getMaxLineIndex()];
         this.rowIndex = rowIndex;
         initializeNodes();
     }
@@ -20,28 +24,28 @@ public class Row {
         }
     }
     
-    public void connectNode(int nodeIndex) {
+    public void connectNode(NodeIndex nodeIndex) {
         validateNodeIndex(nodeIndex);
         validateNoDuplicateConnection(nodeIndex);
-        nodes[nodeIndex].connect();
+        nodes[nodeIndex.value()].connect();
     }
     
-    public boolean hasConnection(int nodeIndex) {
-        if (nodeIndex < 0 || nodeIndex >= nodes.length) {
+    public boolean hasConnection(NodeIndex nodeIndex) {
+        if (nodeIndex.isValidFor(personCount)) {
             return false;
         }
-        return nodes[nodeIndex].isConnected();
+        return nodes[nodeIndex.value()].isConnected();
     }
     
-    private void validateNodeIndex(int nodeIndex) {
-        if (nodeIndex < 0 || nodeIndex >= nodes.length) {
-            throw new IllegalArgumentException("Invalid node index: " + nodeIndex);
+    private void validateNodeIndex(NodeIndex nodeIndex) {
+        if (nodeIndex.isValidFor(personCount)) {
+            throw new IllegalArgumentException("Invalid node index: " + nodeIndex.value());
         }
     }
     
-    private void validateNoDuplicateConnection(int nodeIndex) {
+    private void validateNoDuplicateConnection(NodeIndex nodeIndex) {
         if (hasConnection(nodeIndex)) {
-            throw new DuplicateLineException(ErrorMessage.DUPLICATE_LINE.format(rowIndex, nodeIndex));
+            throw new DuplicateLineException(ErrorMessage.DUPLICATE_LINE.format(rowIndex, nodeIndex.value()));
         }
     }
     

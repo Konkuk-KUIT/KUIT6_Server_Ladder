@@ -6,30 +6,30 @@ import wrap.LadderHeight;
 
 public class LadderCreator implements Board {
     
-    private final LadderBoard ladderLadderBoard;
+    private final LadderBoard ladderBoard;
     
     public LadderCreator(PersonCount personCount, LadderHeight ladderHeight) {
-        this.ladderLadderBoard = new LadderBoard(personCount, ladderHeight);
+        this.ladderBoard = new LadderBoard(personCount, ladderHeight);
     }
     
     public void drawLine(Coordinate coordinate) {
-        ladderLadderBoard.drawLine(coordinate);
+        ladderBoard.drawLine(coordinate);
     }
     
     public boolean hasConnection(Coordinate coordinate) {
-        return ladderLadderBoard.hasConnection(coordinate);
+        return ladderBoard.hasConnection(coordinate);
     }
 
     
     public int getHeight() {
-        return ladderLadderBoard.getHeight();
+        return ladderBoard.getHeight();
     }
 
     public int getNumberOfPerson() {
-        return ladderLadderBoard.getNumberOfPerson();
+        return ladderBoard.getNumberOfPerson();
     }
     
     public Row[] getRows() {
-        return ladderLadderBoard.getRows();
+        return ladderBoard.getRows();
     }
 }
