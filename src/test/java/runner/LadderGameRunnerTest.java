@@ -1,7 +1,7 @@
 package runner;
 
-import board.Board;
 import board.LadderBoard;
+import board.LadderCreator;
 import position.Position;
 import exceptions.InvalidStartPositionException;
 import org.junit.jupiter.api.Test;
@@ -11,10 +11,10 @@ import wrap.PersonCount;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LadderRunnerTest {
+class LadderGameRunnerTest {
 
     private LadderRunner runner;
-    private Board board;
+    private LadderBoard ladderBoard;
 
     @BeforeEach
     void setUp() {
@@ -22,7 +22,7 @@ class LadderRunnerTest {
         // Given: 4명이 참여하고 높이가 3인 사다리 보드
         PersonCount personCount = new PersonCount(4);
         LadderHeight ladderHeight = new LadderHeight(3);
-        board = new LadderBoard(personCount, ladderHeight);
+        ladderBoard = new LadderCreator(personCount, ladderHeight);
     }
 
     @Test
@@ -31,7 +31,7 @@ class LadderRunnerTest {
         int startPosition = 1;
 
         // When: 게임을 실행한다
-        int result = runner.run(board, startPosition);
+        int result = runner.run(ladderBoard, startPosition);
 
         // Then: 시작 위치와 동일한 위치에 도착한다
         assertEquals(1, result);
@@ -40,11 +40,11 @@ class LadderRunnerTest {
     @Test
     void 가로선을_만나면_오른쪽으로_이동한다() {
         // Given: (0,1) 위치에 가로선이 있는 보드
-        board.drawLine(new Position(0, 1));
+        ladderBoard.drawLine(new Position(0, 1));
         int startPosition = 1;
 
         // When: 1번 위치에서 시작한다
-        int result = runner.run(board, startPosition);
+        int result = runner.run(ladderBoard, startPosition);
 
         // Then: 2번 위치에 도착한다
         assertEquals(2, result);
@@ -53,11 +53,11 @@ class LadderRunnerTest {
     @Test
     void 왼쪽에_가로선이_있으면_왼쪽으로_이동한다() {
         // Given: (0,0) 위치에 가로선이 있는 보드
-        board.drawLine(new Position(0, 0));
+        ladderBoard.drawLine(new Position(0, 0));
         int startPosition = 1;
 
         // When: 1번 위치에서 시작한다
-        int result = runner.run(board, startPosition);
+        int result = runner.run(ladderBoard, startPosition);
 
         // Then: 0번 위치에 도착한다
         assertEquals(0, result);
@@ -70,14 +70,14 @@ class LadderRunnerTest {
         //   | - | - |   |  <- (0,0), (0,1)에 가로선
         //   |   | - |   |  <- (1,1)에 가로선
         //   |   |   | - |  <- (2,2)에 가로선
-        board.drawLine(new Position(0, 0));
-        board.drawLine(new Position(0, 1));
-        board.drawLine(new Position(1, 1));
-        board.drawLine(new Position(2, 2));
+        ladderBoard.drawLine(new Position(0, 0));
+        ladderBoard.drawLine(new Position(0, 1));
+        ladderBoard.drawLine(new Position(1, 1));
+        ladderBoard.drawLine(new Position(2, 2));
         int startPosition = 0;
 
         // When: 0번 위치에서 시작한다
-        int result = runner.run(board, startPosition);
+        int result = runner.run(ladderBoard, startPosition);
 
         // Then: 올바른 위치에 도착한다
         assertEquals(3, result);
@@ -86,11 +86,11 @@ class LadderRunnerTest {
     @Test
     void 맨_왼쪽에서_시작해도_올바르게_동작한다() {
         // Given: (0,0)에 가로선이 있는 보드
-        board.drawLine(new Position(0, 0));
+        ladderBoard.drawLine(new Position(0, 0));
         int startPosition = 0;
 
         // When: 0번 위치에서 시작한다
-        int result = runner.run(board, startPosition);
+        int result = runner.run(ladderBoard, startPosition);
 
         // Then: 1번 위치에 도착한다
         assertEquals(1, result);
@@ -102,7 +102,7 @@ class LadderRunnerTest {
         int startPosition = 3; // 4명이므로 최대 인덱스는 3
 
         // When: 3번 위치에서 시작한다
-        int result = runner.run(board, startPosition);
+        int result = runner.run(ladderBoard, startPosition);
 
         // Then: 3번 위치에 도착한다
         assertEquals(3, result);
@@ -115,7 +115,7 @@ class LadderRunnerTest {
 
         // When & Then: 예외가 발생한다
         assertThrows(InvalidStartPositionException.class, () -> {
-            runner.run(board, invalidStartPosition);
+            runner.run(ladderBoard, invalidStartPosition);
         });
     }
 
@@ -126,18 +126,18 @@ class LadderRunnerTest {
 
         // When & Then: 예외가 발생한다
         assertThrows(InvalidStartPositionException.class, () -> {
-            runner.run(board, invalidStartPosition);
+            runner.run(ladderBoard, invalidStartPosition);
         });
     }
 
     @Test
     void 보드가_null이면_예외가_발생한다() {
         // Given: null 보드
-        Board nullBoard = null;
+        LadderBoard nullLadderBoard = null;
 
         // When & Then: 예외가 발생한다
         assertThrows(IllegalArgumentException.class, () -> {
-            runner.run(nullBoard, 0);
+            runner.run(nullLadderBoard, 0);
         });
     }
 }

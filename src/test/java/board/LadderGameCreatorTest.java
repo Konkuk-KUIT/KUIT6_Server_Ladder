@@ -9,16 +9,16 @@ import wrap.PersonCount;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LadderBoardTest {
+class LadderGameCreatorTest {
 
-    private LadderBoard board;
+    private LadderCreator board;
 
     @BeforeEach
     void setUp() {
         // Given: 4명이 참여하고 높이가 3인 사다리 보드
         PersonCount p = new PersonCount(4);
         LadderHeight l = new LadderHeight(3);
-        board = new LadderBoard(p, l);
+        board = new LadderCreator(p, l);
     }
 
     @Test
