@@ -6,7 +6,8 @@ import board.Board;
 import position.Position;
 
 public class LadderRunner implements GameRunner {
-    
+
+    // todo: startPosition -> wrapper class로 포장하는 작업이 필요할듯
     public int run(Board board, int startPosition) {
         validateGameExecution(board, startPosition);
         
