@@ -19,8 +19,8 @@ public class Liner {
         SequenceValidator.validateSequence(left, right);
         HeightValidator.validateHeight(left, right, rows, height);
 
-        rows[height - 1][left - 1] = 1;
-        rows[height - 1][right - 1] = -1;
+        rows[height - 1][left - 1] = Direction.RIGHT.getValue();
+        rows[height - 1][right - 1] = Direction.LEFT.getValue();
     }
 
     public int getRow() {
