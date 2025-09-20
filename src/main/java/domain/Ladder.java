@@ -1,3 +1,5 @@
+package domain;
+
 public class Ladder {
     private final int[][] rows;
     private final Liner liner;

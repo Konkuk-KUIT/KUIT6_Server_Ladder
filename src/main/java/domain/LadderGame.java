@@ -1,3 +1,5 @@
+package domain;
+
 import validator.LadderNumberValidator;
 
 public class LadderGame {

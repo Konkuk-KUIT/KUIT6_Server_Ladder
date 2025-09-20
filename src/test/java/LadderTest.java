@@ -1,3 +1,6 @@
+import domain.Ladder;
+import domain.LadderGame;
+import domain.Liner;
 import exception.IllegalHeightException;
 import exception.IllegalLadderNumberException;
 import exception.IllegalLinerException;
@@ -7,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
     @Test
