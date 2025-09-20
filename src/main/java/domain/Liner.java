@@ -1,5 +1,6 @@
 package domain;
 
+import direction.Direction;
 import validator.HeightValidator;
 import validator.LadderNumberValidator;
 import validator.LinerValidator;
