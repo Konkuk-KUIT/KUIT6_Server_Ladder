@@ -12,10 +12,6 @@ public class Ladder {
         rows = Row.makeInitRows(row, numberOfPerson);
     }
 
-    public static Ladder from(Liner liner) {
-        return new Ladder(liner.getRow(), liner.getNumberOfPerson());
-    }
-
     public void drawLine(int left, int right, int height, int numberOfPerson) {
         LadderNumberValidator.validateLadderNumber(left, numberOfPerson);
         LadderNumberValidator.validateLadderNumber(right, numberOfPerson);

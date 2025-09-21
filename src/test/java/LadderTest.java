@@ -17,8 +17,7 @@ class LadderTest {
     void long_single_ladder_run(){
         // given
         Liner liner = new Liner(5,1);
-        Ladder ladder = Ladder.from(liner);
-        LadderGame ladderGame = LadderGame.of(ladder, liner);
+        LadderGame ladderGame = LadderGame.from(liner);
 
         // when & then
         assertThat(ladderGame.run(1)).isEqualTo(1);
@@ -37,10 +36,9 @@ class LadderTest {
     void illegal_sequence(){
         // given
         Liner liner = new Liner(5,3);
-        Ladder ladder = Ladder.from(liner);
 
         // when & then
-        assertThatThrownBy(()->ladder.drawLine(3,1,1)).isInstanceOf(IllegalSequenceException.class);
+        assertThatThrownBy(()->liner.drawLine(3,1,1)).isInstanceOf(IllegalSequenceException.class);
     }
 
     @Test
@@ -48,11 +46,10 @@ class LadderTest {
     void illegal_height(){
         // given
         Liner liner = new Liner(5,3);
-        Ladder ladder = Ladder.from(liner);
-        ladder.drawLine(1,2,1); // 1층에 1과 2를 연결
+        liner.drawLine(1,2,1); // 1층에 1과 2를 연결
 
         // when & then
-        assertThatThrownBy(()->ladder.drawLine(2,3,1)).isInstanceOf(IllegalHeightException.class);
+        assertThatThrownBy(()->liner.drawLine(2,3,1)).isInstanceOf(IllegalHeightException.class);
     }
 
     @Test
@@ -60,8 +57,7 @@ class LadderTest {
     void illegal_ladder_game(){
         // given
         Liner liner = new Liner(5,3);
-        Ladder ladder = Ladder.from(liner);
-        LadderGame ladderGame = LadderGame.of(ladder, liner);
+        LadderGame ladderGame = LadderGame.from(liner);
 
         // when & then
         assertThatThrownBy(()->ladderGame.run(5)).isInstanceOf(IllegalLadderNumberException.class);
@@ -72,9 +68,8 @@ class LadderTest {
     void double_ladder_run_1(){
         // given
         Liner liner = new Liner(5,2);
-        Ladder ladder = Ladder.from(liner);
-        ladder.drawLine(1,2,3);
-        LadderGame ladderGame = LadderGame.of(ladder, liner);
+        liner.drawLine(1,2,3);
+        LadderGame ladderGame = LadderGame.from(liner);
 
         // when & then
         assertThat(ladderGame.run(1)).isEqualTo(2);
@@ -86,10 +81,9 @@ class LadderTest {
     void double_ladder_run_3(){
         // given
         Liner liner = new Liner(5,3);
-        Ladder ladder = Ladder.from(liner);
-        ladder.drawLine(1,2,1);
-        ladder.drawLine(2,3,4);
-        LadderGame ladderGame = LadderGame.of(ladder, liner);
+        liner.drawLine(1,2,1);
+        liner.drawLine(2,3,4);
+        LadderGame ladderGame = LadderGame.from(liner);
 
         // when & then
         assertThat(ladderGame.run(1)).isEqualTo(3);

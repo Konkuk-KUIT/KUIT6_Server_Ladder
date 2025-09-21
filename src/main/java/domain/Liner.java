@@ -22,10 +22,6 @@ public class Liner {
         ladder.drawLine(left, right, height, numberOfPerson);
     }
 
-    public int getRow() {
-        return row;
-    }
-
     public int getNumberOfPerson() {
         return numberOfPerson;
     }
