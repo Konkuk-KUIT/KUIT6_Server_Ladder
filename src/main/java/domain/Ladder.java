@@ -1,12 +1,12 @@
 package domain;
 
 public class Ladder {
-    private final int[][] rows;
+    private final Row[] rows;
     private final Liner liner;
 
     private Ladder(int row, int numberOfPerson, Liner liner) {
         this.liner = liner;
-        rows = new int[row][numberOfPerson];
+        rows = Row.makeInitRows(row, numberOfPerson);
     }
 
     public static Ladder from(Liner liner) {
@@ -17,7 +17,7 @@ public class Ladder {
         liner.drawLine(left, right, height, this.rows);
     }
 
-    public int[][] getRows() {
+    public Row[] getRows() {
         return rows;
     }
 }

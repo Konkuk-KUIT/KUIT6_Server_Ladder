@@ -16,14 +16,14 @@ public class Liner {
         this.numberOfPerson = numberOfPerson;
     }
 
-    public void drawLine(int left, int right, int height, int[][] rows) {
+    public void drawLine(int left, int right, int height, Row[] rows) {
         LadderNumberValidator.validateLadderNumber(left, numberOfPerson);
         LadderNumberValidator.validateLadderNumber(right, numberOfPerson);
         SequenceValidator.validateSequence(left, right);
         HeightValidator.validateHeight(left, right, rows, height);
 
-        rows[height - 1][left - 1] = Direction.RIGHT.getValue();
-        rows[height - 1][right - 1] = Direction.LEFT.getValue();
+        rows[height - 1].assignDirection(left - 1, Direction.RIGHT.getValue());
+        rows[height - 1].assignDirection(right - 1, Direction.LEFT.getValue());
     }
 
     public int getRow() {
