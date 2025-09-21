@@ -1,17 +1,16 @@
 package domain;
 
-import validator.LadderNumberValidator;
-
 public class LadderGame {
-    private final int numberOfPerson;
-    private final Row[] rows;
+    private final Liner liner;
 
-    private LadderGame(Row[] rows, int numberOfPerson) {
-        this.rows = rows;
-        this.numberOfPerson = numberOfPerson;
+    LadderGame(Liner liner) {
+        this.liner = liner;
     }
 
-    public static LadderGame of(Ladder ladder, Liner liner) {
-        return new LadderGame(ladder.getRows(), liner.getNumberOfPerson());
+    public int run(int ladderNum){
+        Ladder ladder = liner.getLadder();
+        LadderRunner ladderRunner= new LadderRunner(ladder.getRows(), liner.getNumberOfPerson());
+
+        return ladderRunner.run(ladderNum);
     }
 }

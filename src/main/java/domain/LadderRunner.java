@@ -6,7 +6,7 @@ public class LadderRunner {
     private final Row[] rows;
     private final int numberOfPerson;
 
-    private LadderRunner(Row[] rows, int numberOfPerson) {
+    public LadderRunner(Row[] rows, int numberOfPerson) {
         this.rows = rows;
         this.numberOfPerson = numberOfPerson;
     }
