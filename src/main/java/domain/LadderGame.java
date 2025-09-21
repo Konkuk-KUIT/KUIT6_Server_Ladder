@@ -14,14 +14,4 @@ public class LadderGame {
     public static LadderGame of(Ladder ladder, Liner liner) {
         return new LadderGame(ladder.getRows(), liner.getNumberOfPerson());
     }
-
-    public int run(int ladderNum) {
-        LadderNumberValidator.validateLadderNumber(ladderNum, numberOfPerson);
-        int col = ladderNum - 1;
-        for (int height = 0; height < rows.length; height++) {
-            col += rows[height].getNodeValue(col);
-        }
-        return col + 1;
-    }
-
 }

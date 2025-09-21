@@ -26,15 +26,6 @@ public class Ladder {
         rows[height - 1].assignDirection(right - 1, Direction.LEFT.getValue());
     }
 
-    public int run(int ladderNum) {
-        LadderNumberValidator.validateLadderNumber(ladderNum, numberOfPerson);
-        int col = ladderNum - 1;
-        for (int height = 0; height < rows.length; height++) {
-            col += rows[height].getNodeValue(col);
-        }
-        return col + 1;
-    }
-
     public Row[] getRows() {
         return rows;
     }
