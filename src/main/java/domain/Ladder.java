@@ -1,20 +1,38 @@
 package domain;
 
+import direction.Direction;
+import validator.HeightValidator;
+import validator.LadderNumberValidator;
+import validator.SequenceValidator;
+
 public class Ladder {
     private final Row[] rows;
-    private final Liner liner;
 
-    private Ladder(int row, int numberOfPerson, Liner liner) {
-        this.liner = liner;
+    public Ladder(int row, int numberOfPerson) {
         rows = Row.makeInitRows(row, numberOfPerson);
     }
 
     public static Ladder from(Liner liner) {
-        return new Ladder(liner.getRow(), liner.getNumberOfPerson(), liner);
+        return new Ladder(liner.getRow(), liner.getNumberOfPerson());
     }
 
-    public void drawLine(int left, int right, int height) {
-        liner.drawLine(left, right, height, this.rows);
+    public void drawLine(int left, int right, int height, int numberOfPerson) {
+        LadderNumberValidator.validateLadderNumber(left, numberOfPerson);
+        LadderNumberValidator.validateLadderNumber(right, numberOfPerson);
+        SequenceValidator.validateSequence(left, right);
+        HeightValidator.validateHeight(left, right, rows, height);
+
+        rows[height - 1].assignDirection(left - 1, Direction.RIGHT.getValue());
+        rows[height - 1].assignDirection(right - 1, Direction.LEFT.getValue());
+    }
+
+    public int run(int ladderNum) {
+        LadderNumberValidator.validateLadderNumber(ladderNum, numberOfPerson);
+        int col = ladderNum - 1;
+        for (int height = 0; height < rows.length; height++) {
+            col += rows[height].getNodeValue(col);
+        }
+        return col + 1;
     }
 
     public Row[] getRows() {
