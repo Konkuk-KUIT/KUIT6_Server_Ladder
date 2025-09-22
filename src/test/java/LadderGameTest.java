@@ -39,7 +39,7 @@ class LadderGameTest {
     void 음수_시작위치로_게임을_실행하면_예외가_발생한다() {
         // Given & When & Then: 예외가 발생한다
         assertThrows(InvalidStartPositionException.class, () -> {
-            StartPosition invalidStartPosition = new StartPosition(-1);
+            StartPosition invalidStartPosition = StartPosition.at(-1);
         });
     }
     
@@ -50,14 +50,14 @@ class LadderGameTest {
         LadderGame ladderGame = config.createLadder(4, 3);
         
         // When: 사다리를 구성하고 게임을 실행한다
-        ladderGame.drawLine(new Position(0, 1)); // 첫 번째 줄에 가로선
-        ladderGame.drawLine(new Position(1, 0)); // 두 번째 줄에 가로선
+        ladderGame.drawLine(Position.at(0, 1)); // 첫 번째 줄에 가로선
+        ladderGame.drawLine(Position.at(1, 0)); // 두 번째 줄에 가로선
         
         // Then: 각 시작 위치에서 올바른 결과가 나온다
-        assertEquals(1, ladderGame.run(new StartPosition(0)).getX()); // 0 -> 1
-        assertEquals(2, ladderGame.run(new StartPosition(1)).getX()); // 1 -> 2 -> 1
-        assertEquals(0, ladderGame.run(new StartPosition(2)).getX()); // 2 -> 1 -> 0
-        assertEquals(3, ladderGame.run(new StartPosition(3)).getX()); // 3 -> 3 -> 3
+        assertEquals(1, ladderGame.run(StartPosition.at(0)).getX()); // 0 -> 1
+        assertEquals(2, ladderGame.run(StartPosition.at(1)).getX()); // 1 -> 2 -> 1
+        assertEquals(0, ladderGame.run(StartPosition.at(2)).getX()); // 2 -> 1 -> 0
+        assertEquals(3, ladderGame.run(StartPosition.at(3)).getX()); // 3 -> 3 -> 3
     }
     
     @Test
@@ -65,7 +65,7 @@ class LadderGameTest {
         // Given: 사다리와 유효한 좌표
         AppConfig config = new AppConfig();
         ladderGame = config.createLadder(4, 3);
-        Position coordinate = new Position(1, 2);
+        Position coordinate = Position.at(1, 2);
         
         // When: 선을 그린다
         assertDoesNotThrow(() -> {
@@ -73,7 +73,7 @@ class LadderGameTest {
         });
         
         // Then: 게임 실행 시 영향을 받는다
-        Position result = ladderGame.run(new StartPosition(2));
+        Position result = ladderGame.run(StartPosition.at(2));
         assertEquals(3, result.getX()); // 2번에서 시작해서 3번으로 이동
     }
     
@@ -82,7 +82,7 @@ class LadderGameTest {
         // Given: 사다리와 유효한 시작 위치
         AppConfig config = new AppConfig();
         ladderGame = config.createLadder(4, 3);
-        StartPosition startPosition = new StartPosition(2);
+        StartPosition startPosition = StartPosition.at(2);
         
         // When: 게임을 실행한다
         Position result = ladderGame.run(startPosition);

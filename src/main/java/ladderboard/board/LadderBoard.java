@@ -16,7 +16,7 @@ public class LadderBoard implements Board {
     public LadderBoard(PersonCount personCount, LadderHeight ladderHeight) {
         this.personCount = personCount;
         this.ladderHeight = ladderHeight;
-        this.rows = new Row[ladderHeight.value()];
+        this.rows = new Row[ladderHeight.getValue()];
         initializeRows();
     }
     
@@ -31,21 +31,21 @@ public class LadderBoard implements Board {
         
         int y = coordinate.getY();
         int x = coordinate.getX();
-        rows[y].connectNode(new NodeIndex(x));
+        rows[y].connectNode(NodeIndex.at(x));
     }
     
     public boolean hasConnection(Coordinate coordinate) {
         int y = coordinate.getY();
         int x = coordinate.getX();
         
-        if (ladderHeight.isValidRow(y) || !personCount.isValidLineIndex(x)) {
+        if (ladderHeight.isValidRow(y) || personCount.isValidLineIndex(x)) {
             return false;
         }
-        return rows[y].hasConnection(new NodeIndex(x));
+        return rows[y].hasConnection(NodeIndex.at(x));
     }
     
     public int getHeight() {
-        return ladderHeight.value();
+        return ladderHeight.getValue();
     }
     
     public int getNumberOfPerson() {
@@ -65,11 +65,11 @@ public class LadderBoard implements Board {
         int x = coordinate.getX();
 
         if (ladderHeight.isValidRow(y)) {
-            throw new InvalidCoordinateException(ErrorMessage.INVALID_COORDINATE_Y.format(y, ladderHeight.value()-1));
+            throw new InvalidCoordinateException(ErrorMessage.INVALID_COORDINATE_Y.format(y, ladderHeight.getValue()-1));
         }
 
-        if (!personCount.isValidLineIndex(x)) {
-            throw new InvalidCoordinateException(ErrorMessage.INVALID_COORDINATE_X.format(x, personCount.getMaxLineIndex()-1));
+        if (personCount.isValidLineIndex(x)) {
+            throw new InvalidCoordinateException(ErrorMessage.INVALID_COORDINATE_X.format(x, personCount.getMaxLineIndex()));
         }
     }
 }

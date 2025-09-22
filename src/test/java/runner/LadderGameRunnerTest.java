@@ -22,15 +22,15 @@ class LadderGameRunnerTest {
     void setUp() {
         runner = new LadderRunner();
         // Given: 4명이 참여하고 높이가 3인 사다리 보드
-        PersonCount personCount = new PersonCount(4);
-        LadderHeight ladderHeight = new LadderHeight(3);
+        PersonCount personCount = PersonCount.of(4);
+        LadderHeight ladderHeight = LadderHeight.of(3);
         board = new LadderCreator(personCount, ladderHeight);
     }
 
     @Test
     void 가로선이_없으면_그대로_내려간다() {
         // Given: 가로선이 없는 빈 보드
-        StartPosition startPosition = new StartPosition(1);
+        StartPosition startPosition = StartPosition.at(1);
 
         // When: 게임을 실행한다
         Position result = runner.run(board, startPosition);
@@ -42,8 +42,8 @@ class LadderGameRunnerTest {
     @Test
     void 가로선을_만나면_오른쪽으로_이동한다() {
         // Given: (0,1) 위치에 가로선이 있는 보드
-        board.drawLine(new Position(0, 1));
-        StartPosition startPosition = new StartPosition(1);
+        board.drawLine(Position.at(0, 1));
+        StartPosition startPosition = StartPosition.at(1);
 
         // When: 1번 위치에서 시작한다
         Position result = runner.run(board, startPosition);
@@ -55,8 +55,8 @@ class LadderGameRunnerTest {
     @Test
     void 왼쪽에_가로선이_있으면_왼쪽으로_이동한다() {
         // Given: (0,0) 위치에 가로선이 있는 보드
-        board.drawLine(new Position(0, 0));
-        StartPosition startPosition = new StartPosition(1);
+        board.drawLine(Position.at(0, 0));
+        StartPosition startPosition = StartPosition.at(1);
 
         // When: 1번 위치에서 시작한다
         Position result = runner.run(board, startPosition);
@@ -72,11 +72,11 @@ class LadderGameRunnerTest {
         //   | - | - |   |  <- (0,0), (0,1)에 가로선
         //   |   | - |   |  <- (1,1)에 가로선
         //   |   |   | - |  <- (2,2)에 가로선
-        board.drawLine(new Position(0, 0));
-        board.drawLine(new Position(0, 1));
-        board.drawLine(new Position(1, 1));
-        board.drawLine(new Position(2, 2));
-        StartPosition startPosition = new StartPosition(0);
+        board.drawLine(Position.at(0, 0));
+        board.drawLine(Position.at(0, 1));
+        board.drawLine(Position.at(1, 1));
+        board.drawLine(Position.at(2, 2));
+        StartPosition startPosition = StartPosition.at(0);
 
         // When: 0번 위치에서 시작한다
         Position result = runner.run(board, startPosition);
@@ -88,8 +88,8 @@ class LadderGameRunnerTest {
     @Test
     void 맨_왼쪽에서_시작해도_올바르게_동작한다() {
         // Given: (0,0)에 가로선이 있는 보드
-        board.drawLine(new Position(0, 0));
-        StartPosition startPosition = new StartPosition(0);
+        board.drawLine(Position.at(0, 0));
+        StartPosition startPosition = StartPosition.at(0);
 
         // When: 0번 위치에서 시작한다
         Position result = runner.run(board, startPosition);
@@ -101,7 +101,7 @@ class LadderGameRunnerTest {
     @Test
     void 맨_오른쪽에서_시작해도_올바르게_동작한다() {
         // Given: 빈 보드
-        StartPosition startPosition = new StartPosition(3); // 4명이므로 최대 인덱스는 3
+        StartPosition startPosition = StartPosition.at(3); // 4명이므로 최대 인덱스는 3
 
         // When: 3번 위치에서 시작한다
         Position result = runner.run(board, startPosition);
@@ -115,14 +115,14 @@ class LadderGameRunnerTest {
         // When & Then: 예외가 발생한다
         assertThrows(InvalidStartPositionException.class, () -> {
             // Given
-            StartPosition invalidStartPosition = new StartPosition(-1);
+            StartPosition invalidStartPosition = StartPosition.at(-1);
         });
     }
 
     @Test
     void 시작위치가_사람수를_초과하면_예외가_발생한다() {
         // Given: 사람 수를 초과하는 시작 위치
-        StartPosition invalidStartPosition = new StartPosition(4); // 4명이므로 최대 인덱스는 3
+        StartPosition invalidStartPosition = StartPosition.at(4); // 4명이므로 최대 인덱스는 3
 
         // When & Then: 예외가 발생한다
         assertThrows(InvalidStartPositionException.class, () -> {
@@ -137,7 +137,7 @@ class LadderGameRunnerTest {
 
         // When & Then: 예외가 발생한다
         assertThrows(InvalidBoardNullException.class, () -> {
-            runner.run(nullBoard, new StartPosition(0));
+            runner.run(nullBoard, StartPosition.at(0));
         });
     }
 }

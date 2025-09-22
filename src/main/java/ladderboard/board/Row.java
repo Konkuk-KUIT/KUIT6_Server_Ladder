@@ -27,25 +27,25 @@ public class Row {
     public void connectNode(NodeIndex nodeIndex) {
         validateNodeIndex(nodeIndex);
         validateNoDuplicateConnection(nodeIndex);
-        nodes[nodeIndex.value()].connect();
+        nodes[nodeIndex.getValue()].connect();
     }
     
     public boolean hasConnection(NodeIndex nodeIndex) {
         if (nodeIndex.isValidFor(personCount)) {
             return false;
         }
-        return nodes[nodeIndex.value()].isConnected();
+        return nodes[nodeIndex.getValue()].isConnected();
     }
     
     private void validateNodeIndex(NodeIndex nodeIndex) {
         if (nodeIndex.isValidFor(personCount)) {
-            throw new IllegalArgumentException("Invalid node index: " + nodeIndex.value());
+            throw new IllegalArgumentException("Invalid node index: " + nodeIndex.getValue());
         }
     }
     
     private void validateNoDuplicateConnection(NodeIndex nodeIndex) {
         if (hasConnection(nodeIndex)) {
-            throw new DuplicateLineException(ErrorMessage.DUPLICATE_LINE.format(rowIndex, nodeIndex.value()));
+            throw new DuplicateLineException(ErrorMessage.DUPLICATE_LINE.format(rowIndex, nodeIndex.getValue()));
         }
     }
     

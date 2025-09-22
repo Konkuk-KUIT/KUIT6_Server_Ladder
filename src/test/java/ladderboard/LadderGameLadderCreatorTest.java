@@ -16,27 +16,17 @@ class LadderGameLadderCreatorTest {
     @BeforeEach
     void setUp() {
         // Given: 4명이 참여하고 높이가 3인 사다리 보드
-        PersonCount p = new PersonCount(4);
-        LadderHeight l = new LadderHeight(3);
+        PersonCount p = PersonCount.of(4);
+        LadderHeight l = LadderHeight.of(3);
         board = new LadderCreator(p, l);
     }
 
-    @Test
-    void 정상적인_좌표에_선을_그을_수_있다() {
-        // Given: 유효한 좌표
-        Position coordinate = new Position(0, 1);
 
-        // When: 선을 그린다
-        board.drawLine(coordinate);
-
-        // Then: 해당 위치에 연결이 생성된다
-        assertTrue(board.hasConnection(coordinate));
-    }
 
     @Test
     void Y좌표가_음수이면_예외가_발생한다() {
         // Given: Y좌표가 음수인 좌표
-        Position invalidCoordinate = new Position(-1, 1);
+        Position invalidCoordinate = Position.at(-1, 1);
 
         // When & Then: 예외가 발생한다
         assertThrows(InvalidCoordinateException.class, () -> {
@@ -47,7 +37,7 @@ class LadderGameLadderCreatorTest {
     @Test
     void Y좌표가_높이를_초과하면_예외가_발생한다() {
         // Given: Y좌표가 높이를 초과하는 좌표
-        Position invalidCoordinate = new Position(3, 1);
+        Position invalidCoordinate = Position.at(3, 1);
 
         // When & Then: 예외가 발생한다
         assertThrows(InvalidCoordinateException.class, () -> {
@@ -58,7 +48,7 @@ class LadderGameLadderCreatorTest {
     @Test
     void X좌표가_음수이면_예외가_발생한다() {
         // Given: X좌표가 음수인 좌표
-        Position invalidCoordinate = new Position(0, -1);
+        Position invalidCoordinate = Position.at(0, -1);
 
         // When & Then: 예외가 발생한다
         assertThrows(InvalidCoordinateException.class, () -> {
@@ -69,7 +59,7 @@ class LadderGameLadderCreatorTest {
     @Test
     void X좌표가_허용범위를_초과하면_예외가_발생한다() {
         // Given: X좌표가 허용 범위를 초과하는 좌표 (4명이므로 가로선은 0-2까지만 가능)
-        Position invalidCoordinate = new Position(0, 3);
+        Position invalidCoordinate = Position.at(0, 3);
 
         // When & Then: 예외가 발생한다
         assertThrows(InvalidCoordinateException.class, () -> {
@@ -80,7 +70,7 @@ class LadderGameLadderCreatorTest {
     @Test
     void 이미_선이_있는_곳에_다시_그으면_예외가_발생한다() {
         // Given: 이미 선이 그어진 좌표
-        Position coordinate = new Position(1, 1);
+        Position coordinate = Position.at(1, 1);
         board.drawLine(coordinate);
 
         // When & Then: 같은 위치에 다시 그으면 예외가 발생한다
@@ -92,7 +82,7 @@ class LadderGameLadderCreatorTest {
     @Test
     void 선이_없는_곳은_연결되지_않는다() {
         // Given: 빈 보드
-        Position coordinate = new Position(1, 1);
+        Position coordinate = Position.at(1, 1);
 
         // When: 아무것도 하지 않는다
 

@@ -16,8 +16,8 @@ public class AppConfig {
     }
     
     public LadderGame createLadder(int numberOfPerson, int height) {
-        PersonCount personCount = new PersonCount(numberOfPerson);
-        LadderHeight ladderHeight = new LadderHeight(height);
+        PersonCount personCount = PersonCount.of(numberOfPerson);
+        LadderHeight ladderHeight = LadderHeight.of(height);
         return new LadderGame(createBoard(personCount, ladderHeight), createRunner());
     }
 }

@@ -13,11 +13,11 @@ public class LadderRunner implements GameRunner {
     public Position run(Board board, StartPosition startPosition) {
         validateGameExecution(board, startPosition);
 
-        int currentPosition = startPosition.value();
+        int currentPosition = startPosition.getValue();
 
         for (int y = 0; y < board.getHeight(); y++) {
-            Position currentCoord = new Position(y, currentPosition);
-            Position leftCoord = new Position(y, currentPosition - 1);
+            Position currentCoord = Position.at(y, currentPosition);
+            Position leftCoord = Position.at(y, currentPosition - 1);
             
             if (board.hasConnection(currentCoord)) {
                 currentPosition++;
@@ -26,7 +26,7 @@ public class LadderRunner implements GameRunner {
             }
         }
         
-        return new Position(board.getHeight(), currentPosition);
+        return Position.at(board.getHeight(), currentPosition);
     }
     
     private void validateGameExecution(Board board, StartPosition startPosition) {
@@ -34,12 +34,12 @@ public class LadderRunner implements GameRunner {
             throw new InvalidBoardNullException(ErrorMessage.NULL_BOARD.getMessage());
         }
 
-        if (startPosition.value() < 0) {
-            throw new InvalidStartPositionException(ErrorMessage.INVALID_START_POSITION_NEGATIVE.format(startPosition.value()));
+        if (startPosition.getValue() < 0) {
+            throw new InvalidStartPositionException(ErrorMessage.INVALID_START_POSITION_NEGATIVE.format(startPosition.getValue()));
         }
         
-        if (startPosition.value() >= board.getNumberOfPerson()) {
-            throw new InvalidStartPositionException(ErrorMessage.INVALID_START_POSITION_EXCEED.format(startPosition.value(), board.getNumberOfPerson()));
+        if (startPosition.getValue() >= board.getNumberOfPerson()) {
+            throw new InvalidStartPositionException(ErrorMessage.INVALID_START_POSITION_EXCEED.format(startPosition.getValue(), board.getNumberOfPerson()));
         }
     }
 }
