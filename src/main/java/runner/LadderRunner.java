@@ -3,7 +3,7 @@ package runner;
 import exceptions.InvalidBoardNullException;
 import exceptions.InvalidStartPositionException;
 import exceptions.ErrorMessage;
-import ladderboard.board.Board;
+import board.Board;
 import observer.LadderGameObserver;
 import position.Position;
 import wrap.StartPosition;
@@ -23,7 +23,6 @@ public class LadderRunner implements GameRunner {
         observers.remove(observer);
     }
 
-    // todo: startPosition -> wrapper class로 포장하는 작업이 필요할듯
     public Position run(Board board, StartPosition startPosition) {
         validateGameExecution(board, startPosition);
         

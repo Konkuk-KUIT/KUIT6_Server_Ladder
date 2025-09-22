@@ -1,6 +1,6 @@
 package runner;
 
-import ladderboard.board.Board;
+import board.Board;
 import position.Position;
 import wrap.StartPosition;
 

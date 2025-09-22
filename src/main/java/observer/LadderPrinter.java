@@ -1,7 +1,7 @@
 package observer;
 
-import ladderboard.LineDirection;
-import ladderboard.board.Board;
+import board.LineDirection;
+import board.Board;
 import position.Position;
 import wrap.StartPosition;
 

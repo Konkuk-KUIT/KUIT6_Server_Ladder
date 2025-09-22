@@ -1,7 +1,7 @@
 package observer;
 
-import ladderboard.LadderCreator;
-import ladderboard.board.Board;
+import laddercreator.NormalLadderCreator;
+import board.Board;
 import position.Position;
 import wrap.LadderHeight;
 import wrap.PersonCount;
@@ -25,7 +25,7 @@ class LadderPrinterTest {
     @BeforeEach
     void setUp() {
         printer = new LadderPrinter();
-        board = new LadderCreator(PersonCount.of(4), LadderHeight.of(3));
+        board = new NormalLadderCreator(PersonCount.of(4), LadderHeight.of(3));
         
         // 콘솔 출력을 캡처하기 위한 설정
         outputStream = new ByteArrayOutputStream();
@@ -95,7 +95,7 @@ class LadderPrinterTest {
     @Test
     void 사다리와_플레이어_위치가_올바르게_출력된다() {
         // Given
-        board = new LadderCreator(PersonCount.of(3), LadderHeight.of(2));
+        board = new NormalLadderCreator(PersonCount.of(3), LadderHeight.of(2));
         board.drawLine(Position.at(0, 1)); // 가로선 추가
         printer.onGameStart(board, StartPosition.at(0));
         
@@ -115,7 +115,7 @@ class LadderPrinterTest {
     @Test
     void 플레이어_위치에_별표가_표시된다() {
         // Given
-        board = new LadderCreator(PersonCount.of(3), LadderHeight.of(1));
+        board = new NormalLadderCreator(PersonCount.of(3), LadderHeight.of(1));
         printer.onGameStart(board, StartPosition.at(0));
         
         // When  

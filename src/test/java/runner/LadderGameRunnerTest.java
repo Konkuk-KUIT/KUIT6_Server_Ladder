@@ -1,7 +1,7 @@
 package runner;
 
-import ladderboard.board.Board;
-import ladderboard.LadderCreator;
+import board.Board;
+import laddercreator.NormalLadderCreator;
 import exceptions.InvalidBoardNullException;
 import observer.LadderGameObserver;
 import position.Position;
@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import wrap.LadderHeight;
@@ -37,7 +36,7 @@ class LadderGameRunnerTest {
         // Given: 4명이 참여하고 높이가 3인 사다리 보드
         PersonCount personCount = PersonCount.of(4);
         LadderHeight ladderHeight = LadderHeight.of(3);
-        board = new LadderCreator(personCount, ladderHeight);
+        board = new NormalLadderCreator(personCount, ladderHeight);
         
         // Mock 초기화
         reset(mockObserver);
