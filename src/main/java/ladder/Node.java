@@ -11,16 +11,17 @@ public class Node {
         return new Node(direction);
     }
 
-    public void move(Position position) {
+    public boolean move(Position position) {
         if (isLeft()) {
             position.prev();
-            return;
+            return true;
         }
 
         if (isRight()) {
             position.next();
-            return;
+            return true;
         }
+        return false;
     }
 
     public void setRightNode(){
@@ -45,5 +46,10 @@ public class Node {
 
     private boolean isLeft() {
         return direction == Direction.LEFT;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(direction.getValue());
     }
 }

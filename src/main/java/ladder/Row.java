@@ -1,5 +1,7 @@
 package ladder;
 
+import java.util.Arrays;
+
 public class Row {
 
     private final Node[] nodes;
@@ -11,9 +13,9 @@ public class Row {
         }
     }
 
-    public void nextPosition(Position position){
+    public boolean nextPosition(Position position){
         validatePosition(position);
-        nodes[position.getValue()].move(position);
+        return nodes[position.getValue()].move(position);
     }
 
     private void validatePosition(Position position) {
@@ -40,7 +42,7 @@ public class Row {
     private void validateDrawLinePosition(Position startPosition) {
         validatePosition(startPosition);
         if (isLineAtPosition(startPosition) || isLineAtNextPosition(startPosition)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage()+" Position: "+startPosition.getValue());
         }
     }
 
@@ -55,4 +57,12 @@ public class Row {
         return nodes[position.getValue()].isAlreadtSetDirection();
     }
 
+    @Override
+    public String toString() {
+        return Arrays.toString(nodes).replace("[", "").replace("]", "").replace(",", "");
+    }
+
+    public int size() {
+        return nodes.length;
+    }
 }

@@ -170,4 +170,14 @@ class RowTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
+
+    @Test
+    @DisplayName("toString 출력형태 확인")
+    void toStringTest() {
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
+        Row row = new Row(numberOfPerson);
+        row.drawLine(Position.from(0));
+
+        System.out.println(row);
+    }
 }

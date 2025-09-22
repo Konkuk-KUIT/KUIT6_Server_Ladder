@@ -18,9 +18,7 @@ public class Position {
         }
     }
 
-    private static boolean isPosition(int position) {
-        return position >= 0;
-    }
+    private static boolean isPosition(int position) { return position >= 0; }
 
     public int getValue() {
         return position;
@@ -34,7 +32,5 @@ public class Position {
         position++;
     }
 
-    public boolean isBiggerThan(int position) {
-        return this.position > position;
-    }
+    public boolean isBiggerThan(int position) { return this.position > position; }
 }

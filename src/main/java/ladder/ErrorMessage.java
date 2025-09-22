@@ -7,7 +7,8 @@ public enum ErrorMessage {
     INVALID_POSITION("유효하지 않은 위치입니다."),
     INVALID_DRAW_POSITION("사다리를 그릴 수 없는 위치입니다."),
     INVALID_NATURAL_NUMBER("자연수가 아닙니다."),
-    INVALID_GREATER_THAN_ONE("숫자는 1보다 커야 합니다.");
+    INVALID_GREATER_THAN_ONE("숫자는 1보다 커야 합니다."),
+    INVALID_GREATER_NO_LADDER("사다리가 존재하지 않습니다.");
 
     private final String message;
 
