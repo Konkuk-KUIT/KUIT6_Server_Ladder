@@ -13,10 +13,10 @@ public class Ladder {
     }
 
     public void drawLine(int left, int right, int height, int numberOfPerson) {
-        LadderNumberValidator.validateLadderNumber(left, numberOfPerson);
-        LadderNumberValidator.validateLadderNumber(right, numberOfPerson);
-        SequenceValidator.validateSequence(left, right);
-        HeightValidator.validateHeight(left, right, rows, height);
+//        LadderNumberValidator.validateLadderNumber(left, numberOfPerson);
+//        LadderNumberValidator.validateLadderNumber(right, numberOfPerson);
+//        SequenceValidator.validateSequence(left, right);
+//        HeightValidator.validateHeight(left, right, rows, height);
 
         rows[height - 1].assignDirection(left - 1, Direction.RIGHT.getValue());
         rows[height - 1].assignDirection(right - 1, Direction.LEFT.getValue());

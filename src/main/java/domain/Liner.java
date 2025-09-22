@@ -1,6 +1,9 @@
 package domain;
 
+import validator.HeightValidator;
+import validator.LadderNumberValidator;
 import validator.LinerValidator;
+import validator.SequenceValidator;
 
 public class Liner implements LadderMaker{
     private final int row;
@@ -14,11 +17,18 @@ public class Liner implements LadderMaker{
         this.ladder = makeLadder(this.row, this.numberOfPerson);
     }
 
+    @Override
     public Ladder makeLadder(int row, int numberOfPerson) {
         return new Ladder(row, numberOfPerson);
     }
 
+    @Override
     public void drawLine(int left, int right, int height) {
+        LadderNumberValidator.validateLadderNumber(left, numberOfPerson);
+        LadderNumberValidator.validateLadderNumber(right, numberOfPerson);
+        SequenceValidator.validateSequence(left, right);
+        HeightValidator.validateHeight(left, right, ladder.getRows(), height);
+
         ladder.drawLine(left, right, height, numberOfPerson);
     }
 
