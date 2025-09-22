@@ -10,10 +10,9 @@ import java.util.Scanner;
 public class LadderPrinter implements LadderGameObserver {
     
     private Board board;
-    private final Scanner scanner;
-    
+
     public LadderPrinter() {
-        this.scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
     }
     
     @Override
@@ -28,14 +27,12 @@ public class LadderPrinter implements LadderGameObserver {
     public void onStepStart(Position currentPosition) {
         System.out.println("Before");
         printLadderWithPlayer(currentPosition);
-        waitForUserInput();
     }
     
     @Override
     public void onStepComplete(Position newPosition) {
         System.out.println("After");
         printLadderWithPlayer(newPosition);
-        waitForUserInput();
     }
     
     @Override
@@ -62,11 +59,6 @@ public class LadderPrinter implements LadderGameObserver {
             }
             System.out.println();
         }
-        System.out.println();
-    }
-    
-    private void waitForUserInput() {
-        // 자동 진행 - 사용자 입력 대기 없음
         System.out.println();
     }
 }
