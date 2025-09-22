@@ -30,7 +30,7 @@ public class Liner implements LadderMaker {
         SequenceValidator.validateSequence(left, right);
         HeightValidator.validateHeight(left, right, ladder.getRows(), height);
 
-        ladder.drawLine(left, right, height, numberOfPerson);
+        ladder.drawLine(left, right, height);
     }
 
     public int getNumberOfPerson() {

@@ -46,7 +46,7 @@ public class RandomLiner implements LadderMaker {
 
     @Override
     public void drawLine(int left, int right, int height) {
-        ladder.drawLine(left, right, height, numberOfPerson);
+        ladder.drawLine(left, right, height);
     }
 
     @Override
