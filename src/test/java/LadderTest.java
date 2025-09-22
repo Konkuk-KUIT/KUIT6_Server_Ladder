@@ -1,53 +1,59 @@
+import ladder.Creator.LadderCreator;
+import ladder.GreaterThanOne;
+import ladder.LadderGame;
+import ladder.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 class LadderTest {
-    @Test
-    @DisplayName("drawLine 메서드 테스트 1")
-    void drawLine() {
-        Ladder ladder = new Ladder(3, 3);
-        StringArray stringArray = ladder.getStringArray();
-        ladder.drawLine(0, 0);
-        ladder.drawLine(1, 1);
 
-        assertThat(ladder.getStringArray().getValue(0, 0)).isEqualTo(1);
+    @Test
+    @DisplayName("사람 예외 처리 확인")
+    void throwInvalidPersonException() {
+        //when
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
+        LadderCreator ladderCreator = new LadderCreator(GreaterThanOne.from(2), numberOfPerson);
+        LadderGame ladderGame = new LadderGame(ladderCreator);
+
+        //given
+        Position position = Position.from(4);
+
+        //then
+        assertThatThrownBy(() -> ladderGame.run(position))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("drawLine 메서드 테스트 1")
-    void drawLine2() {
-        Ladder ladder = new Ladder(6, 4);
-        StringArray stringArray = ladder.getStringArray();
-        ladder.drawLine(3, 2);
-        assertThrows(IllegalArgumentException.class, () -> {
-            ladder.drawLine(3, 3);
-        });
-    }
+    @DisplayName("사다리 결과 확인")
+    void testLadderResult() {
+        //when
+        GreaterThanOne row = GreaterThanOne.from(4);
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
+        LadderCreator ladderCreator = new LadderCreator(row, numberOfPerson);
+        LadderGame ladderGame = new LadderGame(ladderCreator);
 
-    @Test
-    @DisplayName("run 메서드 테스트")
-    void run() {
-        Ladder ladder = new Ladder(3, 3);
-        ladder.drawLine(0, 0);
-        ladder.drawLine(1, 1);
+        ladderCreator.drawLine(Position.from(0),Position.from(0));
+        ladderCreator.drawLine(Position.from(1),Position.from(1));
+        ladderCreator.drawLine(Position.from(2),Position.from(0));
 
-        assertThat(ladder.run(0)).isEqualTo(2);
-    }
+        //given
+        Position nthOfPerson = Position.from(0);
 
-    @Test
-    @DisplayName("run 메서드 테스트 2")
-    void run2() {
-        Ladder ladder = new Ladder(5, 4);
-        ladder.drawLine(0, 0);
-        ladder.drawLine(1, 1);
-        ladder.drawLine(3, 2);
-        ladder.drawLine(2, 2);
+        //then
+        assertThat(ladderGame.run(nthOfPerson)).isEqualTo(2);
 
-        assertThat(ladder.run(0)).isEqualTo(2);
+        //given
+        nthOfPerson = Position.from(1);
+
+        //then
+        assertThat(ladderGame.run(nthOfPerson)).isEqualTo(1);
+
+        //given
+        nthOfPerson = Position.from(2);
+
+        //then
+        assertThat(ladderGame.run(nthOfPerson)).isEqualTo(0);
     }
 }
