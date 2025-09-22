@@ -24,6 +24,29 @@ public class Row {
         }
     }
 
+    @Override
+    public String toString() {
+        StringBuilder rowString = new StringBuilder();
+        for (int node : nodes) {
+            rowString.append(getStringByNodeValue(node));
+        }
+        rowString.append("\n");
+        return rowString.toString();
+    }
+
+    private String getStringByNodeValue(int node) {
+        if (node == Direction.RIGHT.getValue()) {
+            return "|—";
+        }
+        return "| ";
+    }
+
+    public String getStringPoint(int col) {
+        StringBuilder str = new StringBuilder(toString());
+        str.setCharAt(2 * col, '*');
+        return str.toString();
+    }
+
     public void assignDirection(int index, int direction) {
         nodes[index] = direction;
     }
