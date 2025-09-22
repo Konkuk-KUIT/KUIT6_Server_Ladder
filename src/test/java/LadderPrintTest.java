@@ -1,11 +1,11 @@
 import domain.LadderGame;
-import domain.Liner;
+import LadderMaker.Liner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderPrintTest {
     @Test
-    @DisplayName("")
+    @DisplayName("사다리타기 출력")
     void print_simple_ladder(){
         Liner liner = new Liner(5, 3);
         liner.drawLine(1, 2, 1);

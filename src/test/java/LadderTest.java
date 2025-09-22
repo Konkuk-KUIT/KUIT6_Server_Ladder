@@ -1,5 +1,5 @@
 import domain.LadderGame;
-import domain.Liner;
+import LadderMaker.Liner;
 import exception.IllegalHeightException;
 import exception.IllegalLadderNumberException;
 import exception.IllegalLinerException;

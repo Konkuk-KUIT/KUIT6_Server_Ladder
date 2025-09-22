@@ -1,4 +1,6 @@
-package domain;
+package LadderMaker;
+
+import domain.Ladder;
 
 public interface LadderMaker {
 

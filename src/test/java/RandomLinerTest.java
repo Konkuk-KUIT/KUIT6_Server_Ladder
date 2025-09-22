@@ -1,12 +1,12 @@
 import domain.LadderGame;
-import domain.LadderMaker;
-import domain.RandomLiner;
+import LadderMaker.LadderMaker;
+import LadderMaker.RandomLiner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class RandomLinerTest {
     @Test
-    @DisplayName("")
+    @DisplayName("3 x 6 랜덤 사다리타기 게임.")
     void random_liner_test(){
         LadderMaker ladderMaker = new RandomLiner(3,6);
         LadderGame ladderGame = LadderGame.from(ladderMaker);

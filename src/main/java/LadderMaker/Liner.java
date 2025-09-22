@@ -1,11 +1,12 @@
-package domain;
+package LadderMaker;
 
+import domain.Ladder;
 import validator.HeightValidator;
 import validator.LadderNumberValidator;
 import validator.LinerValidator;
 import validator.SequenceValidator;
 
-public class Liner implements LadderMaker{
+public class Liner implements LadderMaker {
     private final int row;
     private final int numberOfPerson;
     private final Ladder ladder;

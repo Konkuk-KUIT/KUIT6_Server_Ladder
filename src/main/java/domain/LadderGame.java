@@ -1,5 +1,7 @@
 package domain;
 
+import LadderMaker.LadderMaker;
+
 public class LadderGame {
     private final LadderMaker ladderMaker;
 

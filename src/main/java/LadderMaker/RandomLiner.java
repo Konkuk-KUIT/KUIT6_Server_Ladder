@@ -1,5 +1,6 @@
-package domain;
+package LadderMaker;
 
+import domain.Ladder;
 import validator.HeightValidator;
 import validator.LadderNumberValidator;
 import validator.LinerValidator;
