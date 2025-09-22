@@ -2,7 +2,7 @@ package domain;
 
 import validator.LinerValidator;
 
-public class Liner {
+public class Liner implements LadderMaker{
     private final int row;
     private final int numberOfPerson;
     private final Ladder ladder;
@@ -11,10 +11,10 @@ public class Liner {
         LinerValidator.validateLiner(row, numberOfPerson);
         this.row = row;
         this.numberOfPerson = numberOfPerson;
-        this.ladder = makeLadder();
+        this.ladder = makeLadder(this.row, this.numberOfPerson);
     }
 
-    private Ladder makeLadder() {
+    public Ladder makeLadder(int row, int numberOfPerson) {
         return new Ladder(row, numberOfPerson);
     }
 
