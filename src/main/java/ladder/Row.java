@@ -4,20 +4,20 @@ public class Row {
 
     private final Node[] nodes;
 
-    public Row(GreaterThanOne numberOfPerson){
+    public Row(GreaterThanOne numberOfPerson) {
         nodes = new Node[numberOfPerson.getNumber()];
-        for(int i = 0; i < numberOfPerson.getNumber(); i++){
+        for (int i = 0; i < numberOfPerson.getNumber(); i++) {
             nodes[i] = Node.from(Direction.NONE);
         }
     }
 
-    public void nextPosition(Position position){
+    public void nextPosition(Position position) {
         validatePosition(position);
         nodes[position.getValue()].move(position);
     }
 
     private void validatePosition(Position position) {
-        if(isInvalidPosition(position)){
+        if (isInvalidPosition(position)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_POSITION.getMessage());
         }
     }
@@ -26,7 +26,7 @@ public class Row {
         return position.isBiggerThan(nodes.length - 1);
     }
 
-    public void drawLine(Position startPosition){
+    public void drawLine(Position startPosition) {
         validateDrawLinePosition(startPosition);
         setDirectionBetweenNextPosition(startPosition);
     }
@@ -55,4 +55,7 @@ public class Row {
         return nodes[position.getValue()].isAlreadtSetDirection();
     }
 
+    public Node[] getNodes() {
+        return nodes;
+    }
 }
