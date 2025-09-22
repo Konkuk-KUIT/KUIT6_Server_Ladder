@@ -2,7 +2,9 @@ package ladderboard.board;
 
 import exceptions.InvalidCoordinateException;
 import exceptions.ErrorMessage;
+import ladderboard.LineDirection;
 import position.Coordinate;
+import position.Position;
 import wrap.PersonCount;
 import wrap.LadderHeight;
 import wrap.NodeIndex;
@@ -42,6 +44,24 @@ public class LadderBoard implements Board {
             return false;
         }
         return rows[y].hasConnection(NodeIndex.at(x));
+    }
+    
+    public LineDirection getLineDirection(Coordinate coordinate) {
+        // 해당 위치에서 오른쪽으로 가는 선이 있으면
+        if (hasConnection(coordinate)) {
+            return LineDirection.RIGHT;
+        }
+        
+        // 왼쪽에서 오는 선이 있는지 확인
+        int x = coordinate.getX();
+        if (x > 0) {
+            Coordinate leftCoord = Position.at(coordinate.getY(), x - 1);
+            if (hasConnection(leftCoord)) {
+                return LineDirection.LEFT;
+            }
+        }
+        
+        return LineDirection.NONE;
     }
     
     public int getHeight() {

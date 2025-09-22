@@ -3,6 +3,7 @@ package ladderboard;
 import ladderboard.board.Board;
 import ladderboard.board.LadderBoard;
 import ladderboard.board.Row;
+import ladderboard.LineDirection;
 import position.Coordinate;
 import wrap.PersonCount;
 import wrap.LadderHeight;
@@ -22,8 +23,11 @@ public class LadderCreator implements Board {
     public boolean hasConnection(Coordinate coordinate) {
         return ladderBoard.hasConnection(coordinate);
     }
-
     
+    public LineDirection getLineDirection(Coordinate coordinate) {
+        return ladderBoard.getLineDirection(coordinate);
+    }
+
     public int getHeight() {
         return ladderBoard.getHeight();
     }
