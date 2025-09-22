@@ -1,5 +1,5 @@
-package ladderboard;
-import ladderboard.LineDirection;
+package laddercreator;
+import board.LineDirection;
 import position.Position;
 import exceptions.InvalidCoordinateException;
 import exceptions.DuplicateLineException;
@@ -10,16 +10,16 @@ import wrap.PersonCount;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LadderCreatorTest {
+class NormalLadderCreatorTest {
 
-    private LadderCreator board;
+    private NormalLadderCreator board;
 
     @BeforeEach
     void setUp() {
         // Given: 4명이 참여하고 높이가 3인 사다리 보드
         PersonCount p = PersonCount.of(4);
         LadderHeight l = LadderHeight.of(3);
-        board = new LadderCreator(p, l);
+        board = new NormalLadderCreator(p, l);
     }
 
 

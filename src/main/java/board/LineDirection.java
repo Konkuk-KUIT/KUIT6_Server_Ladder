@@ -1,4 +1,4 @@
-package ladderboard;
+package board;
 
 public enum LineDirection {
     NONE(0),

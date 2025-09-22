@@ -1,4 +1,6 @@
-import ladderboard.board.Board;
+package game;
+
+import board.Board;
 import position.Coordinate;
 import position.Position;
 import runner.GameRunner;
@@ -20,5 +22,13 @@ public class LadderGame {
     
     public Position run(StartPosition startPosition) {
         return runner.run(board, startPosition);
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+    
+    public GameRunner getRunner() {
+        return runner;
     }
 }

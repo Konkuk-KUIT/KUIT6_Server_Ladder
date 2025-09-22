@@ -1,6 +1,5 @@
-package ladderboard.board;
+package board;
 
-import ladderboard.LineDirection;
 import position.Coordinate;
 
 public interface Board {

@@ -1,18 +1,18 @@
-package ladderboard;
+package laddercreator;
 
-import ladderboard.board.Board;
-import ladderboard.board.LadderBoard;
-import ladderboard.board.Row;
-import ladderboard.LineDirection;
+import board.Board;
+import board.LadderBoard;
+import board.LineDirection;
+import board.Row;
 import position.Coordinate;
 import wrap.PersonCount;
 import wrap.LadderHeight;
 
-public class LadderCreator implements Board {
+public class NormalLadderCreator implements Board {
     
     private final LadderBoard ladderBoard;
     
-    public LadderCreator(PersonCount personCount, LadderHeight ladderHeight) {
+    public NormalLadderCreator(PersonCount personCount, LadderHeight ladderHeight) {
         this.ladderBoard = new LadderBoard(personCount, ladderHeight);
     }
     

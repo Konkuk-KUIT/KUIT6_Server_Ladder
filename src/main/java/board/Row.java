@@ -1,4 +1,4 @@
-package ladderboard.board;
+package board;
 
 import exceptions.DuplicateLineException;
 import exceptions.ErrorMessage;

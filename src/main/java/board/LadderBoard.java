@@ -1,8 +1,7 @@
-package ladderboard.board;
+package board;
 
 import exceptions.InvalidCoordinateException;
 import exceptions.ErrorMessage;
-import ladderboard.LineDirection;
 import position.Coordinate;
 import position.Position;
 import wrap.PersonCount;

@@ -1,4 +1,4 @@
-package ladderboard.board;
+package board;
 
 public class Node {
     
