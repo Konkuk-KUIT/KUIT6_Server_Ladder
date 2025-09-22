@@ -1,6 +1,8 @@
 import ladderboard.board.Board;
 import position.Coordinate;
+import position.Position;
 import runner.GameRunner;
+import wrap.StartPosition;
 
 public class LadderGame {
 
@@ -16,7 +18,7 @@ public class LadderGame {
         board.drawLine(coordinate);
     }
     
-    public int run(int startPosition) {
+    public Position run(StartPosition startPosition) {
         return runner.run(board, startPosition);
     }
 }

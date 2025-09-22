@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import wrap.LadderHeight;
 import wrap.PersonCount;
+import wrap.StartPosition;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,39 +30,39 @@ class LadderGameRunnerTest {
     @Test
     void 가로선이_없으면_그대로_내려간다() {
         // Given: 가로선이 없는 빈 보드
-        int startPosition = 1;
+        StartPosition startPosition = new StartPosition(1);
 
         // When: 게임을 실행한다
-        int result = runner.run(board, startPosition);
+        Position result = runner.run(board, startPosition);
 
         // Then: 시작 위치와 동일한 위치에 도착한다
-        assertEquals(1, result);
+        assertEquals(1, result.getX());
     }
 
     @Test
     void 가로선을_만나면_오른쪽으로_이동한다() {
         // Given: (0,1) 위치에 가로선이 있는 보드
         board.drawLine(new Position(0, 1));
-        int startPosition = 1;
+        StartPosition startPosition = new StartPosition(1);
 
         // When: 1번 위치에서 시작한다
-        int result = runner.run(board, startPosition);
+        Position result = runner.run(board, startPosition);
 
         // Then: 2번 위치에 도착한다
-        assertEquals(2, result);
+        assertEquals(2, result.getX());
     }
 
     @Test
     void 왼쪽에_가로선이_있으면_왼쪽으로_이동한다() {
         // Given: (0,0) 위치에 가로선이 있는 보드
         board.drawLine(new Position(0, 0));
-        int startPosition = 1;
+        StartPosition startPosition = new StartPosition(1);
 
         // When: 1번 위치에서 시작한다
-        int result = runner.run(board, startPosition);
+        Position result = runner.run(board, startPosition);
 
         // Then: 0번 위치에 도착한다
-        assertEquals(0, result);
+        assertEquals(0, result.getX());
     }
 
     @Test
@@ -75,55 +76,53 @@ class LadderGameRunnerTest {
         board.drawLine(new Position(0, 1));
         board.drawLine(new Position(1, 1));
         board.drawLine(new Position(2, 2));
-        int startPosition = 0;
+        StartPosition startPosition = new StartPosition(0);
 
         // When: 0번 위치에서 시작한다
-        int result = runner.run(board, startPosition);
+        Position result = runner.run(board, startPosition);
 
         // Then: 올바른 위치에 도착한다
-        assertEquals(3, result);
+        assertEquals(3, result.getX());
     }
 
     @Test
     void 맨_왼쪽에서_시작해도_올바르게_동작한다() {
         // Given: (0,0)에 가로선이 있는 보드
         board.drawLine(new Position(0, 0));
-        int startPosition = 0;
+        StartPosition startPosition = new StartPosition(0);
 
         // When: 0번 위치에서 시작한다
-        int result = runner.run(board, startPosition);
+        Position result = runner.run(board, startPosition);
 
         // Then: 1번 위치에 도착한다
-        assertEquals(1, result);
+        assertEquals(1, result.getX());
     }
 
     @Test
     void 맨_오른쪽에서_시작해도_올바르게_동작한다() {
         // Given: 빈 보드
-        int startPosition = 3; // 4명이므로 최대 인덱스는 3
+        StartPosition startPosition = new StartPosition(3); // 4명이므로 최대 인덱스는 3
 
         // When: 3번 위치에서 시작한다
-        int result = runner.run(board, startPosition);
+        Position result = runner.run(board, startPosition);
 
         // Then: 3번 위치에 도착한다
-        assertEquals(3, result);
+        assertEquals(3, result.getX());
     }
 
     @Test
     void 시작위치가_음수이면_예외가_발생한다() {
-        // Given: 음수인 시작 위치
-        int invalidStartPosition = -1;
-
         // When & Then: 예외가 발생한다
         assertThrows(InvalidStartPositionException.class, () -> {
-            runner.run(board, invalidStartPosition);
+            // Given
+            StartPosition invalidStartPosition = new StartPosition(-1);
         });
     }
 
     @Test
     void 시작위치가_사람수를_초과하면_예외가_발생한다() {
         // Given: 사람 수를 초과하는 시작 위치
-        int invalidStartPosition = 4; // 4명이므로 최대 인덱스는 3
+        StartPosition invalidStartPosition = new StartPosition(4); // 4명이므로 최대 인덱스는 3
 
         // When & Then: 예외가 발생한다
         assertThrows(InvalidStartPositionException.class, () -> {
@@ -138,7 +137,7 @@ class LadderGameRunnerTest {
 
         // When & Then: 예외가 발생한다
         assertThrows(InvalidBoardNullException.class, () -> {
-            runner.run(nullBoard, 0);
+            runner.run(nullBoard, new StartPosition(0));
         });
     }
 }

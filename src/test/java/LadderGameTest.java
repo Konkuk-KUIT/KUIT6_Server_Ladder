@@ -2,6 +2,7 @@ import exceptions.InvalidCoordinateException;
 import position.Position;
 import exceptions.InvalidStartPositionException;
 import org.junit.jupiter.api.Test;
+import wrap.StartPosition;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,14 +37,9 @@ class LadderGameTest {
     
     @Test
     void 음수_시작위치로_게임을_실행하면_예외가_발생한다() {
-        // Given: 사다리와 음수인 시작 위치
-        AppConfig config = new AppConfig();
-        ladderGame = config.createLadder(4, 3);
-        int invalidStartPosition = -1;
-        
-        // When & Then: 예외가 발생한다
+        // Given & When & Then: 예외가 발생한다
         assertThrows(InvalidStartPositionException.class, () -> {
-            ladderGame.run(invalidStartPosition);
+            StartPosition invalidStartPosition = new StartPosition(-1);
         });
     }
     
@@ -58,10 +54,10 @@ class LadderGameTest {
         ladderGame.drawLine(new Position(1, 0)); // 두 번째 줄에 가로선
         
         // Then: 각 시작 위치에서 올바른 결과가 나온다
-        assertEquals(1, ladderGame.run(0)); // 0 -> 1
-        assertEquals(2, ladderGame.run(1)); // 1 -> 2 -> 1
-        assertEquals(0, ladderGame.run(2)); // 2 -> 1 -> 0
-        assertEquals(3, ladderGame.run(3)); // 3 -> 3 -> 3
+        assertEquals(1, ladderGame.run(new StartPosition(0)).getX()); // 0 -> 1
+        assertEquals(2, ladderGame.run(new StartPosition(1)).getX()); // 1 -> 2 -> 1
+        assertEquals(0, ladderGame.run(new StartPosition(2)).getX()); // 2 -> 1 -> 0
+        assertEquals(3, ladderGame.run(new StartPosition(3)).getX()); // 3 -> 3 -> 3
     }
     
     @Test
@@ -77,8 +73,8 @@ class LadderGameTest {
         });
         
         // Then: 게임 실행 시 영향을 받는다
-        int result = ladderGame.run(2);
-        assertEquals(3, result); // 2번에서 시작해서 3번으로 이동
+        Position result = ladderGame.run(new StartPosition(2));
+        assertEquals(3, result.getX()); // 2번에서 시작해서 3번으로 이동
     }
     
     @Test
@@ -86,12 +82,12 @@ class LadderGameTest {
         // Given: 사다리와 유효한 시작 위치
         AppConfig config = new AppConfig();
         ladderGame = config.createLadder(4, 3);
-        int startPosition = 2;
+        StartPosition startPosition = new StartPosition(2);
         
         // When: 게임을 실행한다
-        int result = ladderGame.run(startPosition);
+        Position result = ladderGame.run(startPosition);
         
         // Then: 결과가 반환된다
-        assertTrue(result >= 0 && result < 4);
+        assertTrue(result.getX() >= 0 && result.getX() < 4);
     }
 }
