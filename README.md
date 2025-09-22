@@ -8,3 +8,6 @@
 5. 새로 생성한 브랜치에서 pr을 작성한다.
 
 상세 방법 : [Server 미션 제출 방법](https://konkuk-kuit.notion.site/6-Server-26c3114cc9c5802181ffca25547494ea?source=copy_link)
+
+
+Test Code Rabbit
