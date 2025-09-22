@@ -21,4 +21,8 @@ public class LadderGame {
         // 3. runner 에게 사다리를 타라고 메세지를 보낸다.
         return ladderRunner.run(position);
     }
+
+    public void drawLine(Position row, Position col){
+        ladderCreator.drawLine(row, col); //이게 객체지향적인가? 음..............
+    }
 }

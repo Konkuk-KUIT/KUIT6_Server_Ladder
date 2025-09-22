@@ -41,6 +41,7 @@ public class RandomManager {
     }
 
     private static int[] getRandomPerRow(Row[] rows, double ratio, Random rand){
+        if(rows == null || rows.length == 0 || ratio < 0) { throw new IllegalArgumentException(); }
         int rowCount = rows.length;
         int cols = rows[0].size();
 

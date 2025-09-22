@@ -64,12 +64,14 @@ public class LadderView {
     }
 
     private static void printTopLine(int len){
+        if (len < 1) { return; }
         printDivider(len);
         for (int c = 0; c < len; c++) { System.out.print(c + " "); }
         System.out.println("\n" + "-".repeat(len*2));
     }
 
     private static void printDivider(int len){
+        if (len < 1) { return; }
         System.out.println("=".repeat(len*2));
     }
 

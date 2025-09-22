@@ -22,10 +22,9 @@ public class AutoLadderCreator implements LadderCreator {
     }
 
     public void drawLine(Position row, Position col){
-        rows[row.getValue()].drawLine(col);
+        //rows[row.getValue()].drawLine(col);
     }
 
-    //todo 기존코드 사용해서 랜덤으로 사다리끼리 연결되게 제작(Line수 설정 && 의존성 주입)
     public void drawLineAuto() {
         //자동사냥
         Random rand = new Random();
