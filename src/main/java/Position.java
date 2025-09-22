@@ -1,20 +1,42 @@
 public class Position {
-    private int row;
-    private int col;
+    private final int position; // 불변 객체로 변경
 
-    public Position(int row, int col) {
-        if (row < 0 || col < 0) {
-            throw new IllegalArgumentException("음수는 불가능");
+    private Position(int position) {
+        this.position = position;
+    }
+
+    public static Position from(int position) {
+        validatePosition(position);
+        return new Position(position);
+    }
+
+    private static void validatePosition(int position) {
+        if (!isPosition(position)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_POSITION.getMessage());
         }
-        this.row = row;
-        this.col = col;
     }
 
-    public int getRow() {
-        return row;
+    private static boolean isPosition(int position) {
+        return position >= 0;
     }
 
-    public int getCol() {
-        return col;
+    public int getValue() {
+        return position;
     }
+
+    public Position prev() {
+        int newPosition = position - 1;
+        validatePosition(newPosition); // 음수면 예외
+        return new Position(newPosition);
+    }
+
+    public Position next() {
+        return new Position(position + 1);
+    }
+
+    public boolean isBiggerThan(int position) {
+        return this.position > position;
+    }
+
+
 }
