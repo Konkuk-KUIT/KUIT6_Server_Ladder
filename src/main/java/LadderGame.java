@@ -21,4 +21,8 @@ public class LadderGame {
     public Position run(StartPosition startPosition) {
         return runner.run(board, startPosition);
     }
+
+    public Board getBoard() {
+        return board;
+    }
 }
