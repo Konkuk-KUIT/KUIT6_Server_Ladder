@@ -9,7 +9,7 @@ import wrap.PersonCount;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LadderGameLadderCreatorTest {
+class LadderCreatorTest {
 
     private LadderCreator board;
 
