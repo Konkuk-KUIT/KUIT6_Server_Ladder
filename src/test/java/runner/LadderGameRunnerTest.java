@@ -3,28 +3,44 @@ package runner;
 import ladderboard.board.Board;
 import ladderboard.LadderCreator;
 import exceptions.InvalidBoardNullException;
+import observer.LadderGameObserver;
 import position.Position;
 import exceptions.InvalidStartPositionException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.InOrder;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import wrap.LadderHeight;
 import wrap.PersonCount;
 import wrap.StartPosition;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
 
 class LadderGameRunnerTest {
+
+    @Mock
+    private LadderGameObserver mockObserver;
 
     private LadderRunner runner;
     private Board board;
 
     @BeforeEach
     void setUp() {
+        // 각 테스트마다 새로운 LadderRunner 인스턴스 생성
         runner = new LadderRunner();
         // Given: 4명이 참여하고 높이가 3인 사다리 보드
         PersonCount personCount = PersonCount.of(4);
         LadderHeight ladderHeight = LadderHeight.of(3);
         board = new LadderCreator(personCount, ladderHeight);
+        
+        // Mock 초기화
+        reset(mockObserver);
     }
 
     @Test
@@ -139,5 +155,104 @@ class LadderGameRunnerTest {
         assertThrows(InvalidBoardNullException.class, () -> {
             runner.run(nullBoard, StartPosition.at(0));
         });
+    }
+
+    // Observer 패턴 테스트들
+    @Test
+    void Observer를_추가하고_제거할_수_있다() {
+        // When
+        runner.addObserver(mockObserver);
+        runner.removeObserver(mockObserver);
+
+        // Then: 제거 후 호출되지 않아야 함
+        runner.run(board, StartPosition.at(0));
+        verifyNoInteractions(mockObserver);
+    }
+
+    @Test
+    void Observer가_올바른_순서로_호출된다() {
+        // Given
+        runner.addObserver(mockObserver);
+
+        // When
+        Position result = runner.run(board, StartPosition.at(0));
+
+        // Then
+        // 각 메서드가 올바른 횟수로 호출되었는지 검증
+        verify(mockObserver).onGameStart(any(Board.class), any(StartPosition.class));
+        verify(mockObserver, times(3)).onStepStart(any(Position.class));
+        verify(mockObserver, times(3)).onStepComplete(any(Position.class));
+        verify(mockObserver).onGameComplete(any(Position.class));
+    }
+
+    @Test
+    void Observer에게_올바른_게임_시작_정보가_전달된다() {
+        // Given
+        runner.addObserver(mockObserver);
+        StartPosition startPosition = StartPosition.at(1);
+
+        // When
+        runner.run(board, startPosition);
+
+        // Then
+        verify(mockObserver).onGameStart(board, startPosition);
+    }
+
+    @Test
+    void Observer에게_올바른_Step_Position이_전달된다() {
+        // Given
+        ArgumentCaptor<Position> positionCaptor = ArgumentCaptor.forClass(Position.class);
+        runner.addObserver(mockObserver);
+
+        // When
+        runner.run(board, StartPosition.at(1));
+
+        // Then
+        verify(mockObserver, times(3)).onStepStart(positionCaptor.capture());
+        
+        // 첫 번째 스텝의 Position 검증 (row=0, col=1)
+        Position firstStep = positionCaptor.getAllValues().get(0);
+        assertEquals(0, firstStep.getY());
+        assertEquals(1, firstStep.getX());
+        
+        // 두 번째 스텝의 Position 검증 (row=1, col=1)
+        Position secondStep = positionCaptor.getAllValues().get(1);
+        assertEquals(1, secondStep.getY());
+        assertEquals(1, secondStep.getX());
+    }
+
+    @Test
+    void Observer에게_올바른_최종_Position이_전달된다() {
+        // Given
+        ArgumentCaptor<Position> positionCaptor = ArgumentCaptor.forClass(Position.class);
+        runner.addObserver(mockObserver);
+
+        // When
+        runner.run(board, StartPosition.at(2));
+
+        // Then
+        verify(mockObserver).onGameComplete(positionCaptor.capture());
+        Position finalPosition = positionCaptor.getValue();
+        
+        // 최종 위치는 (height=3, x=2)이어야 함
+        assertEquals(3, finalPosition.getY());
+        assertEquals(2, finalPosition.getX());
+    }
+
+    @Test
+    void 여러_Observer가_모두_호출된다() {
+        // Given
+        LadderGameObserver secondObserver = mock(LadderGameObserver.class);
+        runner.addObserver(mockObserver);
+        runner.addObserver(secondObserver);
+
+        // When
+        runner.run(board, StartPosition.at(0));
+
+        // Then
+        verify(mockObserver).onGameStart(any(Board.class), any(StartPosition.class));
+        verify(secondObserver).onGameStart(any(Board.class), any(StartPosition.class));
+        verify(mockObserver).onGameComplete(any(Position.class));
+        verify(secondObserver).onGameComplete(any(Position.class));
     }
 }
