@@ -1,7 +1,5 @@
 package domain;
 
-import direction.Direction;
-
 public class Row {
     private final int[] nodes;
 

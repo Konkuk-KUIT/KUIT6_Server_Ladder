@@ -1,6 +1,6 @@
 package validator;
 
-import direction.Direction;
+import domain.Direction;
 import domain.Row;
 import exception.IllegalHeightException;
 

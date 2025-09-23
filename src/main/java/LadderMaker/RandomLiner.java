@@ -22,19 +22,17 @@ public class RandomLiner implements LadderMaker {
     }
 
     private void makeRandomLine() {
-        int numberOfLines = (int) (row * numberOfPerson * 0.3);
-        int i = 0;
-
-        while (i < numberOfLines) {
+        int numberOfLines = (int) (row * numberOfPerson * RandomRatio.RANDOM_LINE.getValue());
+        int madeLine = 0;
+        while (madeLine < numberOfLines) {
             try {
                 int left = rand.nextInt(numberOfPerson) + 1;
                 int height = rand.nextInt(row) + 1;
                 LadderNumberValidator.validateLadderNumber(left, numberOfPerson);
                 HeightValidator.validateHeight(left, left + 1, ladder.getRows(), height);
                 drawLine(left, left + 1, height);
-                i++;
+                madeLine++;
             } catch (RuntimeException e) {
-                continue;
             }
         }
     }
@@ -54,6 +52,7 @@ public class RandomLiner implements LadderMaker {
         return ladder;
     }
 
+    @Override
     public int getNumberOfPerson() {
         return numberOfPerson;
     }

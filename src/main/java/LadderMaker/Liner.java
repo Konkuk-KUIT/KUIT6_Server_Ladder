@@ -33,10 +33,12 @@ public class Liner implements LadderMaker {
         ladder.drawLine(left, right, height);
     }
 
+    @Override
     public int getNumberOfPerson() {
         return numberOfPerson;
     }
 
+    @Override
     public Ladder getLadder() {
         return ladder;
     }

@@ -1,4 +1,4 @@
-package direction;
+package domain;
 
 public enum Direction {
     LEFT(-1),

@@ -1,4 +1,4 @@
-import domain.LadderGame;
+import game.LadderGame;
 import LadderMaker.LadderMaker;
 import LadderMaker.RandomLiner;
 import org.junit.jupiter.api.DisplayName;

@@ -1,7 +1,5 @@
 package domain;
 
-import direction.Direction;
-
 public class Ladder {
     private final Row[] rows;
 
