@@ -21,8 +21,7 @@ public class Ladder {
         if (pos1.getY() != pos2.getY() || pos1.getX() == pos2.getX()) {
             throw new IllegalArgumentException("Invalid position");
         }
-        rows[pos1.getY()].drawLine(pos1.getX(), pos2.getX() - pos1.getX());
-        rows[pos2.getY()].drawLine(pos2.getX(), pos1.getX() - pos2.getX());
+        rows[pos1.getY()].drawLine(pos1.getX(), pos2.getX());
     }
 
     // todo int 타입 포장 (startX)

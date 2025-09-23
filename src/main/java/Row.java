@@ -21,8 +21,9 @@ public class Row {
         return row[x];
     }
 
-    public void drawLine(int xPos, int direction) {
-        row[xPos] = direction;
+    public void drawLine(int xPos1, int xPos2) {
+        row[xPos1] = xPos2 - xPos1;
+        row[xPos2] = xPos1 - xPos2;
     }
 
     public int getNextPosition(int xPos) {
