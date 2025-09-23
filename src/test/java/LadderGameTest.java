@@ -1,6 +1,6 @@
 import exceptions.InvalidCoordinateException;
 import game.LadderGame;
-import observer.LadderGameObserver;
+import observer.Observer;
 import position.Position;
 import exceptions.InvalidStartPositionException;
 import runner.LadderRunner;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 class LadderGameTest {
     
     @Mock
-    private LadderGameObserver mockObserver;
+    private Observer mockObserver;
     
     private LadderGame ladderGame;
     

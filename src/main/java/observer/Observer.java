@@ -4,7 +4,7 @@ import board.Board;
 import position.Position;
 import wrap.StartPosition;
 
-public interface LadderGameObserver {
+public interface Observer {
     
     void onGameStart(Board board, StartPosition startPosition);
     

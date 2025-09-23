@@ -3,7 +3,7 @@ package runner;
 import board.Board;
 import laddercreator.NormalLadderCreator;
 import exceptions.InvalidBoardNullException;
-import observer.LadderGameObserver;
+import observer.Observer;
 import position.Position;
 import exceptions.InvalidStartPositionException;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 class LadderGameRunnerTest {
 
     @Mock
-    private LadderGameObserver mockObserver;
+    private Observer mockObserver;
 
     private LadderRunner runner;
     private Board board;
@@ -241,7 +241,7 @@ class LadderGameRunnerTest {
     @Test
     void 여러_Observer가_모두_호출된다() {
         // Given
-        LadderGameObserver secondObserver = mock(LadderGameObserver.class);
+        Observer secondObserver = mock(Observer.class);
         runner.addObserver(mockObserver);
         runner.addObserver(secondObserver);
 

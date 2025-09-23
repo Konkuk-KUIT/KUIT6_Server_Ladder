@@ -1,6 +1,6 @@
 import game.LadderGame;
 import game.LadderGameFactory;
-import observer.LadderPrinter;
+import observer.LadderObserver;
 import runner.GameRunner;
 import runner.LadderRunner;
 import wrap.PersonCount;
@@ -29,7 +29,7 @@ public class AppConfig {
     private void setupObservers(LadderGame game) {
         GameRunner gameRunner = game.getRunner();
         if (gameRunner instanceof LadderRunner ladderRunner) {
-            LadderPrinter printer = new LadderPrinter();
+            LadderObserver printer = new LadderObserver();
             ladderRunner.addObserver(printer);
         }
     }

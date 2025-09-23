@@ -15,16 +15,16 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LadderPrinterTest {
+class LadderObserverTest {
 
-    private LadderPrinter printer;
+    private LadderObserver printer;
     private Board board;
     private ByteArrayOutputStream outputStream;
     private PrintStream originalOut;
 
     @BeforeEach
     void setUp() {
-        printer = new LadderPrinter();
+        printer = new LadderObserver();
         board = new NormalLadderCreator(PersonCount.of(4), LadderHeight.of(3));
         
         // 콘솔 출력을 캡처하기 위한 설정

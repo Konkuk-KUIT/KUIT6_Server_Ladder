@@ -7,11 +7,11 @@ import wrap.StartPosition;
 
 import java.util.Scanner;
 
-public class LadderPrinter implements LadderGameObserver {
+public class LadderObserver implements Observer {
     
     private Board board;
 
-    public LadderPrinter() {
+    public LadderObserver() {
         Scanner scanner = new Scanner(System.in);
     }
     

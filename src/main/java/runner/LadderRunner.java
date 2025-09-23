@@ -4,7 +4,7 @@ import exceptions.InvalidBoardNullException;
 import exceptions.InvalidStartPositionException;
 import exceptions.ErrorMessage;
 import board.Board;
-import observer.LadderGameObserver;
+import observer.Observer;
 import position.Position;
 import wrap.StartPosition;
 
@@ -13,13 +13,13 @@ import java.util.List;
 
 public class LadderRunner implements GameRunner {
 
-    private final List<LadderGameObserver> observers = new ArrayList<>();
+    private final List<Observer> observers = new ArrayList<>();
     
-    public void addObserver(LadderGameObserver observer) {
+    public void addObserver(Observer observer) {
         observers.add(observer);
     }
     
-    public void removeObserver(LadderGameObserver observer) {
+    public void removeObserver(Observer observer) {
         observers.remove(observer);
     }
 
@@ -57,25 +57,25 @@ public class LadderRunner implements GameRunner {
     }
     
     private void notifyGameStart(Board board, StartPosition startPosition) {
-        for (LadderGameObserver observer : observers) {
+        for (Observer observer : observers) {
             observer.onGameStart(board, startPosition);
         }
     }
     
     private void notifyStepStart(Position currentPosition) {
-        for (LadderGameObserver observer : observers) {
+        for (Observer observer : observers) {
             observer.onStepStart(currentPosition);
         }
     }
     
     private void notifyStepComplete(Position newPosition) {
-        for (LadderGameObserver observer : observers) {
+        for (Observer observer : observers) {
             observer.onStepComplete(newPosition);
         }
     }
     
     private void notifyGameComplete(Position finalPosition) {
-        for (LadderGameObserver observer : observers) {
+        for (Observer observer : observers) {
             observer.onGameComplete(finalPosition);
         }
     }
