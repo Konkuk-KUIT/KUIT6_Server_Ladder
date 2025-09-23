@@ -1,7 +1,6 @@
 package game;
 
 import domain.Row;
-import message.GameState;
 import view.GameViewRenderer;
 
 public class LadderRunner {

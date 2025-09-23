@@ -1,4 +1,4 @@
-package message;
+package game;
 
 public enum GameState {
     BEFORE("Before"),
