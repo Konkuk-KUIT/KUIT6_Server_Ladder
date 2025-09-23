@@ -12,10 +12,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class LadderTest {
     @Test
-    @DisplayName("인원수가 1인 사다리 타기의 결과는 1이다.")
+    @DisplayName("빈 사다리 타기의 결과는 사다리 번호와 같다.")
     void long_single_ladder_run() {
         // given
-        Liner liner = new Liner(5, 1);
+        Liner liner = new Liner(5, 2);
         LadderGame ladderGame = LadderGame.from(liner);
 
         // when & then
