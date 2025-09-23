@@ -1,4 +1,5 @@
 public class Row {
+    // todo Node 객체 도입
     private final int[] row;
 
     public Row(int numberOfPerson) {

@@ -1,5 +1,5 @@
 public class Ladder {
-
+    // todo 사다리 책임 분배
     private final Row[] rows;
 
     public int getLadderInfoByPosition(Position position) {
