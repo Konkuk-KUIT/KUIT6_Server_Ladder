@@ -9,7 +9,7 @@ public class Row {
 
     private void validateNumberPerson(int numberOfPerson) {
         if (numberOfPerson <= 1) {
-            throw new IllegalArgumentException("참여 인원은 1명 이상이어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_GREATER_THAN_ONE.getMessage());
         }
     }
 

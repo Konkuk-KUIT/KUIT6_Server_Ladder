@@ -4,7 +4,7 @@ public class Position {
 
     public Position(int x, int y) {
         if (x < 0 || y < 0) {
-            throw new IllegalArgumentException("Invalid position");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_POSITION.getMessage());
         }
         this.x = x;
         this.y = y;
