@@ -25,7 +25,12 @@ public class RandomLadderCreator implements Board {
     }
     
     private void generateRandomLines(PersonCount personCount, LadderHeight ladderHeight) {
-        int totalPossibleLines = ladderHeight.getValue() * personCount.getMaxLineIndex();
+        int maxLineIndex = personCount.getMaxLineIndex();
+        if (maxLineIndex <= 0) {
+            return; // 라인을 그을 수 없는 경우 (사람이 1명인 경우)
+        }
+        
+        int totalPossibleLines = ladderHeight.getValue() * maxLineIndex;
         int linesToGenerate = (int) (totalPossibleLines * 0.3);
         
         Set<Coordinate> usedCoordinates = new HashSet<>();
@@ -34,7 +39,7 @@ public class RandomLadderCreator implements Board {
         
         while (usedCoordinates.size() < linesToGenerate && attempts < maxAttempts) {
             int y = random.nextInt(ladderHeight.getValue());
-            int x = random.nextInt(personCount.getMaxLineIndex());
+            int x = random.nextInt(maxLineIndex);
             
             Coordinate coordinate = Position.at(y, x);
             
