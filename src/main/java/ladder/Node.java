@@ -31,7 +31,7 @@ public class Node {
         direction = Direction.LEFT;
     }
 
-    public boolean isAlreadtSetDirection() {
+    public boolean isAlreadySetDirection() {
         return !isNone();
     }
 

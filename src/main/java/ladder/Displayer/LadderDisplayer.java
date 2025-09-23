@@ -1,7 +1,6 @@
 package ladder.Displayer;
 
 import ladder.Direction;
-import ladder.Node;
 import ladder.Row;
 
 public class LadderDisplayer {
