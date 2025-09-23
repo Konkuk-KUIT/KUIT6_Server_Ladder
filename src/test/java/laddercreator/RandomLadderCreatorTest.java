@@ -6,6 +6,10 @@ import position.Position;
 import wrap.LadderHeight;
 import wrap.PersonCount;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class RandomLadderCreatorTest {
@@ -63,22 +67,30 @@ class RandomLadderCreatorTest {
     void 랜덤성_확인_매번_다른_패턴이_생성되는지() {
         PersonCount personCount = PersonCount.of(4);
         LadderHeight ladderHeight = LadderHeight.of(6);
-        
-        RandomLadderCreator creator1 = new RandomLadderCreator(personCount, ladderHeight);
-        RandomLadderCreator creator2 = new RandomLadderCreator(personCount, ladderHeight);
-        
+
+        List<RandomLadderCreator> creators = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            creators.add(new RandomLadderCreator(personCount, ladderHeight));
+        }
+
         boolean foundDifference = false;
-        for (int y = 0; y < ladderHeight.getValue() && !foundDifference; y++) {
-            for (int x = 0; x < personCount.getMaxLineIndex() && !foundDifference; x++) {
-                Position pos = Position.at(y, x);
-                if (creator1.hasConnection(pos) != creator2.hasConnection(pos)) {
-                    foundDifference = true;
+
+        RandomLadderCreator first = creators.get(0);
+
+        for (int i = 1; i < creators.size(); i++) {
+            RandomLadderCreator current = creators.get(i);
+            for (int y = 0; y < ladderHeight.getValue() && !foundDifference; y++) {
+                for (int x = 0; x < personCount.getMaxLineIndex() && !foundDifference; x++) {
+                    Position pos = Position.at(y, x);
+                    if (first.hasConnection(pos) != current.hasConnection(pos)) {
+                        foundDifference = true;
+                    }
                 }
             }
+            if (foundDifference) break;
         }
-        
-        // 랜덤이므로 항상 다를 필요는 없지만, 반복 테스트로 확률적으로 다름을 확인
-        // 이 테스트는 5번 중 적어도 한 번은 다른 패턴이 나올 것으로 기대
+
+        assertTrue(foundDifference, "10개의 인스턴스 중 적어도 하나는 다른 패턴을 가져야 합니다.");
     }
 
     private int countGeneratedLines(RandomLadderCreator creator) {

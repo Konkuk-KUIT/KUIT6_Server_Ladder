@@ -28,7 +28,7 @@ public class PersonCount {
         return value - 1;
     }
 
-    public boolean isValidLineIndex(int lineIndex) {
+    public boolean isInValidLineIndex(int lineIndex) {
         return lineIndex < 0 || lineIndex >= getMaxLineIndex();
     }
 

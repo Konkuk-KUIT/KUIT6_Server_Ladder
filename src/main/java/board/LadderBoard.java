@@ -39,7 +39,7 @@ public class LadderBoard implements Board {
         int y = coordinate.getY();
         int x = coordinate.getX();
         
-        if (ladderHeight.isValidRow(y) || personCount.isValidLineIndex(x)) {
+        if (ladderHeight.isValidRow(y) || personCount.isInValidLineIndex(x)) {
             return false;
         }
         return rows[y].hasConnection(NodeIndex.at(x));
@@ -87,7 +87,7 @@ public class LadderBoard implements Board {
             throw new InvalidCoordinateException(ErrorMessage.INVALID_COORDINATE_Y.format(y, ladderHeight.getValue()-1));
         }
 
-        if (personCount.isValidLineIndex(x)) {
+        if (personCount.isInValidLineIndex(x)) {
             throw new InvalidCoordinateException(ErrorMessage.INVALID_COORDINATE_X.format(x, personCount.getMaxLineIndex()));
         }
     }
