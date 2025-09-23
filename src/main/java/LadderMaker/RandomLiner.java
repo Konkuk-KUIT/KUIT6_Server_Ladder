@@ -26,7 +26,7 @@ public class RandomLiner implements LadderMaker {
         int madeLine = 0;
         while (madeLine < numberOfLines) {
             try {
-                int left = rand.nextInt(numberOfPerson) + 1;
+                int left = rand.nextInt(numberOfPerson -1) + 1;
                 int height = rand.nextInt(row) + 1;
                 LadderNumberValidator.validateLadderNumber(left, numberOfPerson);
                 HeightValidator.validateHeight(left, left + 1, ladder.getRows(), height);
