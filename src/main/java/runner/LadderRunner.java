@@ -5,13 +5,14 @@ import exceptions.InvalidStartPositionException;
 import exceptions.ErrorMessage;
 import board.Board;
 import observer.Observer;
+import observer.Subject;
 import position.Position;
 import wrap.StartPosition;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LadderRunner implements GameRunner {
+public class LadderRunner implements GameRunner, Subject {
 
     private final List<Observer> observers = new ArrayList<>();
     
