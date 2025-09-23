@@ -2,15 +2,8 @@ public class Row {
     // todo Node 객체 도입
     private final int[] row;
 
-    public Row(int numberOfPerson) {
-        validateNumberPerson(numberOfPerson);
-        row = new int[numberOfPerson];
-    }
-
-    private void validateNumberPerson(int numberOfPerson) {
-        if (numberOfPerson <= 1) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_GREATER_THAN_ONE.getMessage());
-        }
+    public Row(GreaterThanOne numberOfPerson) {
+        row = new int[numberOfPerson.getNumber()];
     }
 
     public int getLength() {

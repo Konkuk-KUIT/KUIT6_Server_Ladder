@@ -8,7 +8,7 @@ class LadderTest {
     @DisplayName("초기 사다리는 0으로 초기화")
     void initialLadder() {
         // given
-        Ladder ladder = new Ladder(3, 3);
+        Ladder ladder = new Ladder(GreaterThanOne.from(3), GreaterThanOne.from(3));
 
         //when
         Position pos = new Position(0, 0);
@@ -22,7 +22,7 @@ class LadderTest {
     @DisplayName("사다리 그리면 거리만큼 반영")
     void drawComplete() {
         // given
-        Ladder ladder = new Ladder(3, 3);
+        Ladder ladder = new Ladder(GreaterThanOne.from(3), GreaterThanOne.from(3));
         Position pos1 = new Position(0, 0);
         Position pos2 = new Position(1, 0);
 
@@ -38,7 +38,7 @@ class LadderTest {
     @DisplayName("사다리 타기 정상 작동")
     void drawLineAndRun() {
         // given
-        Ladder ladder = new Ladder(5, 5);
+        Ladder ladder = new Ladder(GreaterThanOne.from(5), GreaterThanOne.from(5));
 
         // y=0: (0 <-> 1)
         ladder.drawLine(new Position(0, 0), new Position(1, 0));

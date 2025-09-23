@@ -10,9 +10,9 @@ public class Ladder {
     }
 
     // todo int 타입 포장 (numberOfPerson)
-    public Ladder(int row, int numberOfPerson) {
-        rows = new Row[numberOfPerson];
-        for (int i = 0; i < row; i++) {
+    public Ladder(GreaterThanOne row, GreaterThanOne numberOfPerson) {
+        rows = new Row[numberOfPerson.getNumber()];
+        for (int i = 0; i < row.getNumber(); i++) {
             rows[i] = new Row(numberOfPerson);
         }
     }
