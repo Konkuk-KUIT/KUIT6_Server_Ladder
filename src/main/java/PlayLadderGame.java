@@ -9,7 +9,7 @@ public class PlayLadderGame {
         PlayerPosition position = startPosition;
         for (int row = 0; row < ladder.getRowCount(); row++) {
             LadderLine line = ladder.getLine(row);
-            position = line.move(position);
+            line.move(position);
         }
         return position.getValue();
     }

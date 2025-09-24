@@ -1,5 +1,5 @@
 public class PlayerPosition {
-    private final int position;
+    private int position;
 
     private PlayerPosition(int position) {
         this.position = position;
@@ -20,15 +20,19 @@ public class PlayerPosition {
         return position >= 0;
     }
 
-    public PlayerPosition prev() {
-        return new PlayerPosition(position-1);
+    public void prev() {
+       position--;
     }
 
-    public PlayerPosition next() {
-        return new PlayerPosition(position+1);
+    public void next() {
+       position++;
     }
 
     public int getValue() {
         return position;
+    }
+
+    public boolean isBiggerThan(int position) {
+        return this.position > position;
     }
 }

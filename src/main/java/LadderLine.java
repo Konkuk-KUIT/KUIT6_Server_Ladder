@@ -11,31 +11,51 @@ public class LadderLine {
         Arrays.fill(nodes, Node.from(LadderDirection.None));
     }
 
-    public void drawLine(int position){
-        if (position < 0 || position >= playerCount.getNumber()-1) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_POSITION.getMessage());
-        }
-        line[position] = LadderDirection.Right;
-        line[position + 1] = LadderDirection.Left;
+    public void drawLine(PlayerPosition position){
+        validateDrawLinePosition(position);
+        setDirectionBetweenNextPosition(position);
 
     }
 
-    public PlayerPosition move(PlayerPosition position) {
-        validatePosition(position);
-        int pos = position.getValue();
+    private void setDirectionBetweenNextPosition(PlayerPosition position) {
+        nodes[position.getValue()].setRightNode();
+        position.next();
+        nodes[position.getValue()].setLeftNode();
+    }
 
-        if (line[pos] == LadderDirection.Right) {
-            return position.next();
-        }
-        if (line[pos] == LadderDirection.Left) {
-            return position.prev();
-        }
-        return position;
+    public void move(PlayerPosition position) {
+        validatePosition(position);
+       nodes[position.getValue()].move(position);
     }
 
     private void validatePosition(PlayerPosition position){
-        if(position.getValue() >= line.length || position.getValue() <0){
+        if(isInvalidPosition(position)){
             throw new IllegalArgumentException(ErrorMessage.INVALID_POSITION.getMessage());
         }
     }
+
+    private boolean isInvalidPosition(PlayerPosition position) {
+        return position.isBiggerThan(nodes.length);
+    }
+
+    private void validateDrawLinePosition(PlayerPosition position){
+        validatePosition(position);
+        if(isLineAtPosition(position) || isLineNextPosition(position)){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage());
+        }
+
+
+    }
+
+    private boolean isLineNextPosition(PlayerPosition position) {
+        position.next();
+        boolean lineAtPosition = isLineAtPosition(position);
+        position.prev();;
+        return lineAtPosition;
+    }
+
+    private boolean isLineAtPosition(PlayerPosition position) {
+        return nodes[position.getValue()].isAlreadySetDirection();
+    }
+
 }

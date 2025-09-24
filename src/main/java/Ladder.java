@@ -15,8 +15,8 @@ public class Ladder {
         }
     }
 
-    public void drawLine(int row, int column) {
-        lines[row].drawLine(column);
+    public void drawLine(PlayerPosition row, PlayerPosition column) {
+        lines[row.getValue()].drawLine(column);
     }
 
     public int getRowCount() {

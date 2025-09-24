@@ -22,8 +22,9 @@ class LadderTest {
         LadderLine line = new LadderLine(GreaterThanOne.from(4));
         // when & then
         for (int i = 0; i < 4; i++) {
-            int current = line.move(PlayerPosition.from(i)).getValue();
-            assertEquals(i, current); // 아무 이동이 없어야 함
+            PlayerPosition position = PlayerPosition.from(i);
+            line.move(position);
+            assertEquals(i, position.getValue()); // 아무 이동이 없어야 함
         }
     }
 
@@ -32,22 +33,17 @@ class LadderTest {
     void testDrawLine() {
         // Given
         LadderLine line = new LadderLine(GreaterThanOne.from(4));
-        // When
-        line.drawLine(1);
+
+        line.drawLine(PlayerPosition.from(1));
+
         // Then
-        assertEquals(2, line.move(PlayerPosition.from(1)).getValue());
-        assertEquals(1, line.move(PlayerPosition.from(2)).getValue());
-    }
+        PlayerPosition pos1 = PlayerPosition.from(1);
+        line.move(pos1);
+        assertEquals(2, pos1.getValue());
 
-    @Test
-    @DisplayName("잘못된 위치에 drawLine을 하면 예외가 발생합니다.")
-    void testDrawLineInvalidPosition() {
-        // Given
-        LadderLine line = new LadderLine(GreaterThanOne.from(4));
-
-        // When & Then
-        assertThrows(IllegalArgumentException.class, () -> line.drawLine(-1));
-        assertThrows(IllegalArgumentException.class, () -> line.drawLine(3));
+        PlayerPosition pos2 = PlayerPosition.from(2);
+        line.move(pos2); // pos2 이동
+        assertEquals(1, pos2.getValue());
     }
 
     @Test
@@ -55,15 +51,17 @@ class LadderTest {
     void testPlayLadderGame() {
         // Given
         Ladder ladder = new Ladder(GreaterThanOne.from(3), GreaterThanOne.from(4));
-        ladder.drawLine(0, 0); // row0: 0-1
-        ladder.drawLine(1, 2); // row1: 2-3
-        ladder.drawLine(2, 1); // row2: 1-2
+        ladder.drawLine(PlayerPosition.from(0), PlayerPosition.from(0)); // row0: 0-1
+        ladder.drawLine(PlayerPosition.from(1), PlayerPosition.from(2)); // row1: 2-3
+        ladder.drawLine(PlayerPosition.from(2), PlayerPosition.from(1)); // row2: 1-2
         PlayLadderGame game = new PlayLadderGame(ladder);
 
         // When & Then
         assertEquals(2, game.run(PlayerPosition.from(0))); // 0 → 2
-        assertEquals(0, game.run(PlayerPosition.from(1)));  // 1 → 0
-        assertEquals(3, game.run(PlayerPosition.from(2)));  // 2 → 3
-        assertEquals(1, game.run(PlayerPosition.from(3)));  // 3 → 1
+        assertEquals(0, game.run(PlayerPosition.from(1)));
+        assertEquals(3, game.run(PlayerPosition.from(2)));
+        assertEquals(1, game.run(PlayerPosition.from(3)));
     }
+
+
 }
