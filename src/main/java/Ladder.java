@@ -3,11 +3,8 @@ public class Ladder {
     private final int playerCount;
 
     public Ladder(int row, int playerCount) {
-        if (row <= 0) {
-            throw new IllegalArgumentException("row 개수는 1 이상이어야 합니다.");
-        }
-        if (playerCount < 2) {
-            throw new IllegalArgumentException("참가자는 최소 2명 이상이어야 합니다.");
+        if (row < 2 || playerCount < 2) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_NUMBER.getMessage());
         }
 
         this.playerCount = playerCount;

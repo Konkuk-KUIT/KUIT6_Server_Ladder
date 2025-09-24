@@ -13,10 +13,7 @@ public class LadderLine {
 
     public void drawLine(int position){
         if (position < 0 || position >= playerCount - 1) {
-            throw new IllegalArgumentException("잘못된 위치입니다.: " + position);
-        }
-        if (line[position] != LadderDirection.None || line[position + 1] != LadderDirection.None) {
-            throw new IllegalStateException("이미 라인이 존재합니다.: position=" + position);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_POSITION.getMessage());
         }
         line[position] = LadderDirection.Right;
         line[position + 1] = LadderDirection.Left;

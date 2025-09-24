@@ -3,7 +3,7 @@ public class PlayerPosition {
 
     public PlayerPosition(int position) {
         if (position < 0) {
-            throw new IllegalArgumentException("위치는 0 이상이여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NATURAL_NUMBER.getMessage());
         }
         this.position = position;
     }
