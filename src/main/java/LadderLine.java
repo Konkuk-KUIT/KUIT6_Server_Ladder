@@ -21,15 +21,21 @@ public class LadderLine {
     }
 
     public PlayerPosition move(PlayerPosition position) {
-        int pos = position.getPosition();
+        validatePosition(position);
+        int pos = position.getValue();
 
-        if (pos < playerCount.getNumber() && line[pos] == LadderDirection.Right) {
-            return position.move(1);
+        if (line[pos] == LadderDirection.Right) {
+            return position.next();
         }
-        if (pos > 0 && line[pos] == LadderDirection.Left) {
-            return position.move(-1);
+        if (line[pos] == LadderDirection.Left) {
+            return position.prev();
         }
-
         return position;
+    }
+
+    private void validatePosition(PlayerPosition position){
+        if(position.getValue() >= line.length || position.getValue() <0){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_POSITION.getMessage());
+        }
     }
 }

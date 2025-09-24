@@ -1,18 +1,34 @@
 public class PlayerPosition {
     private final int position;
 
-    public PlayerPosition(int position) {
-        if (position < 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NATURAL_NUMBER.getMessage());
-        }
+    private PlayerPosition(int position) {
         this.position = position;
     }
 
-    public int getPosition() {
-        return position;
+    public static PlayerPosition from(int position) {
+        validatePosition(position);
+        return new PlayerPosition(position);
     }
 
-    PlayerPosition move(int value){
-        return new PlayerPosition(position + value);
+    private static void validatePosition(int position) {
+        if (!isPosition(position)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_POSITION.getMessage());
+        }
+    }
+
+    private static boolean isPosition(int position) {
+        return position >= 0;
+    }
+
+    public PlayerPosition prev() {
+        return new PlayerPosition(position-1);
+    }
+
+    public PlayerPosition next() {
+        return new PlayerPosition(position+1);
+    }
+
+    public int getValue() {
+        return position;
     }
 }

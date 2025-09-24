@@ -22,7 +22,7 @@ class LadderTest {
         LadderLine line = new LadderLine(GreaterThanOne.from(4));
         // when & then
         for (int i = 0; i < 4; i++) {
-            int current = line.move(new PlayerPosition(i)).getPosition();
+            int current = line.move(PlayerPosition.from(i)).getValue();
             assertEquals(i, current); // 아무 이동이 없어야 함
         }
     }
@@ -35,8 +35,8 @@ class LadderTest {
         // When
         line.drawLine(1);
         // Then
-        assertEquals(2, line.move(new PlayerPosition(1)).getPosition());
-        assertEquals(1, line.move(new PlayerPosition(2)).getPosition());
+        assertEquals(2, line.move(PlayerPosition.from(1)).getValue());
+        assertEquals(1, line.move(PlayerPosition.from(2)).getValue());
     }
 
     @Test
@@ -61,9 +61,9 @@ class LadderTest {
         PlayLadderGame game = new PlayLadderGame(ladder);
 
         // When & Then
-        assertEquals(2, game.run(new PlayerPosition(0))); // 0 → 2
-        assertEquals(0, game.run(new PlayerPosition(1))); // 1 → 0
-        assertEquals(3, game.run(new PlayerPosition(2))); // 2 → 3
-        assertEquals(1, game.run(new PlayerPosition(3))); // 3 → 1
+        assertEquals(2, game.run(PlayerPosition.from(0))); // 0 → 2
+        assertEquals(0, game.run(PlayerPosition.from(1)));  // 1 → 0
+        assertEquals(3, game.run(PlayerPosition.from(2)));  // 2 → 3
+        assertEquals(1, game.run(PlayerPosition.from(3)));  // 3 → 1
     }
 }

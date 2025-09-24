@@ -11,6 +11,6 @@ public class PlayLadderGame {
             LadderLine line = ladder.getLine(row);
             position = line.move(position);
         }
-        return position.getPosition();
+        return position.getValue();
     }
 }

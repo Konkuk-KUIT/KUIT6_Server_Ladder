@@ -10,7 +10,7 @@ public class Ladder {
         this.playerCount = playerCount;
         this.lines = new LadderLine[row.getNumber()];
 
-        for (int i = 0; i < playerCount.getNumber(); i++) {
+        for (int i = 0; i < row.getNumber(); i++) {
             lines[i] = new LadderLine(playerCount);
         }
     }
