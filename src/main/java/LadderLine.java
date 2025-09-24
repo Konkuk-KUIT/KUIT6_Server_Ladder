@@ -1,14 +1,14 @@
 import java.util.Arrays;
 
 public class LadderLine {
-    private final LadderDirection[] line;
+    private final Node[] nodes;
     private final GreaterThanOne playerCount;
 
     public LadderLine(GreaterThanOne playerCount) {
         this.playerCount = playerCount;
-        this.line = new LadderDirection[playerCount.getNumber()];
+        nodes = new Node[playerCount.getNumber()];
 
-        Arrays.fill(line, LadderDirection.None);
+        Arrays.fill(nodes, Node.from(LadderDirection.None));
     }
 
     public void drawLine(int position){
