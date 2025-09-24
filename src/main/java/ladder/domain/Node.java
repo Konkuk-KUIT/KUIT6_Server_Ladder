@@ -1,4 +1,4 @@
-package Ladder;
+package ladder.domain;
 
 public class Node {
     private Direction direction;
@@ -9,6 +9,10 @@ public class Node {
 
     public static Node from(Direction direction){
         return new Node(direction);
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 
     public Position move(Position position){

@@ -1,5 +1,7 @@
-import Ladder.Creator.LadderCreator;
-import Ladder.GreaterThanOne;
+package ladder;
+
+import ladder.build.LadderCreator;
+import ladder.domain.GreaterThanOne;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,8 @@
-import Ladder.GreaterThanOne;
-import Ladder.Position;
-import Ladder.Row;
+package ladder;
+
+import ladder.domain.GreaterThanOne;
+import ladder.domain.Position;
+import ladder.domain.Row;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -120,4 +122,17 @@ class RowTest {
         assertThatThrownBy(() -> row.drawLine(Position.from(0)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("가로줄 그리기")
+    public void printRow() throws Exception {
+        //given
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
+        Row row = new Row(numberOfPerson);
+        row.drawLine(Position.from(2));
+        //when
+        System.out.println(row);
+        //then
+
+     }
 }

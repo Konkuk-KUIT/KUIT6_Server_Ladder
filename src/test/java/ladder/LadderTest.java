@@ -1,7 +1,9 @@
-import Ladder.Creator.LadderCreator;
-import Ladder.GreaterThanOne;
-import Ladder.LadderGame;
-import Ladder.Position;
+package ladder;
+
+import ladder.app.LadderGame;
+import ladder.build.LadderCreator;
+import ladder.domain.GreaterThanOne;
+import ladder.domain.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,6 @@
-package Ladder;
+package ladder.domain;
+
+import ladder.support.ErrorMessage;
 
 public class Row {
 
@@ -46,7 +48,7 @@ public class Row {
             throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage());
         }
 
-        if (isLineAtPosition(startPosition)||isLineAtNextPosition(startPosition)) {
+        if (isLineAtPosition(startPosition) || isLineAtNextPosition(startPosition)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage());
         }
     }
@@ -60,5 +62,9 @@ public class Row {
         return nodes[position.getValue()].isAlreadySetDirection();
     }
 
+
+    public Node[] getNodes() {
+        return nodes;
+    }
 
 }

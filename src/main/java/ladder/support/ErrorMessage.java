@@ -1,4 +1,4 @@
-package Ladder;
+package ladder.support;
 
 public enum ErrorMessage {
 
