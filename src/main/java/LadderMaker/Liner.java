@@ -1,9 +1,9 @@
 package LadderMaker;
 
 import domain.Ladder;
+import exception.IllegalLinerException;
 import validator.HeightValidator;
 import validator.LadderNumberValidator;
-import validator.LinerValidator;
 import validator.SequenceValidator;
 
 public class Liner implements LadderMaker {
@@ -12,10 +12,16 @@ public class Liner implements LadderMaker {
     private final Ladder ladder;
 
     public Liner(int row, int numberOfPerson) {
-        LinerValidator.validateLiner(row, numberOfPerson);
+        validateLiner(row, numberOfPerson);
         this.row = row;
         this.numberOfPerson = numberOfPerson;
         this.ladder = makeLadder(this.row, this.numberOfPerson);
+    }
+
+    @Override
+    public void validateLiner(int row, int numberOfPerson) {
+        if (row <= 0 || numberOfPerson <= 1)
+            throw new IllegalLinerException();
     }
 
     @Override
