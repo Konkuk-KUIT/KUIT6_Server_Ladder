@@ -1,6 +1,10 @@
 package ladder;
 
+import ladder.position.LadderPosition;
 import ladder.position.Position;
+
+import static ladder.LadderLabel.AFTER;
+import static ladder.LadderLabel.BEFORE;
 
 public class LadderRunner {
 
@@ -10,11 +14,12 @@ public class LadderRunner {
         this.rows = rows;
     }
 
-    public int run(Position position){
+    public void run(Position position){
         LadderViewer ladderViewer = new LadderViewer(rows);
-        for (Row row : rows) {
-            row.nextPosition(position);
+        for (int i = 0; i < rows.length; i++) {
+            ladderViewer.printLadderStatus(LadderPosition.of(Position.from(i), position), BEFORE);
+            rows[i].nextPosition(position);
+            ladderViewer.printLadderStatus(LadderPosition.of(Position.from(i), position), AFTER);
         }
-        return position.getValue();
     }
 }
