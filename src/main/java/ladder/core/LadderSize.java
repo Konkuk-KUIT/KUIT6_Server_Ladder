@@ -1,4 +1,6 @@
-package ladder;
+package ladder.core;
+
+import ladder.util.GreaterThanOne;
 
 public class LadderSize {
     GreaterThanOne height;

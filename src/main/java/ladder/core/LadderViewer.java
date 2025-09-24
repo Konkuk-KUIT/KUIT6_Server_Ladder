@@ -1,4 +1,4 @@
-package ladder;
+package ladder.core;
 
 import ladder.position.LadderPosition;
 import ladder.position.Position;

@@ -1,5 +1,5 @@
-import ladder.Direction;
-import ladder.Node;
+import ladder.core.Direction;
+import ladder.core.Node;
 import ladder.position.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,10 +1,10 @@
-package ladder;
+package ladder.core;
 
 import ladder.position.LadderPosition;
 import ladder.position.Position;
 
-import static ladder.LadderLabel.AFTER;
-import static ladder.LadderLabel.BEFORE;
+import static ladder.core.LadderLabel.AFTER;
+import static ladder.core.LadderLabel.BEFORE;
 
 public class LadderRunner {
 

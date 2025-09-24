@@ -1,7 +1,9 @@
-package ladder;
+package ladder.core;
 
+import ladder.exception.ErrorMessage;
 import ladder.position.LadderPosition;
 import ladder.position.Position;
+import ladder.util.GreaterThanOne;
 
 public class Row {
 

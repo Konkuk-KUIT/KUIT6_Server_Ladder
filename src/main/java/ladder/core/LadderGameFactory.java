@@ -1,4 +1,4 @@
-package ladder;
+package ladder.core;
 
 import ladder.creator.CustomLadderCreator;
 import ladder.creator.RandomLadderCreator;

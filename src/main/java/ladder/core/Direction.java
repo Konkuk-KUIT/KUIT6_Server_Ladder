@@ -1,4 +1,4 @@
-package ladder;
+package ladder.core;
 
 public enum Direction {
     LEFT(-1),

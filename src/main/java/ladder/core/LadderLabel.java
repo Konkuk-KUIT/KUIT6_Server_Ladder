@@ -1,4 +1,4 @@
-package ladder;
+package ladder.core;
 
 public enum LadderLabel {
     AFTER("AFTER\n"), BEFORE("BEFORE\n");

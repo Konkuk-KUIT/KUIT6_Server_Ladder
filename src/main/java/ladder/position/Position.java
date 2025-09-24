@@ -1,6 +1,6 @@
 package ladder.position;
 
-import ladder.ErrorMessage;
+import ladder.exception.ErrorMessage;
 
 import java.util.Objects;
 

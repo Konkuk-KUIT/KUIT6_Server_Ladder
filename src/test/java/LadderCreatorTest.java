@@ -1,6 +1,6 @@
-import ladder.LadderSize;
+import ladder.core.LadderSize;
 import ladder.creator.CustomLadderCreator;
-import ladder.GreaterThanOne;
+import ladder.util.GreaterThanOne;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
