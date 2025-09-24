@@ -17,7 +17,7 @@ public class Position {
     }
 
     private static void validatePosition(int x, int y) {
-        if (isPosition(x, y)) {
+        if (!isPosition(x, y)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_POSITION.getMessage());
         }
     }
