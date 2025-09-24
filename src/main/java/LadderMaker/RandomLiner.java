@@ -2,7 +2,6 @@ package LadderMaker;
 
 import domain.Ladder;
 import exception.IllegalLinerException;
-import validator.HeightValidator;
 import validator.LadderNumberValidator;
 
 import java.util.Random;
@@ -29,7 +28,6 @@ public class RandomLiner implements LadderMaker {
                 int left = rand.nextInt(numberOfPerson - 1) + 1;
                 int height = rand.nextInt(row) + 1;
                 LadderNumberValidator.validateLadderNumber(left, numberOfPerson);
-                HeightValidator.validateHeight(left, left + 1, ladder.getRows(), height);
                 drawLine(left, left + 1, height);
                 madeLine++;
             } catch (RuntimeException e) {

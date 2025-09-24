@@ -2,7 +2,6 @@ package LadderMaker;
 
 import domain.Ladder;
 import exception.IllegalLinerException;
-import validator.HeightValidator;
 import validator.LadderNumberValidator;
 import validator.SequenceValidator;
 
@@ -34,7 +33,6 @@ public class Liner implements LadderMaker {
         LadderNumberValidator.validateLadderNumber(left, numberOfPerson);
         LadderNumberValidator.validateLadderNumber(right, numberOfPerson);
         SequenceValidator.validateSequence(left, right);
-        HeightValidator.validateHeight(left, right, ladder.getRows(), height);
 
         ladder.drawLine(left, right, height);
     }
