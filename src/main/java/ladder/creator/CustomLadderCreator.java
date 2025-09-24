@@ -9,8 +9,10 @@ import ladder.Row;
 public class CustomLadderCreator implements LadderCreator{
 
     private final Row[] rows;
+    private final LadderSize ladderSize;
 
     public CustomLadderCreator(LadderSize ladderSize) {
+        this.ladderSize = ladderSize;
         rows = new Row[ladderSize.getHeightValue()];
         for (int i = 0; i < ladderSize.getHeightValue(); i++) {
             rows[i] = new Row(ladderSize.getNumberOfPerson());
@@ -26,7 +28,12 @@ public class CustomLadderCreator implements LadderCreator{
         return rows;
     }
 
+    public LadderSize getLadderSize() {
+        return ladderSize;
+    }
+
     public void drawLine(Position row, Position col){
         rows[row.getValue()].drawLine(col);
     }
+
 }
