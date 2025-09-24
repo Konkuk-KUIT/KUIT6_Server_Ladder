@@ -14,9 +14,12 @@ public class Row {
         return row[x];
     }
 
-    public void drawLine(int xPos1, int xPos2) {
-        row[xPos1] = xPos2 - xPos1;
-        row[xPos2] = xPos1 - xPos2;
+    public void drawLine(Position pos1, Position pos2) {
+        if (pos1.getY() != pos2.getY() || pos1.getX() == pos2.getX()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage());
+        }
+        row[pos1.getX()] = pos2.getX() - pos1.getX();
+        row[pos2.getX()] = pos1.getX() - pos2.getX();
     }
 
     public int getNextPosition(int xPos) {

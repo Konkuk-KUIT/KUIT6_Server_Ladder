@@ -27,11 +27,11 @@ class RowTest {
         Row row = new Row(new GreaterThanOne(3));
 
         // when
-        row.drawLine(0, 1);
+        row.drawLine(new Position(0, 0), new Position(1, 0));
 
         // then
         assertEquals(1, row.getValue(0));   // 0번 → 1번
-        assertEquals(-1, row.getValue(1)); // 1번 → 0번
+        assertEquals(-1, row.getValue(1));  // 1번 → 0번
     }
 
     @Test
@@ -39,7 +39,7 @@ class RowTest {
     void getNextPositionMovesCorrectly() {
         // given
         Row row = new Row(new GreaterThanOne(3));
-        row.drawLine(0, 1);
+        row.drawLine(new Position(0, 0), new Position(1, 0));
 
         // when
         int next = row.getNextPosition(0);
@@ -69,7 +69,7 @@ class RowTest {
         assertEquals(size, row.getLength());
     }
 
-    @ParameterizedTest(name = "drawLine({0}, {1}) → row[{0}] = {1}-{0}, row[{1}] = {0}-{1}")
+    @ParameterizedTest(name = "drawLine(({0},0), ({1},0)) → row[{0}] = {1}-{0}, row[{1}] = {0}-{1}")
     @CsvSource({
             "0,1,3",   // 길이 3, (0<->1)
             "1,2,3",   // 길이 3, (1<->2)
@@ -79,7 +79,7 @@ class RowTest {
     @DisplayName("drawLine로 양 끝 인덱스에 상대 차이가 저장된다")
     void drawLineStoresSignedOffsets(int x1, int x2, int size) {
         Row row = new Row(new GreaterThanOne(size));
-        row.drawLine(x1, x2);
+        row.drawLine(new Position(x1, 0), new Position(x2, 0));
 
         int expectedAtX1 = x2 - x1;
         int expectedAtX2 = x1 - x2;
@@ -88,7 +88,7 @@ class RowTest {
         assertEquals(expectedAtX2, row.getValue(x2), "오른쪽 인덱스에 왼쪽-오른쪽 값이 저장되어야 함");
     }
 
-    @ParameterizedTest(name = "drawLine({0}, {1}), start={2} → next={3}")
+    @ParameterizedTest(name = "drawLine(({0},0), ({1},0)), start={2} → next={3}")
     @CsvSource({
             // (0<->1) 에서 0 시작 → 1, 1 시작 → 0, 2는 연결 없음 → 2
             "0,1,0,1,3",
@@ -108,7 +108,7 @@ class RowTest {
     @DisplayName("getNextPosition은 연결된 위치면 반대편으로, 아니면 제자리")
     void nextPositionAfterDrawLine(int x1, int x2, int start, int expected, int size) {
         Row row = new Row(new GreaterThanOne(size));
-        row.drawLine(x1, x2);
+        row.drawLine(new Position(x1, 0), new Position(x2, 0));
 
         int next = row.getNextPosition(start);
         assertEquals(expected, next);
