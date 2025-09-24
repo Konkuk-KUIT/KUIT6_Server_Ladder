@@ -4,21 +4,19 @@ import laddermaker.LadderMaker;
 import exception.IllegalLadderNumberException;
 
 public class LadderNumber {
-    private final LadderMaker ladderMaker;
     private final int number;
 
-    private LadderNumber(LadderMaker ladderMaker, int number) {
-        this.ladderMaker = ladderMaker;
-        validateNumber(number);
+    private LadderNumber(int number) {
         this.number = number;
     }
 
     public static LadderNumber of(LadderMaker ladderMaker, int number) {
-        return new LadderNumber(ladderMaker, number);
+        validateNumber(number, ladderMaker.getNumberOfPerson());
+        return new LadderNumber(number);
     }
 
-    private void validateNumber(int number) {
-        if (number <= 0 || number > ladderMaker.getNumberOfPerson()) {
+    private static void validateNumber(int number, int numberOfPerson) {
+        if (number <= 0 || number > numberOfPerson) {
             throw new IllegalLadderNumberException();
         }
     }

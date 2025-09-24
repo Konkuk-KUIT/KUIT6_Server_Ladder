@@ -14,18 +14,13 @@ public class Liner implements LadderMaker {
         validateLiner(row, numberOfPerson);
         this.row = row;
         this.numberOfPerson = numberOfPerson;
-        this.ladder = makeLadder(this.row, this.numberOfPerson);
+        this.ladder = new Ladder(row, numberOfPerson);
     }
 
     @Override
     public void validateLiner(int row, int numberOfPerson) {
         if (row <= 0 || numberOfPerson <= 1)
             throw new IllegalLinerException();
-    }
-
-    @Override
-    public Ladder makeLadder(int row, int numberOfPerson) {
-        return new Ladder(row, numberOfPerson);
     }
 
     @Override
