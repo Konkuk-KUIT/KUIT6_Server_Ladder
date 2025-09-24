@@ -8,7 +8,9 @@ public class LadderLine {
         this.playerCount = playerCount;
         nodes = new Node[playerCount.getNumber()];
 
-        Arrays.fill(nodes, Node.from(LadderDirection.None));
+        for (int i = 0; i < nodes.length; i++) {
+            nodes[i] = Node.from(LadderDirection.None);
+        }
     }
 
     public void drawLine(PlayerPosition position){
