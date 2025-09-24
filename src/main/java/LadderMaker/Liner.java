@@ -1,9 +1,10 @@
 package LadderMaker;
 
 import domain.Ladder;
+import domain.LadderNumber;
+import exception.IllegalLadderNumberException;
 import exception.IllegalLinerException;
-import validator.LadderNumberValidator;
-import validator.SequenceValidator;
+import exception.IllegalSequenceException;
 
 public class Liner implements LadderMaker {
     private final int row;
@@ -29,21 +30,29 @@ public class Liner implements LadderMaker {
     }
 
     @Override
-    public void drawLine(int left, int right, int height) {
-        LadderNumberValidator.validateLadderNumber(left, numberOfPerson);
-        LadderNumberValidator.validateLadderNumber(right, numberOfPerson);
-        SequenceValidator.validateSequence(left, right);
+    public void drawLine(LadderNumber left, LadderNumber right, int height) {
+        validateLadderNumber(left);
+        validateLadderNumber(right);
+        validateSequence(left, right);
 
         ladder.drawLine(left, right, height);
     }
 
-    @Override
-    public int getNumberOfPerson() {
-        return numberOfPerson;
+    private void validateSequence(LadderNumber left, LadderNumber right) {
+        if (right.getNumber() - left.getNumber() != 1) {
+            throw new IllegalSequenceException();
+        }
     }
 
     @Override
     public Ladder getLadder() {
         return ladder;
+    }
+
+    @Override
+    public void validateLadderNumber(LadderNumber ladderNumber) {
+        if (ladderNumber.getNumber() > numberOfPerson) {
+            throw new IllegalLadderNumberException();
+        }
     }
 }

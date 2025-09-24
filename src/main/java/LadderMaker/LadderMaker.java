@@ -1,16 +1,16 @@
 package LadderMaker;
 
 import domain.Ladder;
+import domain.LadderNumber;
 
 public interface LadderMaker {
-
     Ladder makeLadder(int row, int numberOfPerson);
 
     void validateLiner(int row, int numberOfPerson);
 
-    void drawLine(int left, int right, int height);
+    void drawLine(LadderNumber left, LadderNumber right, int height);
 
     Ladder getLadder();
 
-    int getNumberOfPerson();
+    void validateLadderNumber(LadderNumber ladderNumber);
 }

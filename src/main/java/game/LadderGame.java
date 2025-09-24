@@ -2,7 +2,7 @@ package game;
 
 import LadderMaker.LadderMaker;
 import domain.Ladder;
-import validator.LadderNumberValidator;
+import domain.LadderNumber;
 
 public class LadderGame {
     private final LadderMaker ladderMaker;
@@ -15,10 +15,10 @@ public class LadderGame {
         return new LadderGame(ladderMaker);
     }
 
-    public int run(int ladderNum) {
-        LadderNumberValidator.validateLadderNumber(ladderNum, ladderMaker.getNumberOfPerson());
+    public int run(LadderNumber ladderNum) {
+        ladderMaker.validateLadderNumber(ladderNum);
         Ladder ladder = ladderMaker.getLadder();
-        LadderRunner ladderRunner = new LadderRunner(ladder.getRows());
+        LadderRunner ladderRunner = LadderRunner.from(ladder);
 
         return ladderRunner.run(ladderNum);
     }

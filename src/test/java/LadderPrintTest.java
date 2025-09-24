@@ -1,3 +1,4 @@
+import domain.LadderNumber;
 import game.LadderGame;
 import LadderMaker.Liner;
 import org.junit.jupiter.api.DisplayName;
@@ -8,11 +9,11 @@ class LadderPrintTest {
     @DisplayName("사다리타기 출력")
     void print_simple_ladder(){
         Liner liner = new Liner(5, 3);
-        liner.drawLine(1, 2, 1);
-        liner.drawLine(2, 3, 4);
+        liner.drawLine(LadderNumber.from(1), LadderNumber.from(2), 1);
+        liner.drawLine(LadderNumber.from(2), LadderNumber.from(3), 4);
         LadderGame ladderGame = LadderGame.from(liner);
 
-        ladderGame.run(3);
+        ladderGame.run(LadderNumber.from(3));
     }
 
 }

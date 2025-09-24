@@ -8,7 +8,7 @@ public class GameViewRenderer {
         for (Row row : rows) {
             stringBuilder.append(row.toString());
         }
-        LadderGameView.print(stringBuilder.toString());
+        System.out.println(stringBuilder);
     }
 
     public static void gameRender(String state, Row[] rows, int col, int height){
@@ -17,6 +17,6 @@ public class GameViewRenderer {
         for (int i = 0; i < rows.length; i++) {
             stringBuilder.append(i != height ? rows[i].toString() : rows[i].getStringPoint(col));
         }
-       LadderGameView.print(stringBuilder.toString());
+        System.out.println(stringBuilder);
     }
 }

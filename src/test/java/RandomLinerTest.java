@@ -1,3 +1,4 @@
+import domain.LadderNumber;
 import game.LadderGame;
 import LadderMaker.LadderMaker;
 import LadderMaker.RandomLiner;
@@ -11,6 +12,6 @@ public class RandomLinerTest {
         LadderMaker ladderMaker = new RandomLiner(3,6);
         LadderGame ladderGame = LadderGame.from(ladderMaker);
 
-        ladderGame.run(1);
+        ladderGame.run(LadderNumber.from(1));
     }
 }
