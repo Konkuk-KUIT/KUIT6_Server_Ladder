@@ -9,7 +9,7 @@ public class RandomLadderGameTest {
         LadderCreator ladderCreator = new RandomLadderCreator(GreaterThanOne.from(4), GreaterThanOne.from(4));
         LadderGame ladder = new LadderGame(ladderCreator);
         ladder.run(Position.from(0));
-
+        Assertions.assertNotNull(ladder);
 //                Assertions.assertEquals(1, ));
 //        Assertions.assertEquals(2, ladder.run(Position.from(1)));
 //        Assertions.assertEquals(3, ladder.run(Position.from(2)));

@@ -26,10 +26,10 @@ class LadderGameTest {
     public void drawLine() {
         NormalLadderCreator ladderCreator = new NormalLadderCreator(GreaterThanOne.from(4), GreaterThanOne.from(4));
         //경계값 테스트
-        ladderCreator.drawLine(0,0);
-        ladderCreator.drawLine(0,2);
-        ladderCreator.drawLine(3,0);
-        ladderCreator.drawLine(3,2);
+        ladderCreator.drawLine(0,Position.from(0));
+        ladderCreator.drawLine(0,Position.from(2));
+        ladderCreator.drawLine(3,Position.from(0));
+        ladderCreator.drawLine(3,Position.from(2));
     }
     
     @Test
@@ -37,29 +37,29 @@ class LadderGameTest {
     public void drawLineInvalidInput(){
         NormalLadderCreator ladderCreator = new NormalLadderCreator(GreaterThanOne.from(4), GreaterThanOne.from(4));
         // col값 초과
-        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(0,3));
-        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(3,3));
+        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(0,Position.from(3)));
+        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(3,Position.from(3)));
 
         // col값 미달
-        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(0,-1));
-        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(3,-1));
+        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(0,Position.from(-1)));
+        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(3,Position.from(-1)));
 
         // row값 초과
-        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(4,0));
-        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(4,2));
+        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(4,Position.from(0)));
+        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(4,Position.from(2)));
 
         // row값 미만
-        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(-1,0));
-        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(-1,2));
+        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(-1,Position.from(0)));
+        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(-1,Position.from(2)));
     }
 
     @Test
     @DisplayName("drawLine - invalid input -  already exist")
     public void drawLineDuplicated(){
         NormalLadderCreator ladderCreator = new NormalLadderCreator(GreaterThanOne.from(4), GreaterThanOne.from(4));
-        ladderCreator.drawLine(0,1);
-        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(0,1));
-        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(0,2));
+        ladderCreator.drawLine(0,Position.from(1));
+        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(0,Position.from(1)));
+        Assertions.assertThrows(Exception.class, ()-> ladderCreator.drawLine(0,Position.from(2)));
     }
     
     @Test
@@ -78,11 +78,11 @@ class LadderGameTest {
         NormalLadderCreator ladderCreator = new NormalLadderCreator(GreaterThanOne.from(4), GreaterThanOne.from(4));
         LadderGame ladder = new LadderGame(ladderCreator);
 
-        ladderCreator.drawLine(0,0);
-        ladderCreator.drawLine(0,2);
-        ladderCreator.drawLine(1,1);
-        ladderCreator.drawLine(2,0);
-        ladderCreator.drawLine(3,1);
+        ladderCreator.drawLine(0,Position.from(0));
+        ladderCreator.drawLine(0,Position.from(2));
+        ladderCreator.drawLine(1,Position.from(1));
+        ladderCreator.drawLine(2,Position.from(0));
+        ladderCreator.drawLine(3,Position.from(1));
 
         Assertions.assertEquals(1, ladder.run(Position.from(0)));
         Assertions.assertEquals(2, ladder.run(Position.from(1)));

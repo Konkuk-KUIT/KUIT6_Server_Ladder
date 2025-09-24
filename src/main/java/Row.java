@@ -1,10 +1,8 @@
 public class Row {
     private final Node[] nodes;
-    private final int numberOfPerson;
 
     public Row(int numberOfPerson){
         validateNumberOfPerson(numberOfPerson);
-        this.numberOfPerson = numberOfPerson;
         nodes = new Node[numberOfPerson];
         for(int i = 0; i < numberOfPerson; i++){
             nodes[i] = Node.from(Direction.NONE);
@@ -16,10 +14,11 @@ public class Row {
         nodes[position.getValue()].move(position);
     }
 
-    public void drawLine(int startPosition){
-        validateDrawLinePosition(startPosition);
-        nodes[startPosition].setRightDirection();
-        nodes[startPosition+1].setLeftDirection();
+    public void drawLine(Position startPosition){
+        int pos = startPosition.getValue();
+        validateDrawLinePosition(pos);
+        nodes[pos].setRightDirection();
+        nodes[pos+1].setLeftDirection();
     }
 
     private void validateDrawLinePosition(int startPosition) {
@@ -43,9 +42,6 @@ public class Row {
         }
     }
 
-    public int getNumberOfPerson() {
-        return numberOfPerson;
-    }
 
 
     public String generateRow(Position position) {

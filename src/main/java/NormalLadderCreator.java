@@ -14,7 +14,7 @@ public class NormalLadderCreator implements LadderCreator {
         }
     }
 
-    public void drawLine(int row, int col){
+    public void drawLine(int row, Position col){
         rows[row].drawLine(col);
     }
 
