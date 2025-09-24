@@ -1,5 +1,5 @@
 import ladder.GreaterThanOne;
-import ladder.Position;
+import ladder.position.Position;
 import ladder.Row;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.position.Position;
+
 public class Node {
     private Direction direction;
 
@@ -33,6 +35,10 @@ public class Node {
 
     public boolean isAlreadtSetDirection(){
         return !isNone();
+    }
+
+    public void appendSymbol(StringBuilder sb) {
+        sb.append(direction.getValue());
     }
 
     private boolean isNone() {

@@ -1,5 +1,8 @@
 package ladder;
 
+import ladder.position.LadderPosition;
+import ladder.position.Position;
+
 public class Row {
 
     private final Node[] nodes;
@@ -14,6 +17,21 @@ public class Row {
     public void nextPosition(Position position){
         validatePosition(position);
         nodes[position.getValue()].move(position);
+    }
+
+    public void generateRow(StringBuilder sb, Position currentPosition, LadderPosition ladderPosition) {
+        for (int i = 0; i < nodes.length; i++) {
+            nodes[i].appendSymbol(sb); //LEFT(-1), RIGHT(1)
+            markCurrentPosition(sb, currentPosition, ladderPosition, i);
+        }
+        sb.append("\n");
+    }
+
+    private void markCurrentPosition(StringBuilder sb, Position currentPosition, LadderPosition ladderPosition, int i) {
+        if (LadderPosition.of(currentPosition, Position.from(i)).equals(ladderPosition)) {
+            sb.append("*");
+        }
+        sb.append(" ");
     }
 
     private void validatePosition(Position position) {

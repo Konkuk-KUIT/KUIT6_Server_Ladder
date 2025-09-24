@@ -1,6 +1,6 @@
 import ladder.Direction;
 import ladder.Node;
-import ladder.Position;
+import ladder.position.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

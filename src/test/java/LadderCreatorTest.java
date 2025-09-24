@@ -1,4 +1,4 @@
-import ladder.Creator.LadderCreator;
+import ladder.creator.LadderCreator;
 import ladder.GreaterThanOne;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
