@@ -12,6 +12,6 @@ public class RandomLinerTest {
         LadderMaker ladderMaker = new RandomLiner(3,6);
         LadderGame ladderGame = LadderGame.from(ladderMaker);
 
-        ladderGame.run(LadderNumber.from(1));
+        ladderGame.run(LadderNumber.of(ladderMaker,1));
     }
 }

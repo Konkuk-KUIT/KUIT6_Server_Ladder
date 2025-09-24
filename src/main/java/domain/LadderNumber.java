@@ -1,21 +1,24 @@
 package domain;
 
+import LadderMaker.LadderMaker;
 import exception.IllegalLadderNumberException;
 
 public class LadderNumber {
+    private final LadderMaker ladderMaker;
     private final int number;
 
-    private LadderNumber(int number) {
+    private LadderNumber(LadderMaker ladderMaker, int number) {
+        this.ladderMaker = ladderMaker;
         validateNumber(number);
         this.number = number;
     }
 
-    public static LadderNumber from(int number) {
-        return new LadderNumber(number);
+    public static LadderNumber of(LadderMaker ladderMaker, int number) {
+        return new LadderNumber(ladderMaker, number);
     }
 
     private void validateNumber(int number) {
-        if (number <= 0) {
+        if (number <= 0 || number > ladderMaker.getNumberOfPerson()) {
             throw new IllegalLadderNumberException();
         }
     }

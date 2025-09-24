@@ -26,10 +26,9 @@ public class RandomLiner implements LadderMaker {
         int madeLine = 0;
         while (madeLine < numberOfLines) {
             try {
-                LadderNumber left = LadderNumber.from(rand.nextInt(numberOfPerson - 1) + 1);
+                LadderNumber left = LadderNumber.of(this, rand.nextInt(numberOfPerson - 1) + 1);
                 int height = rand.nextInt(row) + 1;
-                validateLadderNumber(left);
-                drawLine(left, LadderNumber.from(left.getNumber() + 1), height);
+                drawLine(left, LadderNumber.of(this, left.getNumber() + 1), height);
                 madeLine++;
             } catch (RuntimeException e) {
             }
@@ -58,9 +57,7 @@ public class RandomLiner implements LadderMaker {
     }
 
     @Override
-    public void validateLadderNumber(LadderNumber ladderNumber) {
-        if (ladderNumber.getNumber() > numberOfPerson) {
-            throw new IllegalLadderNumberException();
-        }
+    public int getNumberOfPerson() {
+        return numberOfPerson;
     }
 }

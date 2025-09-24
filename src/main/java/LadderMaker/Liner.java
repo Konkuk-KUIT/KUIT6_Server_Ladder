@@ -31,8 +31,6 @@ public class Liner implements LadderMaker {
 
     @Override
     public void drawLine(LadderNumber left, LadderNumber right, int height) {
-        validateLadderNumber(left);
-        validateLadderNumber(right);
         validateSequence(left, right);
 
         ladder.drawLine(left, right, height);
@@ -49,10 +47,7 @@ public class Liner implements LadderMaker {
         return ladder;
     }
 
-    @Override
-    public void validateLadderNumber(LadderNumber ladderNumber) {
-        if (ladderNumber.getNumber() > numberOfPerson) {
-            throw new IllegalLadderNumberException();
-        }
+    public int getNumberOfPerson() {
+        return numberOfPerson;
     }
 }

@@ -12,5 +12,5 @@ public interface LadderMaker {
 
     Ladder getLadder();
 
-    void validateLadderNumber(LadderNumber ladderNumber);
+    int getNumberOfPerson();
 }

@@ -16,7 +16,6 @@ public class LadderGame {
     }
 
     public int run(LadderNumber ladderNum) {
-        ladderMaker.validateLadderNumber(ladderNum);
         Ladder ladder = ladderMaker.getLadder();
         LadderRunner ladderRunner = LadderRunner.from(ladder);
 
