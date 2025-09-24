@@ -1,38 +1,20 @@
-package LadderMaker;
+package ladderMaker;
 
 import domain.Ladder;
 import domain.LadderNumber;
-import exception.IllegalLadderNumberException;
 import exception.IllegalLinerException;
+import exception.IllegalSequenceException;
 
-import java.util.Random;
-
-public class RandomLiner implements LadderMaker {
+public class Liner implements LadderMaker {
     private final int row;
     private final int numberOfPerson;
     private final Ladder ladder;
-    private static Random rand = new Random();
 
-    public RandomLiner(int row, int numberOfPerson) {
+    public Liner(int row, int numberOfPerson) {
         validateLiner(row, numberOfPerson);
         this.row = row;
         this.numberOfPerson = numberOfPerson;
         this.ladder = makeLadder(this.row, this.numberOfPerson);
-        makeRandomLine();
-    }
-
-    private void makeRandomLine() {
-        int numberOfLines = (int) (row * numberOfPerson * RandomRatio.RANDOM_LINE.getValue());
-        int madeLine = 0;
-        while (madeLine < numberOfLines) {
-            try {
-                LadderNumber left = LadderNumber.of(this, rand.nextInt(numberOfPerson - 1) + 1);
-                int height = rand.nextInt(row) + 1;
-                drawLine(left, LadderNumber.of(this, left.getNumber() + 1), height);
-                madeLine++;
-            } catch (RuntimeException e) {
-            }
-        }
     }
 
     @Override
@@ -48,7 +30,15 @@ public class RandomLiner implements LadderMaker {
 
     @Override
     public void drawLine(LadderNumber left, LadderNumber right, int height) {
+        validateSequence(left, right);
+
         ladder.drawLine(left, right, height);
+    }
+
+    private void validateSequence(LadderNumber left, LadderNumber right) {
+        if (right.getNumber() - left.getNumber() != 1) {
+            throw new IllegalSequenceException();
+        }
     }
 
     @Override
@@ -56,7 +46,6 @@ public class RandomLiner implements LadderMaker {
         return ladder;
     }
 
-    @Override
     public int getNumberOfPerson() {
         return numberOfPerson;
     }

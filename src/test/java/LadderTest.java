@@ -1,7 +1,7 @@
-import LadderMaker.LadderMaker;
+import ladderMaker.LadderMaker;
 import domain.LadderNumber;
 import game.LadderGame;
-import LadderMaker.Liner;
+import ladderMaker.Liner;
 import exception.IllegalHeightException;
 import exception.IllegalLadderNumberException;
 import exception.IllegalLinerException;

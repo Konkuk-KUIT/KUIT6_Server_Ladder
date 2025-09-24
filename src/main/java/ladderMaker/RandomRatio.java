@@ -1,4 +1,4 @@
-package LadderMaker;
+package ladderMaker;
 
 public enum RandomRatio {
     RANDOM_LINE(0.3);
