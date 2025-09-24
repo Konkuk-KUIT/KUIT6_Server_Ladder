@@ -8,7 +8,7 @@ class LadderTest {
     @DisplayName("Ladder가 정상적으로 rowCount와 playerCount로 초기화됩니다.")
     void testLadderInitialization() {
         //given
-        Ladder ladder = new Ladder(3, 4);
+        Ladder ladder = new Ladder(GreaterThanOne.from(3), GreaterThanOne.from(4));
 
         //when & then
         assertEquals(3, ladder.getRowCount());
@@ -19,7 +19,7 @@ class LadderTest {
     @DisplayName("LadderLine이 정상적으로 생성됩니다.")
     void testLadderLineInitialization() {
         // given
-        LadderLine line = new LadderLine(4);
+        LadderLine line = new LadderLine(GreaterThanOne.from(4));
         // when & then
         for (int i = 0; i < 4; i++) {
             int current = line.move(new PlayerPosition(i)).getPosition();
@@ -31,7 +31,7 @@ class LadderTest {
     @DisplayName("drawLine을 호출하면 해당 위치가 LEFT/RIGHT로 설정됩니다.")
     void testDrawLine() {
         // Given
-        LadderLine line = new LadderLine(4);
+        LadderLine line = new LadderLine(GreaterThanOne.from(4));
         // When
         line.drawLine(1);
         // Then
@@ -43,7 +43,7 @@ class LadderTest {
     @DisplayName("잘못된 위치에 drawLine을 하면 예외가 발생합니다.")
     void testDrawLineInvalidPosition() {
         // Given
-        LadderLine line = new LadderLine(4);
+        LadderLine line = new LadderLine(GreaterThanOne.from(4));
 
         // When & Then
         assertThrows(IllegalArgumentException.class, () -> line.drawLine(-1));
@@ -54,7 +54,7 @@ class LadderTest {
     @DisplayName("PlayLadderGame에서 최종 위치가 올바르게 계산된다")
     void testPlayLadderGame() {
         // Given
-        Ladder ladder = new Ladder(3, 4);
+        Ladder ladder = new Ladder(GreaterThanOne.from(3), GreaterThanOne.from(4));
         ladder.drawLine(0, 0); // row0: 0-1
         ladder.drawLine(1, 2); // row1: 2-3
         ladder.drawLine(2, 1); // row2: 1-2

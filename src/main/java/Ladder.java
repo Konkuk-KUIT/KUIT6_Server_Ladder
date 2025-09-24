@@ -1,16 +1,16 @@
 public class Ladder {
     private final LadderLine[] lines;
-    private final int playerCount;
+    private final GreaterThanOne playerCount;
 
-    public Ladder(int row, int playerCount) {
-        if (row < 2 || playerCount < 2) {
+    public Ladder(GreaterThanOne row, GreaterThanOne playerCount) {
+        if (row.getNumber() < 2 || playerCount.getNumber() < 2) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_NUMBER.getMessage());
         }
 
         this.playerCount = playerCount;
-        this.lines = new LadderLine[row];
+        this.lines = new LadderLine[row.getNumber()];
 
-        for (int i = 0; i < row; i++) {
+        for (int i = 0; i < playerCount.getNumber(); i++) {
             lines[i] = new LadderLine(playerCount);
         }
     }
@@ -24,7 +24,7 @@ public class Ladder {
     }
 
     public int getPlayerCount() {
-        return playerCount;
+        return playerCount.getNumber();
     }
 
     public LadderLine getLine(int row) {
