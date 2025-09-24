@@ -1,13 +1,13 @@
 package ladder;
 
-import ladder.creator.LadderCreator;
+import ladder.creator.CustomLadderCreator;
 import ladder.position.Position;
 
 public class LadderGame {
 
-    private final LadderCreator ladderCreator;
+    private final CustomLadderCreator ladderCreator;
 
-    public LadderGame(LadderCreator ladderCreator) {
+    public LadderGame(CustomLadderCreator ladderCreator) {
         this.ladderCreator = ladderCreator;
     }
 

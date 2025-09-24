@@ -1,4 +1,4 @@
-import ladder.creator.LadderCreator;
+import ladder.creator.CustomLadderCreator;
 import ladder.GreaterThanOne;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ class LadderCreatorTest {
         GreaterThanOne numberOfPerson = GreaterThanOne.from(5);
 
         //when
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        CustomLadderCreator ladderCreator = new CustomLadderCreator(numberOfRow, numberOfPerson);
 
         //then
         assertThat(ladderCreator).isNotNull();

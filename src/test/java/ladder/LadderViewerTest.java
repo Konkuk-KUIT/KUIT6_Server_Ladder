@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.creator.LadderCreator;
+import ladder.creator.CustomLadderCreator;
 import ladder.position.LadderPosition;
 import ladder.position.Position;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +11,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderViewerTest {
 
@@ -28,7 +27,7 @@ class LadderViewerTest {
         //given
         GreaterThanOne numberOfRow = GreaterThanOne.from(4);
         GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        CustomLadderCreator ladderCreator = new CustomLadderCreator(numberOfRow, numberOfPerson);
         LadderViewer ladderViewer = new LadderViewer(ladderCreator.getRows());
 
         Position currentRow = Position.from(2);

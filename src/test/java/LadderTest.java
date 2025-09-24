@@ -1,4 +1,4 @@
-import ladder.creator.LadderCreator;
+import ladder.creator.CustomLadderCreator;
 import ladder.GreaterThanOne;
 import ladder.LadderGame;
 import ladder.position.Position;
@@ -14,7 +14,7 @@ class LadderTest {
     void throwInvalidPersonException() {
         //when
         GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(GreaterThanOne.from(2), numberOfPerson);
+        CustomLadderCreator ladderCreator = new CustomLadderCreator(GreaterThanOne.from(2), numberOfPerson);
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
         //given
@@ -31,7 +31,7 @@ class LadderTest {
         //when
         GreaterThanOne row = GreaterThanOne.from(4);
         GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(row, numberOfPerson);
+        CustomLadderCreator ladderCreator = new CustomLadderCreator(row, numberOfPerson);
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
         ladderCreator.drawLine(Position.from(0),Position.from(0));
