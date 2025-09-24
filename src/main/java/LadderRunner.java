@@ -7,8 +7,11 @@ public class LadderRunner {
     }
 
     public int run(Position position){
-        for (Row row : rows) {
-            row.nextPosition(position);
+
+        for (int height=0; height<rows.length; height++) {
+            LadderViewer.viewLadder(rows, height,position,false);
+            rows[height].nextPosition(position);
+            LadderViewer.viewLadder(rows, height,position,true);
         }
         return position.getValue();
     }

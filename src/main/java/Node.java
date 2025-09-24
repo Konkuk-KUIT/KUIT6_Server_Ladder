@@ -17,7 +17,7 @@ public class Node {
             position.prev();
         }
     }
-
+    public int getIntegerDirection(){return direction.getValue();}
     public void setRightDirection(){
         this.direction = Direction.RIGHT;
     }
