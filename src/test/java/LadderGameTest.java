@@ -12,6 +12,6 @@ class LadderGameTest {
         //when
 
         //then
-
+        assertThat(ladderGame.run(1)).isEqualTo(1);
     }
 }
