@@ -8,6 +8,10 @@ public class Position {
         this.y = y;
     }
 
+    public static Position from(int x, int y) {
+        return new Position(x, y);
+    }
+
     public int getX() {
         return x;
     }
