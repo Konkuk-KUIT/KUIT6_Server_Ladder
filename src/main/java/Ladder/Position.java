@@ -1,3 +1,5 @@
+package Ladder;
+
 public class Position {
     private final int position; // 불변 객체로 변경
 

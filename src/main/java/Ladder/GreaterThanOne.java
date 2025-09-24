@@ -1,3 +1,5 @@
+package Ladder;
+
 public class GreaterThanOne {
 
     private final int number;

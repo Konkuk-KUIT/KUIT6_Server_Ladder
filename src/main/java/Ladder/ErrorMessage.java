@@ -1,3 +1,5 @@
+package Ladder;
+
 public enum ErrorMessage {
 
     INVALID_LADDER_POSITION("사다리 위치는 1이상 자연수입니다."),

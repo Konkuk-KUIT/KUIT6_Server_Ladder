@@ -1,3 +1,5 @@
+package Ladder;
+
 public class Node {
     private Direction direction;
 
