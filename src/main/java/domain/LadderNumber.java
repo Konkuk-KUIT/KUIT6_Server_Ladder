@@ -1,6 +1,6 @@
 package domain;
 
-import ladderMaker.LadderMaker;
+import laddermaker.LadderMaker;
 import exception.IllegalLadderNumberException;
 
 public class LadderNumber {

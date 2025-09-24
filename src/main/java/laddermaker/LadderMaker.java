@@ -1,4 +1,4 @@
-package ladderMaker;
+package laddermaker;
 
 import domain.Ladder;
 import domain.LadderNumber;

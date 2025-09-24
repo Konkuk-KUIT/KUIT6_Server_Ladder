@@ -1,7 +1,7 @@
-import ladderMaker.LadderMaker;
+import laddermaker.LadderMaker;
 import domain.LadderNumber;
 import game.LadderGame;
-import ladderMaker.Liner;
+import laddermaker.Liner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
 package game;
 
-import ladderMaker.LadderMaker;
+import laddermaker.LadderMaker;
 import domain.Ladder;
 import domain.LadderNumber;
 
