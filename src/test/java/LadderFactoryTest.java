@@ -63,7 +63,7 @@ public class LadderFactoryTest {
         LadderGame ladderGame = LadderGameFactory.autoFixed(numberOfRow, numberOfPerson);
 
         //then
-        ladderGame.drawLine(Position.from(0), Position.from(0));
+        ladderGame.drawLine(Position.from(0), Position.from(0)); //drawLine은 빈 메서드임
         //ladderGame.run(Position.from(0));
     }
 }

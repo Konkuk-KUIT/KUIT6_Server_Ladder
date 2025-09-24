@@ -54,7 +54,7 @@ public class Row {
     }
 
     private boolean isLineAtPosition(Position position) {
-        return nodes[position.getValue()].isAlreadtSetDirection();
+        return nodes[position.getValue()].isAlreadySetDirection();
     }
 
     @Override

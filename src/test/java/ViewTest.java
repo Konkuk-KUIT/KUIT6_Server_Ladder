@@ -29,7 +29,7 @@ public class ViewTest {
     }
 
     @Test
-    @DisplayName("사다리 Raw 출력 확인")
+    @DisplayName("사다리 ASCII 출력 확인")
     void testViewAboutCreatedLadderInASCII() {
         //given
         GreaterThanOne numberOfRow = GreaterThanOne.from(3);

@@ -3,12 +3,14 @@ package ladder.Creator;
 import ladder.GreaterThanOne;
 import ladder.Position;
 import ladder.Row;
+
 import java.util.List;
 import java.util.Random;
 
 public class AutoLadderCreator implements LadderCreator {
 
     private final Row[] rows;
+
     public AutoLadderCreator(GreaterThanOne numberOfRows, GreaterThanOne numberOfPerson) {
         rows = new Row[numberOfRows.getNumber()];
         for (int i = 0; i < numberOfRows.getNumber(); i++) {
@@ -21,7 +23,7 @@ public class AutoLadderCreator implements LadderCreator {
         return rows;
     }
 
-    public void drawLine(Position row, Position col){
+    public void drawLine(Position row, Position col) {
         //rows[row.getValue()].drawLine(col);
     }
 
