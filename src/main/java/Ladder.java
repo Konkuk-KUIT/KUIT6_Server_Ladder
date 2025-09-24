@@ -18,13 +18,16 @@ public class Ladder {
     }
 
     public void drawLine(Position pos1, Position pos2) {
-//        if (pos1.getY() != pos2.getY() || pos1.getX() == pos2.getX()) {
-//            throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage());
-//        }
+        validDrawPosition(pos1, pos2);
         rows[pos1.getY()].drawLine(pos1, pos2);
     }
 
-    // todo int 타입 포장 (startX)
+    private void validDrawPosition(Position pos1, Position pos2) {
+        if (pos1.getY() >= rows.length || pos2.getY() >= rows.length) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage());
+        }
+    }
+
     public int run(int startX) {
         if (startX < 0 || startX >= rows[0].getLength()) {
             throw new ArrayIndexOutOfBoundsException(ErrorMessage.INVALID_POSITION.getMessage());
