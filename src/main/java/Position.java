@@ -3,9 +3,7 @@ public class Position {
     private final int y;
 
     public Position(int x, int y) {
-        if (x < 0 || y < 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_POSITION.getMessage());
-        }
+        validatePosition(x, y);
         this.x = x;
         this.y = y;
     }
@@ -16,5 +14,15 @@ public class Position {
 
     public int getY() {
         return y;
+    }
+
+    private static void validatePosition(int x, int y) {
+        if (isPosition(x, y)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_POSITION.getMessage());
+        }
+    }
+
+    private static boolean isPosition(int x, int y) {
+        return x >= 0 && y >= 0;
     }
 }
