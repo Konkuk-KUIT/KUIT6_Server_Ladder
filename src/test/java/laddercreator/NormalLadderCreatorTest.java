@@ -17,8 +17,8 @@ class NormalLadderCreatorTest {
     @BeforeEach
     void setUp() {
         // Given: 4명이 참여하고 높이가 3인 사다리 보드
-        PersonCount p = PersonCount.of(4);
-        LadderHeight l = LadderHeight.of(3);
+        PersonCount p = PersonCount.from(4);
+        LadderHeight l = LadderHeight.from(3);
         board = new NormalLadderCreator(p, l);
     }
 

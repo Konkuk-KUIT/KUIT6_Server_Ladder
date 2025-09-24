@@ -12,7 +12,6 @@ public class LadderObserver implements Observer {
     private Board board;
 
     public LadderObserver() {
-        Scanner scanner = new Scanner(System.in);
     }
     
     @Override
@@ -47,15 +46,9 @@ public class LadderObserver implements Observer {
                 Position currentPos = Position.at(row, col);
                 LineDirection direction = board.getLineDirection(currentPos);
                 
-                // 가로선 정보 출력 (1, -1, 0)
-                System.out.print(direction.getValue());
-                
-                // 현재 플레이어 위치에 * 표시
-                if (row == playerPosition.getY() && col == playerPosition.getX()) {
-                    System.out.print("*");
-                }
-                
-                System.out.print(" ");
+                // 가로선 정보와 플레이어 위치 표시
+                String playerMarker = (row == playerPosition.getY() && col == playerPosition.getX()) ? "*" : "";
+                System.out.print(direction.getValue() + playerMarker + " ");
             }
             System.out.println();
         }

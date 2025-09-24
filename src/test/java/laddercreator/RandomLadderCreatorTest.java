@@ -6,7 +6,6 @@ import position.Position;
 import wrap.LadderHeight;
 import wrap.PersonCount;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +15,8 @@ class RandomLadderCreatorTest {
 
     @Test
     void 생성자_호출시_랜덤_라인이_자동생성된다() {
-        PersonCount personCount = PersonCount.of(5);
-        LadderHeight ladderHeight = LadderHeight.of(4);
+        PersonCount personCount = PersonCount.from(5);
+        LadderHeight ladderHeight = LadderHeight.from(4);
         
         RandomLadderCreator creator = new RandomLadderCreator(personCount, ladderHeight);
         
@@ -28,8 +27,8 @@ class RandomLadderCreatorTest {
 
     @Test
     void 생성된_라인_수가_총_가능한_라인_수의_30퍼센트_근처인지_확인() {
-        PersonCount personCount = PersonCount.of(5);
-        LadderHeight ladderHeight = LadderHeight.of(10);
+        PersonCount personCount = PersonCount.from(5);
+        LadderHeight ladderHeight = LadderHeight.from(10);
         
         RandomLadderCreator creator = new RandomLadderCreator(personCount, ladderHeight);
         
@@ -44,8 +43,8 @@ class RandomLadderCreatorTest {
 
     @Test
     void 연속된_가로선이_생성되지_않는지_확인() {
-        PersonCount personCount = PersonCount.of(5);
-        LadderHeight ladderHeight = LadderHeight.of(10);
+        PersonCount personCount = PersonCount.from(5);
+        LadderHeight ladderHeight = LadderHeight.from(10);
         
         RandomLadderCreator creator = new RandomLadderCreator(personCount, ladderHeight);
         
@@ -65,8 +64,8 @@ class RandomLadderCreatorTest {
 
     @RepeatedTest(5)
     void 랜덤성_확인_매번_다른_패턴이_생성되는지() {
-        PersonCount personCount = PersonCount.of(4);
-        LadderHeight ladderHeight = LadderHeight.of(6);
+        PersonCount personCount = PersonCount.from(4);
+        LadderHeight ladderHeight = LadderHeight.from(6);
 
         List<RandomLadderCreator> creators = new ArrayList<>();
         for (int i = 0; i < 10; i++) {

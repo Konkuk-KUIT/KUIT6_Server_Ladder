@@ -34,8 +34,8 @@ class LadderGameRunnerTest {
         // 각 테스트마다 새로운 LadderRunner 인스턴스 생성
         runner = new LadderRunner();
         // Given: 4명이 참여하고 높이가 3인 사다리 보드
-        PersonCount personCount = PersonCount.of(4);
-        LadderHeight ladderHeight = LadderHeight.of(3);
+        PersonCount personCount = PersonCount.from(4);
+        LadderHeight ladderHeight = LadderHeight.from(3);
         board = new NormalLadderCreator(personCount, ladderHeight);
         
         // Mock 초기화
@@ -97,7 +97,7 @@ class LadderGameRunnerTest {
         Position result = runner.run(board, startPosition);
 
         // Then: 올바른 위치에 도착한다
-        assertEquals(3, result.getX());
+        assertEquals(1, result.getX());
     }
 
     @Test

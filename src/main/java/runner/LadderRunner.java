@@ -37,14 +37,9 @@ public class LadderRunner implements GameRunner, Subject {
             // Before 상태 알림
             notifyStepStart(currentCoord);
             
-            // 이동 로직 수행
-            Position leftCoord = Position.at(y, currentPosition - 1);
-            
-            if (board.hasConnection(currentCoord)) {
-                currentPosition++;
-            } else if (currentPosition > 0 && board.hasConnection(leftCoord)) {
-                currentPosition--;
-            }
+            // 이동 로직 수행 (연속 가로선 처리)
+            Position newPosition = moveAlongConnectedLines(board, currentCoord);
+            currentPosition = newPosition.getX();
             
             // After 상태 알림
             Position newCoord = Position.at(y, currentPosition);
@@ -55,6 +50,29 @@ public class LadderRunner implements GameRunner, Subject {
         notifyGameComplete(finalPosition);
         
         return finalPosition;
+    }
+    
+    private Position moveAlongConnectedLines(Board board, Position startPosition) {
+        Position currentPosition = startPosition;
+        int lastDirection = 0; // 0: 초기, 1: 오른쪽, -1: 왼쪽
+        
+        while (true) {
+            Position leftPosition = Position.at(currentPosition.getY(), currentPosition.getX() - 1);
+            
+            // 오른쪽으로 갈 수 있고, 마지막에 왼쪽으로 간 게 아니라면
+            if (board.hasConnection(currentPosition) && lastDirection != -1) {
+                currentPosition = Position.at(currentPosition.getY(), currentPosition.getX() + 1);
+                lastDirection = 1;
+            // 왼쪽으로 갈 수 있고, 마지막에 오른쪽으로 간 게 아니라면
+            } else if (currentPosition.getX() > 0 && board.hasConnection(leftPosition) && lastDirection != 1) {
+                currentPosition = Position.at(currentPosition.getY(), currentPosition.getX() - 1);
+                lastDirection = -1;
+            } else {
+                break;
+            }
+        }
+        
+        return currentPosition;
     }
     
     private void notifyGameStart(Board board, StartPosition startPosition) {

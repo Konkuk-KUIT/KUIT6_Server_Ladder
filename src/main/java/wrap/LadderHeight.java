@@ -16,7 +16,7 @@ public class LadderHeight {
         this.value = value;
     }
     
-    public static LadderHeight of(int value) {
+    public static LadderHeight from(int value) {
         return new LadderHeight(value);
     }
 

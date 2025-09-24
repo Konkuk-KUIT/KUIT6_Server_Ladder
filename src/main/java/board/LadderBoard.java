@@ -1,6 +1,7 @@
 package board;
 
 import exceptions.InvalidCoordinateException;
+import exceptions.DuplicateLineException;
 import exceptions.ErrorMessage;
 import position.Coordinate;
 import position.Position;
@@ -23,7 +24,7 @@ public class LadderBoard implements Board {
     
     private void initializeRows() {
         for (int i = 0; i < rows.length; i++) {
-            rows[i] = new Row(personCount, i);
+            rows[i] = new Row(personCount);
         }
     }
     
@@ -32,7 +33,12 @@ public class LadderBoard implements Board {
         
         int y = coordinate.getY();
         int x = coordinate.getX();
-        rows[y].connectNode(NodeIndex.at(x));
+        
+        try {
+            rows[y].connectNode(NodeIndex.at(x));
+        } catch (DuplicateLineException e) {
+            throw new DuplicateLineException(ErrorMessage.DUPLICATE_LINE.format(y, e.getNodeIndex()));
+        }
     }
     
     public boolean hasConnection(Coordinate coordinate) {

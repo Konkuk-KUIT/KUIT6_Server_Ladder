@@ -1,20 +1,17 @@
 package board;
 
 import exceptions.DuplicateLineException;
-import exceptions.ErrorMessage;
 import wrap.NodeIndex;
 import wrap.PersonCount;
 
 public class Row {
     
     private final Node[] nodes;
-    private final int rowIndex;
     private final PersonCount personCount;
     
-    public Row(PersonCount personCount, int rowIndex) {
+    public Row(PersonCount personCount) {
         this.personCount = personCount;
         this.nodes = new Node[personCount.getMaxLineIndex()];
-        this.rowIndex = rowIndex;
         initializeNodes();
     }
     
@@ -45,7 +42,7 @@ public class Row {
     
     private void validateNoDuplicateConnection(NodeIndex nodeIndex) {
         if (hasConnection(nodeIndex)) {
-            throw new DuplicateLineException(ErrorMessage.DUPLICATE_LINE.format(rowIndex, nodeIndex.getValue()));
+            throw new DuplicateLineException(nodeIndex.getValue());
         }
     }
     

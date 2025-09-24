@@ -34,14 +34,14 @@ class NodeIndexTest {
     @Test
     void isValidFor_PersonCount_검증_로직_테스트() {
         NodeIndex index = NodeIndex.at(2);
-        PersonCount personCount = PersonCount.of(5);
+        PersonCount personCount = PersonCount.from(5);
         
         assertTrue(!index.isValidFor(personCount));
     }
 
     @Test
     void isValidFor_PersonCount와의_경계값_테스트() {
-        PersonCount personCount = PersonCount.of(3);
+        PersonCount personCount = PersonCount.from(3);
         
         NodeIndex validIndex0 = NodeIndex.at(0);
         NodeIndex validIndex2 = NodeIndex.at(2);

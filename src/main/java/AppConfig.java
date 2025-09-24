@@ -9,8 +9,8 @@ import wrap.LadderHeight;
 public class AppConfig {
     
     public LadderGame createNormalLadder(int numberOfPerson, int height) {
-        PersonCount personCount = PersonCount.of(numberOfPerson);
-        LadderHeight ladderHeight = LadderHeight.of(height);
+        PersonCount personCount = PersonCount.from(numberOfPerson);
+        LadderHeight ladderHeight = LadderHeight.from(height);
         
         LadderGame game = LadderGameFactory.createNormalLadderGame(personCount, ladderHeight);
         setupObservers(game);
@@ -18,8 +18,8 @@ public class AppConfig {
     }
 
     public LadderGame createRandomLadder(int numberOfPerson, int height) {
-        PersonCount personCount = PersonCount.of(numberOfPerson);
-        LadderHeight ladderHeight = LadderHeight.of(height);
+        PersonCount personCount = PersonCount.from(numberOfPerson);
+        LadderHeight ladderHeight = LadderHeight.from(height);
         
         LadderGame game = LadderGameFactory.createRandomLadderGame(personCount, ladderHeight);
         setupObservers(game);
