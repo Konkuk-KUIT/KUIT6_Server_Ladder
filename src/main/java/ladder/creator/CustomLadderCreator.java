@@ -1,6 +1,7 @@
 package ladder.creator;
 
 import ladder.GreaterThanOne;
+import ladder.LadderSize;
 import ladder.position.LadderPosition;
 import ladder.position.Position;
 import ladder.Row;
@@ -9,16 +10,16 @@ public class CustomLadderCreator implements LadderCreator{
 
     private final Row[] rows;
 
-    public CustomLadderCreator(GreaterThanOne numberOfRows, GreaterThanOne numberOfPerson) {
-        rows = new Row[numberOfRows.getNumber()];
-        for (int i = 0; i < numberOfRows.getNumber(); i++) {
-            rows[i] = new Row(numberOfPerson);
+    public CustomLadderCreator(LadderSize ladderSize) {
+        rows = new Row[ladderSize.getHeightValue()];
+        for (int i = 0; i < ladderSize.getHeightValue(); i++) {
+            rows[i] = new Row(ladderSize.getNumberOfPerson());
         }
     }
 
     @Override
     public void drawLine(LadderPosition ladderPosition) {
-
+        rows[ladderPosition.getRowPosition()].drawLine(ladderPosition.getCol());
     }
 
     public Row[] getRows() {

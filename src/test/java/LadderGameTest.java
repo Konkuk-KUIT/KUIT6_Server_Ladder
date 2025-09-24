@@ -1,3 +1,4 @@
+import ladder.LadderSize;
 import ladder.creator.CustomLadderCreator;
 import ladder.GreaterThanOne;
 import ladder.LadderGame;
@@ -7,14 +8,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-class LadderTest {
+class LadderGameTest {
 
     @Test
     @DisplayName("사람 예외 처리 확인")
     void throwInvalidPersonException() {
         //when
+        GreaterThanOne numberOfRow = GreaterThanOne.from(2);
         GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
-        CustomLadderCreator ladderCreator = new CustomLadderCreator(GreaterThanOne.from(2), numberOfPerson);
+        LadderSize ladderSize = LadderSize.of(numberOfRow, numberOfPerson);
+
+        CustomLadderCreator ladderCreator = new CustomLadderCreator(ladderSize);
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
         //given
@@ -31,7 +35,9 @@ class LadderTest {
         //when
         GreaterThanOne row = GreaterThanOne.from(4);
         GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
-        CustomLadderCreator ladderCreator = new CustomLadderCreator(row, numberOfPerson);
+        LadderSize ladderSize = LadderSize.of(row, numberOfPerson);
+
+        CustomLadderCreator ladderCreator = new CustomLadderCreator(ladderSize);
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
         ladderCreator.drawLine(Position.from(0),Position.from(0));
