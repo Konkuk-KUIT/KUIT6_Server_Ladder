@@ -5,7 +5,7 @@ public class Row {
     public Row(GreaterThanOne numberOfPerson) {
         row = new Node[numberOfPerson.getNumber()];
         for (int i = 0; i < numberOfPerson.getNumber(); i++) {
-            row[i] = new Node(0);
+            row[i] = Node.from(0);
         }
     }
 
