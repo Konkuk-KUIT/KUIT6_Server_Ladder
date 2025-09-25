@@ -3,6 +3,7 @@ package ladder.build;
 import ladder.domain.GreaterThanOne;
 import ladder.domain.Position;
 import ladder.domain.Row;
+import ladder.support.ErrorMessage;
 
 public class LadderCreator {
 
@@ -21,6 +22,10 @@ public class LadderCreator {
     }
 
     public void drawLine(Position row, Position col){
-        rows[row.getValue()].drawLine(col);
+        int r = row.getValue();
+        if (r < 0 || r >= rows.length) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage());
+        }
+        rows[r].drawLine(col);
     }
 }
