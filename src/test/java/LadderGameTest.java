@@ -12,6 +12,8 @@ class LadderGameTest {
 
         //Given
         Ladder ladder = new Ladder(NaturalNumber.from(3), NaturalNumber.from(5));
+        ladder.drawLine(NaturalNumber.from(1), NaturalNumber.from(1));
+        ladder.drawLine(NaturalNumber.from(2), NaturalNumber.from(3));
         LadderGame game = new LadderGame();
 
         //When & Then

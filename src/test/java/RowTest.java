@@ -34,5 +34,16 @@ class RowTest {
         assertEquals(LadderDirections.LEFT, direction[2]);
         
     }
+    
+    @Test
+    @DisplayName("라인이 겹치는 경우 예외처리 되는지 테스트")
+    public void draw_overlapping_line_fail() throws Exception {
+        // Given
+        Row row = new Row(NaturalNumber.from(4));
+        row.drawLine(1);
+        // When & Then
+        assertThrows(IllegalArgumentException.class, () -> row.drawLine(0));
+        assertThrows(IllegalArgumentException.class, () -> row.drawLine(2));
+    }
 
 }

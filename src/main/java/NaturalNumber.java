@@ -12,7 +12,7 @@ public class NaturalNumber
     }
 
     public NaturalNumber(int number) {
-        if(number <= 0) throw new IllegalArgumentException("해당 숫자는 자연수가 아닙니다.");
+        if(number <= 0) throw new IllegalArgumentException(ExceptionMessages.INVALID_NATURAL_NUMBER.getMessage());
 
         this.number = number;
     }
