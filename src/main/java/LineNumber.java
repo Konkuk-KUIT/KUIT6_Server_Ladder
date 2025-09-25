@@ -4,7 +4,7 @@ public class LineNumber {
 
     private LineNumber(NaturalNumber number, LineRange range) {
         if(!range.contains(number)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LINE_NUMBER.getMessage());
         }
         this.number = number;
         this.range = range;
@@ -20,13 +20,23 @@ public class LineNumber {
     }
 
     public DrawLineStrategyType getDrawLineStrategyType() {
-        if (number.getNumber() == 0){
-            return DrawLineStrategyType.LEFT; }
+        if(number.getNumber() == range.getRange().getNumber()-1 ) {
+            return DrawLineStrategyType.RIGHT;
+        }
+        return DrawLineStrategyType.NORMAL;
+    }
 
-        if (number.getNumber() == range.getRange().getNumber()-1){
-            return DrawLineStrategyType.RIGHT; }
+    public void goLeft(){
+        number.prev();
+    }
 
-        return DrawLineStrategyType.MIDDLE;
+    public void goRight() {
+        number.next();
+    }
+
+    @Override
+    public String toString() {
+        return number.toString();
     }
 }
 

@@ -6,9 +6,8 @@ public class DrawLineStrategyMap {
 
     public DrawLineStrategyMap() {
         strategies = new EnumMap<>(DrawLineStrategyType.class);
-        strategies.put(DrawLineStrategyType.LEFT, new DrawLeftLineStrategy());
+        strategies.put(DrawLineStrategyType.NORMAL, new DrawNormalLineStrategy());
         strategies.put(DrawLineStrategyType.RIGHT, new DrawRightLineStrategy());
-        strategies.put(DrawLineStrategyType.MIDDLE, new DrawMiddleLineStrategy());
     }
 
     public DrawLineStrategy get(DrawLineStrategyType type) {

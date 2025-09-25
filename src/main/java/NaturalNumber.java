@@ -1,5 +1,5 @@
 public class NaturalNumber {
-    private final int number;
+    private int number;
 
     public int getNumber() {
         return number;
@@ -11,8 +11,21 @@ public class NaturalNumber {
 
     private NaturalNumber(int number) {
         if(number < 0){
-            throw new IllegalArgumentException("Negative values are not allowed");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NATURAL_NUMBER.getMessage());
         }
         this.number = number;
+    }
+
+    public void prev() {
+        number--;
+    }
+
+    public void next() {
+        number++;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(number);
     }
 }

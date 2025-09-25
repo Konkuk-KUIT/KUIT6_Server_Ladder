@@ -1,43 +1,49 @@
+import java.util.Random;
+
 public final class LadderBoard {
-    private final int[][] grid;
+    //    private final int[][] grid;
+    private Row[] rows;
+    private LineRange range;
 
     public LadderBoard(NaturalNumber rows, NaturalNumber cols) {
-        this.grid = new int[rows.getNumber()][cols.getNumber()];
-    }
-
-    public int rows() { return grid.length; }
-    public int cols() { return grid[0].length; }
-
-    public boolean isNotZero(int r, int c) { return grid[r][c] != 0; }
-    public void createLeftBridge(int r, int c){
-        grid[r][c] = -1;
-        grid[r][c-1] = 1;
-    }
-    public void createRightBridge(int r, int c){
-        grid[r][c] = 1;
-        grid[r][c+1] = -1;
-    }
-
-    public int checkBoard(int row, int col) {
-
-        if(grid[row][col] == 1){
-            return ++col;
+        this.rows = new Row[rows.getNumber()];
+        for (int i = 0; i < cols.getNumber(); i++) {
+            this.rows[i] = new Row(cols);
         }
-
-        if(grid[row][col] == -1){
-            return --col;
-        }
-
-        return col;
+        this.range = LineRange.getInstance(cols);
     }
+
+    public Row[] getRows() {
+        return rows;
+    }
+
+    public int rows() {
+        return rows.length;
+    }
+
+    public int cols() {
+        return range.getRange().getNumber();
+    }
+
+    public void createRightBridge(int r, int c) {
+        rows[r].createRightBridge(c);
+    }
+
+    public void run(LineNumber position){
+        for (Row row : rows) {
+            row.run(position);
+        }
+        System.out.println(position);
+    }
+
 
     // test 전용
-    public void printGrid(){
-        for(int i = 0; i < grid.length; i++){
-            for(int j = 0; j < grid[0].length; j++){
-                System.out.print(grid[i][j] + " ");
-            }
-            System.out.println();
+    public void printGrid() {
+        for (Row row : rows) {
+            row.printRow();
         }
+
     }
+
+
 }
