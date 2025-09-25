@@ -1,5 +1,3 @@
-package ladder;
-
 import ladder.core.LadderLabel;
 import ladder.core.LadderSize;
 import ladder.core.LadderViewer;

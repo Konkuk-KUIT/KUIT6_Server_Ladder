@@ -59,6 +59,11 @@ public class Row {
 
     private void validateDrawLinePosition(Position startPosition) {
         validatePosition(startPosition);
+
+        if (startPosition.getValue() == nodes.length - 1) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage());
+        }
+
         if (isLineAtPosition(startPosition) || isLineAtNextPosition(startPosition)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage());
         }
