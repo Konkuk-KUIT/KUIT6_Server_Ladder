@@ -4,7 +4,7 @@ import ladder.domain.GreaterThanOne;
 import ladder.domain.PlayerState;
 import ladder.domain.Position;
 import ladder.domain.Row;
-import ladder.build.LadderCreator;
+import ladder.build.CustomLadderCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,16 +14,16 @@ class LadderViewerTest {
     @DisplayName("사다리 그리기 테스트")
     public void printLadderTest() throws Exception {
         GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(GreaterThanOne.from(4), numberOfPerson);
+        CustomLadderCreator customLadderCreator = new CustomLadderCreator(GreaterThanOne.from(4), numberOfPerson);
 
 
-        ladderCreator.drawLine(Position.from(0), Position.from(0));
-        ladderCreator.drawLine(Position.from(1), Position.from(1));
+        customLadderCreator.drawLine(Position.from(0), Position.from(0));
+        customLadderCreator.drawLine(Position.from(1), Position.from(1));
 
         PlayerState playerState = PlayerState.from(1, Position.from(0));
 
         // LadderViewer를 생성합니다.
-        Row[] rows = ladderCreator.getRows();
+        Row[] rows = customLadderCreator.getRows();
 
         LadderViewer ladderViewer = LadderViewer.from();
 

@@ -1,34 +1,35 @@
 package ladder;
 
 import ladder.app.LadderGame;
-import ladder.build.LadderCreator;
+import ladder.build.CustomLadderCreator;
 import ladder.domain.GreaterThanOne;
 import ladder.domain.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderRunnerTest {
+
     @Test
-    @DisplayName("사다리 타기 테스트")
-    public void LadderRunnderTest() throws Exception {
-        //when
-        GreaterThanOne row = GreaterThanOne.from(4);
-        GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(row, numberOfPerson);
-        LadderGame ladderGame = new LadderGame(ladderCreator);
+    @DisplayName("사다리 타기 기본 경로 테스트")
+    void run_basicPath_ok() {
+        // given
+        GreaterThanOne rows = GreaterThanOne.from(4);
+        GreaterThanOne persons = GreaterThanOne.from(3);
+        CustomLadderCreator creator = new CustomLadderCreator(rows, persons);
 
-        ladderCreator.drawLine(Position.from(0),Position.from(0));
-        ladderCreator.drawLine(Position.from(1),Position.from(1));
-        ladderCreator.drawLine(Position.from(2),Position.from(0));
+        // 가로선
+        creator.drawLine(Position.from(0), Position.from(0));
+        creator.drawLine(Position.from(1), Position.from(1));
+        creator.drawLine(Position.from(2), Position.from(0));
 
-        //given
-        Position nthOfPerson = Position.from(0);
-        Position endPosition = ladderGame.run(nthOfPerson);
+        LadderGame game = new LadderGame(creator);
 
-        //then
-        assertThat(endPosition.getValue()).isEqualTo(2);
-     }
+        // when
+        Position end = game.run(Position.from(0));
 
+        // then
+        assertThat(end.getValue()).isEqualTo(2);
+    }
 }
