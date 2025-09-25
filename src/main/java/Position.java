@@ -1,26 +1,35 @@
 public class Position {
-    private NoneNegative height;
-    private NoneNegative row;
-    private boolean isToLeft;
+    private int position;
 
-    public Position(NoneNegative height, NoneNegative row){
-        this.height = height;
-        this.row = row;
-        this.isToLeft = false;
+    private Position(int position){
+        this.position = position;
     }
-    public Position(NoneNegative height, NoneNegative row, boolean isToLeft){
-        this.height = height;
-        this.row = row;
-        this.isToLeft = isToLeft;
+    public static Position from(int position){
+        return new Position(position);
     }
 
-    public NoneNegative getHeight(){
-        return height;
+    public int getPosition() {
+        return position;
     }
-    public NoneNegative getRow(){
-        return row;
+
+    private static void validatePosition(int position){
+        if(!isPosition(position)){
+            throw new IllegalArgumentException(ErrorMessages.INVALID_POSITION.getMessage());
+        }
     }
-    public boolean getIsToLeft(){
-        return isToLeft;
+
+    private static boolean isPosition(int position) {
+        return position >= 0;
+    }
+
+    public void prev() {
+        position--;
+    }
+    public void next() {
+        position++;
+    }
+
+    public boolean isBiggerThan(int positionMax) {
+        return position > positionMax;
     }
 }

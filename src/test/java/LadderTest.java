@@ -2,52 +2,43 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class LadderTest {
-    @Test
-    @DisplayName("사다리 가로 설치")
-    public void setUpLadder () throws Exception {
-        //given
-        Ladder ladder = new Ladder(NoneNegative.from(13), NoneNegative.from(4));
-        //when & then
-        ladder.drawLine(new Position(NoneNegative.from(0), NoneNegative.from(2)));
-        ladder.drawLine(new Position(NoneNegative.from(0), NoneNegative.from(2)));
-        ladder.drawLine(new Position(NoneNegative.from(1), NoneNegative.from(1)));
-        ladder.drawLine(new Position(NoneNegative.from(2), NoneNegative.from(0)));
-        ladder.drawLine(new Position(NoneNegative.from(3), NoneNegative.from(2)));
-        ladder.drawLine(new Position(NoneNegative.from(4), NoneNegative.from(1)));
-        ladder.drawLine(new Position(NoneNegative.from(5), NoneNegative.from(0)));
-        ladder.drawLine(new Position(NoneNegative.from(6), NoneNegative.from(0)));
-        ladder.drawLine(new Position(NoneNegative.from(7), NoneNegative.from(1)));
-        ladder.drawLine(new Position(NoneNegative.from(8), NoneNegative.from(1)));
-        ladder.drawLine(new Position(NoneNegative.from(9), NoneNegative.from(1)));
-        ladder.drawLine(new Position(NoneNegative.from(10), NoneNegative.from(2)));
-        ladder.drawLine(new Position(NoneNegative.from(11), NoneNegative.from(0)));
-        ladder.drawLine(new Position(NoneNegative.from(12), NoneNegative.from(1)));
-    }
 
-    @Test
-    @DisplayName("줄 선택 후 결과 확인")
-    public void checkLadderResult () throws Exception {
-        //given
-        Ladder ladder = new Ladder(NoneNegative.from(13), NoneNegative.from(4));
-        //when & then
-        ladder.drawLine(new Position(NoneNegative.from(0), NoneNegative.from(2)));
-        ladder.drawLine(new Position(NoneNegative.from(1), NoneNegative.from(1)));
-        ladder.drawLine(new Position(NoneNegative.from(2), NoneNegative.from(0)));
-        ladder.drawLine(new Position(NoneNegative.from(3), NoneNegative.from(2)));
-        ladder.drawLine(new Position(NoneNegative.from(4), NoneNegative.from(1)));
-        ladder.drawLine(new Position(NoneNegative.from(5), NoneNegative.from(0)));
-        ladder.drawLine(new Position(NoneNegative.from(6), NoneNegative.from(0)));
-        ladder.drawLine(new Position(NoneNegative.from(7), NoneNegative.from(1)));
-        ladder.drawLine(new Position(NoneNegative.from(8), NoneNegative.from(1)));
-        ladder.drawLine(new Position(NoneNegative.from(9), NoneNegative.from(1)));
-        ladder.drawLine(new Position(NoneNegative.from(10), NoneNegative.from(2)));
-        ladder.drawLine(new Position(NoneNegative.from(11), NoneNegative.from(0)));
-        ladder.drawLine(new Position(NoneNegative.from(12), NoneNegative.from(1)));
+   @Test
+   @DisplayName("주어진 사람수보다 큰 숫자에서 시작할 때 에러 발생")
+   void throwInvalidStartPosition () {
+       //given
+       Position position = Position.from(4);
 
-        assertThat(ladder.run(2)).isEqualTo(3);
-    }
+       //when
+       GreaterThanOne numberOfPeople = GreaterThanOne.from(3);
+       LadderCreator ladderCreator = new LadderCreator(GreaterThanOne.from(2), numberOfPeople);
+       LadderGame ladderGame = new LadderGame(ladderCreator);
+
+       //then
+       assertThatThrownBy(() -> ladderGame.runGame(position)).isInstanceOf(IllegalArgumentException.class);
+   }
+
+   @Test
+   @DisplayName("사다리 게임이 제대로 동작하는지 확인")
+   void testLadderGame () {
+       //when
+        GreaterThanOne numberOfPeople = GreaterThanOne.from(3);
+        GreaterThanOne rows =  GreaterThanOne.from(4);
+        LadderCreator ladderCreator = new LadderCreator(rows, numberOfPeople);
+        LadderGame ladderGame = new LadderGame(ladderCreator);
+
+        ladderCreator.drawLine(Position.from(0), Position.from(0));
+        ladderCreator.drawLine(Position.from(1), Position.from(1));
+        ladderCreator.drawLine(Position.from(2), Position.from(1));
+
+       //given
+        Position position = Position.from(0);
+
+       //then
+       assertThat(ladderGame.runGame(position)).isEqualTo(1);
+   }
 
 }
