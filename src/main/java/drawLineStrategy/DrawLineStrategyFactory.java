@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+package drawLineStrategy;
 
 public class DrawLineStrategyFactory {
     private static final DrawLineStrategyMap strategies = new DrawLineStrategyMap();

@@ -1,3 +1,9 @@
+package drawLineStrategy;
+
+import domain.LadderBoard;
+import domain.Row;
+import game.LineNumber;
+
 import java.util.Random;
 
 public class DrawNormalLineStrategy implements DrawLineStrategy{

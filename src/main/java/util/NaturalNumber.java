@@ -1,3 +1,5 @@
+package util;
+
 public class NaturalNumber {
     private int number;
 

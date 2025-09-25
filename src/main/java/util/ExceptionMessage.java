@@ -1,3 +1,5 @@
+package util;
+
 public enum ExceptionMessage {
     INVALID_LADDER_POSITION("사다리 위치는 1이상 자연수입니다."),
     INVALID_LADDER_NUMBER("사다리의 행과 열은 2 이상이어야 합니다."),

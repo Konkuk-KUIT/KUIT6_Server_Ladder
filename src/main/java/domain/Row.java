@@ -1,3 +1,9 @@
+package domain;
+
+import game.Direction;
+import game.LineNumber;
+import util.NaturalNumber;
+
 public class Row {
     private Node[] nodes;
 
@@ -8,16 +14,17 @@ public class Row {
         }
     }
 
-    public void createRightBridge(int c){
+    public boolean createRightBridge(int c){
         if(nodes[c].isAlreadySetDirection()){
-            return;
+            return false;
         }
 
         if(nodes[c+1].isAlreadySetDirection()){
-            return;
+            return false;
         }
         nodes[c].setRightNode();
         nodes[c+1].setLeftNode();
+        return true;
     }
 
     public boolean isNodeLeft(int c){
@@ -31,6 +38,7 @@ public class Row {
     public void printRow(){
         for (Node node : nodes) {
             node.printNode();
+            System.out.print(" ");
         }
         System.out.println();
     }
@@ -60,4 +68,16 @@ public class Row {
     }
 
 
+    public void printStar(LineNumber position) {
+        for(int i=0; i<nodes.length; i++){
+            if(i == position.getNumber()){
+                nodes[i].printNode();
+                System.out.print("* ");
+                continue;
+            }
+            nodes[i].printNode();
+            System.out.print(" ");
+        }
+        System.out.println();
+    }
 }

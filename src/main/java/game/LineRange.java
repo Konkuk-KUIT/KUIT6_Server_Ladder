@@ -1,3 +1,7 @@
+package game;
+
+import util.NaturalNumber;
+
 public class LineRange {
     private NaturalNumber range;
 

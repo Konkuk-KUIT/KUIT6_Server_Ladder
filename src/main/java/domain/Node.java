@@ -1,3 +1,7 @@
+package domain;
+
+import game.Direction;
+
 public class Node   {
     private Direction direction;
 
@@ -46,6 +50,6 @@ public class Node   {
     }
 
     public void printNode() {
-        System.out.print(direction.getValue() + " ");
+        System.out.print(direction.getValue());
     }
 }

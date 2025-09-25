@@ -1,3 +1,9 @@
+package game;
+
+import drawLineStrategy.DrawLineStrategyType;
+import util.ExceptionMessage;
+import util.NaturalNumber;
+
 public class LineNumber {
     private NaturalNumber number;
     private LineRange range;
