@@ -24,15 +24,15 @@ public class Node {
         return false;
     }
 
-    public void setRightNode(){
+    public void setRightNode() {
         direction = Direction.RIGHT;
     }
 
-    public void setLeftNode(){
+    public void setLeftNode() {
         direction = Direction.LEFT;
     }
 
-    public boolean isAlreadySetDirection(){
+    public boolean isAlreadySetDirection() {
         return !isNone();
     }
 

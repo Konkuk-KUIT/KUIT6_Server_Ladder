@@ -6,6 +6,11 @@ public class LadderGame {
 
     private final LadderCreator ladderCreator;
 
+    /**
+     *  사다리 성질에 맞는 LadderCreator 클래스를 받아서, 사다리 진행 총괄을 담당하는 클래스이다.
+     *  사다리 운영에 필요한 run() 메서드와 drawLine()메서드를 내부적으로 가지고 있다.
+     *  하지만 실질적인 구현은 위 메서드를 담당하는 클래스에서 책임을 지며, 지금 클래스에서는 호출만 진행한다.
+     */
     public LadderGame(LadderCreator ladderCreator) {
         this.ladderCreator = ladderCreator;
     }
@@ -20,7 +25,8 @@ public class LadderGame {
         return ladderRunner.run(position);
     }
 
+
     public void drawLine(Position row, Position col){
-        ladderCreator.drawLine(row, col); //이게 객체지향적인가? 음..............
+        ladderCreator.drawLine(row, col);
     }
 }

@@ -17,7 +17,7 @@ class LadderCreatorTest {
         //given
         GreaterThanOne numberOfRow = GreaterThanOne.from(3);
         GreaterThanOne numberOfPerson = GreaterThanOne.from(5);
-
+//테스트 커버리지 기능 사용
         //when
         AutoLadderCreator ladderCreator = new AutoLadderCreator(numberOfRow, numberOfPerson);
 

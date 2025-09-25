@@ -1,20 +1,21 @@
 package ladder;
 
-import java.util.Arrays;
-
 public class Row {
 
     private final Node[] nodes;
+    private Position currentPosition;
 
     public Row(GreaterThanOne numberOfPerson){
         nodes = new Node[numberOfPerson.getNumber()];
         for(int i = 0; i < numberOfPerson.getNumber(); i++){
             nodes[i] = Node.from(Direction.NONE);
         }
+        currentPosition = null;
     }
 
     public boolean nextPosition(Position position){
         validatePosition(position);
+        currentPosition = position;
         return nodes[position.getValue()].move(position);
     }
 
@@ -57,9 +58,45 @@ public class Row {
         return nodes[position.getValue()].isAlreadySetDirection();
     }
 
-    @Override
+    public String toStringCurrent() {
+        StringBuilder sb = new StringBuilder();
+        int n = nodes.length;
+        int cur = (currentPosition != null) ? currentPosition.getValue() : -1;
+
+        for (int j = 0; j < n; j++) {
+            sb.append(j == cur ? '*' : '|');
+
+            // 마지막 칸 전까지만 가로연결 판단
+            if (j < n - 1) {
+                String left  = nodes[j].toString();
+                String right = nodes[j + 1].toString();
+
+                boolean connected = "1".equals(left) || "-1".equals(right);
+                sb.append(connected ? '-' : ' ');
+            }
+        }
+        return sb.toString();
+    }
+
     public String toString() {
-        return Arrays.toString(nodes).replace("[", "").replace("]", "").replace(",", "");
+        StringBuilder sb = new StringBuilder();
+        int n = nodes.length;
+        for (int j = 0; j < n; j++) {
+            sb.append('|');
+            // 마지막 칸 전까지만 가로연결 판단
+            if (j < n - 1) {
+                String left  = nodes[j].toString();
+                String right = nodes[j + 1].toString();
+
+                boolean connected = "1".equals(left) || "-1".equals(right);
+                sb.append(connected ? '-' : ' ');
+            }
+        }
+        return sb.toString();
+    }
+
+    public void setCurrentPosition(Position position) {
+        currentPosition = position;
     }
 
     public int size() {

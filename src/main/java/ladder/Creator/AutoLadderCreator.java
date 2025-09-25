@@ -36,7 +36,7 @@ public class AutoLadderCreator implements LadderCreator {
         for (int[] rc : plan) {
             int r = rc[0], c = rc[1];
             rows[r].drawLine(Position.from(c)); // c—c+1 연결
-            System.out.println(r + " " + c);
+            //System.out.println(r + " " + c);
         }
     }
 }
