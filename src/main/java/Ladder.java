@@ -27,7 +27,7 @@ public class Ladder {
         }
         return position;
     }
-
+    //todo
     private boolean moveright(int row, int position) {
         return rows[row][position] == 1 && position < rows[0].length-1;
     }
