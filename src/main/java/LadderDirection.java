@@ -1,14 +1,14 @@
 public enum LadderDirection {
-    Left(-1),
-    Right(1),
-    None(0);
+    Left("-"),
+    Right("-"),
+    None("|");
 
-    private final int direction;
-    LadderDirection(int direction) {
-        this.direction = direction;
+    private final String value;
+    LadderDirection(String value) {
+        this.value = value;
     }
 
-    public int getDirection() {
-        return direction;
+    public String getValue() {
+        return value;
     }
 }

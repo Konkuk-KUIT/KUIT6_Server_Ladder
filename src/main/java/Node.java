@@ -37,7 +37,7 @@ public class Node {
         return direction == LadderDirection.None;
     }
 
-    private boolean isRight() {
+    boolean isRight() {
         return direction == LadderDirection.Right;
     }
 

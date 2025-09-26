@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class PlayerPosition {
     private int position;
 
@@ -6,33 +8,33 @@ public class PlayerPosition {
     }
 
     public static PlayerPosition from(int position) {
-        validatePosition(position);
+        if (position < 0) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_POSITION.getMessage());
+        }
         return new PlayerPosition(position);
     }
 
-    private static void validatePosition(int position) {
-        if (!isPosition(position)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_POSITION.getMessage());
-        }
-    }
-
-    private static boolean isPosition(int position) {
-        return position >= 0;
-    }
-
     public void prev() {
-       position--;
+        position--;
     }
 
     public void next() {
-       position++;
+        position++;
     }
 
     public int getValue() {
         return position;
     }
 
-    public boolean isBiggerThan(int position) {
-        return this.position > position;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PlayerPosition that)) return false;
+        return position == that.position;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position);
     }
 }

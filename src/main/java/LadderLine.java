@@ -2,21 +2,15 @@ import java.util.Arrays;
 
 public class LadderLine {
     private final Node[] nodes;
-    private final GreaterThanOne playerCount;
 
     public LadderLine(GreaterThanOne playerCount) {
-        this.playerCount = playerCount;
-        nodes = new Node[playerCount.getNumber()];
-
-        for (int i = 0; i < nodes.length; i++) {
-            nodes[i] = Node.from(LadderDirection.None);
-        }
+        this.nodes = new Node[playerCount.getNumber()];
+        Arrays.setAll(nodes, i -> Node.from(LadderDirection.None));
     }
 
-    public void drawLine(PlayerPosition position){
+    public void drawLine(PlayerPosition position) {
         validateDrawLinePosition(position);
         setDirectionBetweenNextPosition(position);
-
     }
 
     private void setDirectionBetweenNextPosition(PlayerPosition position) {
@@ -27,37 +21,38 @@ public class LadderLine {
 
     public void move(PlayerPosition position) {
         validatePosition(position);
-       nodes[position.getValue()].move(position);
+        nodes[position.getValue()].move(position);
     }
 
-    private void validatePosition(PlayerPosition position){
-        if(isInvalidPosition(position)){
+    private void validatePosition(PlayerPosition position) {
+        if (position.getValue() < 0 || position.getValue() >= nodes.length) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_POSITION.getMessage());
         }
     }
 
-    private boolean isInvalidPosition(PlayerPosition position) {
-        return position.isBiggerThan(nodes.length);
-    }
-
-    private void validateDrawLinePosition(PlayerPosition position){
+    private void validateDrawLinePosition(PlayerPosition position) {
         validatePosition(position);
-        if(isLineAtPosition(position) || isLineNextPosition(position)){
+
+        if (position.getValue() == nodes.length - 1) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage());
         }
-
-
+        if (isLineAtPosition(position) || isLineNextPosition(position)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage());
+        }
     }
 
     private boolean isLineNextPosition(PlayerPosition position) {
         position.next();
-        boolean lineAtPosition = isLineAtPosition(position);
-        position.prev();;
-        return lineAtPosition;
+        boolean lineAtNext = isLineAtPosition(position);
+        position.prev();
+        return lineAtNext;
     }
 
     private boolean isLineAtPosition(PlayerPosition position) {
         return nodes[position.getValue()].isAlreadySetDirection();
     }
 
+    public Node[] getNodes() {
+        return nodes;
+    }
 }
