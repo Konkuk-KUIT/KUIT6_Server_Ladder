@@ -1,56 +1,64 @@
+import Ladder.Creator.*;
+import Ladder.Core.GreaterThanOne;
+import Ladder.Ladder.LadderGame;
+import Ladder.Ladder.LadderGameFactory;
+import Ladder.Core.Position;
+import Ladder.Ladder.LadderSize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class LadderTest {
-    final int row = 10;
-    final int people = 3;
 
     @Test
-    @DisplayName("사다리 생성, run까지")
-    void 생성부터run까지() {
-        Ladder ladder = new Ladder(row, people);
-        ladder.drawLine(0, 0);
-        ladder.drawLine(1, 1);
-        assertThat(ladder.run(1)).isEqualTo(3);
-        assertThat(ladder.run(2)).isEqualTo(1);
-        assertThat(ladder.run(3)).isEqualTo(2);
+    @DisplayName("사람 예외 처리 확인")
+    void throwInvalidPersonException() {
+        //when
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
+        GreaterThanOne numberOfRow = GreaterThanOne.from(2);
+        LadderSize ladderSize = new LadderSize(numberOfRow, numberOfPerson);
+        // 근데 row가 1이면?
 
+        //given
+        Position nthOfPerson = Position.from(4);
+        LadderGame ladderGame = LadderGameFactory.createCustomLadderGame(ladderSize);
+
+        //then
+        assertThatThrownBy(() -> ladderGame.run(nthOfPerson))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("중복 선 체크")
-    void 중복예외반환() {
-        Ladder ladder = new Ladder(row, people);
-        ladder.drawLine(1, 1);
-        assertThatThrownBy(() -> ladder.drawLine(1, 1)).isInstanceOf(IllegalArgumentException.class);
-    }
+    @DisplayName("사다리 결과 확인")
+    void testLadderResult() {
+        //when
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
+        GreaterThanOne numberOfRow = GreaterThanOne.from(3);
+        LadderSize ladderSize = new LadderSize(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator = CustomLadderCreatorImpl.createEmptyLadder(ladderSize);
 
-    @Test
-    @DisplayName("잘못된 범위 입력")
-    void 범위오류() {
-        Ladder ladder = new Ladder(row, people);
+        ladderCreator.drawLine(Position.from(0),Position.from(0));
+        ladderCreator.drawLine(Position.from(1),Position.from(1));
+        ladderCreator.drawLine(Position.from(2),Position.from(0));
 
-        assertThatThrownBy(() -> ladder.drawLine(3, 3)).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> ladder.drawLine(10, 0)).isInstanceOf(IllegalArgumentException.class);
+        //given
+        Position nthOfPerson = Position.from(0);
+        LadderGame ladderGame = new LadderGame(ladderCreator);
 
-        Ladder ladder1 = new Ladder(5, 7);
-        assertThatThrownBy(() -> ladder1.drawLine(6, 2)).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> ladder1.drawLine(3,7)).isInstanceOf(IllegalArgumentException.class);
+        //then
+        assertThat(ladderGame.run(nthOfPerson)).isEqualTo(2);
 
-    }
+        //given
+        nthOfPerson = Position.from(1);
 
+        //then
+        assertThat(ladderGame.run(nthOfPerson)).isEqualTo(1);
 
-    @Test
-    @DisplayName("같은 높이 연속된 선 에외")
-    void 연속선예외() {
-        Ladder ladder = new Ladder(row, people);
-        ladder.drawLine(0, 0);
-        ladder.drawLine(2, 1);
+        //given
+        nthOfPerson = Position.from(2);
 
-        assertThatThrownBy(() -> ladder.drawLine(0, 1)).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> ladder.drawLine(2, 0)).isInstanceOf(IllegalArgumentException.class);
+        //then
+        assertThat(ladderGame.run(nthOfPerson)).isEqualTo(0);
     }
 }
