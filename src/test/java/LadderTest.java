@@ -1,4 +1,3 @@
-// LadderTest.java
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,7 +9,6 @@ class LadderTest {
     void noRungs_run_returnsSamePosition() {
         // given
         Ladder ladder = new Ladder(5, 5);
-        // LadderRunner를 생성하여 실행 로직을 위임합니다.
         LadderRunner runner = new LadderRunner(ladder);
 
         // when & then
@@ -46,20 +44,11 @@ class LadderTest {
         LadderRunner runner = new LadderRunner(ladder);
 
         // when & then
-        // 1 -> 2 -> 2 -> 3 -> 3 -> 3
-        assertEquals(3, runner.run(1));
-
-        // 2 -> 1 -> 1 -> 1 -> 1 -> 1
-        assertEquals(1, runner.run(2));
-
-        // 3 -> 3 -> 4 -> 4 -> 5 -> 5
-        assertEquals(5, runner.run(3));
-
-        // 4 -> 4 -> 3 -> 2 -> 2 -> 2
-        assertEquals(2, runner.run(4));
-
-        // 5 -> 5 -> 5 -> 5 -> 4 -> 4
-        assertEquals(4, runner.run(5));
+        assertEquals(3, runner.run(1), "1번 참가자 결과");
+        assertEquals(1, runner.run(2), "2번 참가자 결과");
+        assertEquals(5, runner.run(3), "3번 참가자 결과");
+        assertEquals(2, runner.run(4), "4번 참가자 결과");
+        assertEquals(4, runner.run(5), "5번 참가자 결과");
     }
 
     @Test

@@ -1,4 +1,3 @@
-// LadderRunner.java
 /**
  * 주어진 Ladder 객체를 기반으로 사다리 타기 게임을 실행하는 역할을 합니다.
  * 이 클래스는 '어떻게 움직이는지'에 대한 로직을 책임집니다.
@@ -30,7 +29,7 @@ public class LadderRunner {
      * @param level 현재 높이 (0-based)
      * @return 이동 후의 위치 (0-based)
      */
-    private int moveAtLevel(int position, int level) {
+    public int moveAtLevel(int position, int level) {
         if (hasRungToTheLeft(position, level)) {
             return position - 1; // 왼쪽으로 이동
         }
