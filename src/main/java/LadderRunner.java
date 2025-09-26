@@ -26,7 +26,7 @@ public class LadderRunner {
     // valid methods
     private void validStartPosition(int startX) {
         if (startX < 0 || startX >= rows[0].getLength()) {
-            throw new ArrayIndexOutOfBoundsException(ErrorMessage.INVALID_POSITION.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_POSITION.getMessage());
         }
     }
 }
