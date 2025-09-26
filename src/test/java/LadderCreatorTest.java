@@ -16,4 +16,17 @@ class LadderCreatorTest {
         //then
         assertThat(ladderCreator).isNotNull();
     }
+    
+    @Test
+    @DisplayName("랜덤으로 라인 생성")
+    void randomCreateLine () throws Exception {
+        //given
+        LadderCreator ladderCreator = new LadderCreator(GreaterThanOne.from(4), GreaterThanOne.from(5));
+        LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(ladderCreator);
+        //when
+        ladderCreator.randomDrawLine();
+        PrintLadder printLadder = new PrintLadder(ladderCreator);
+        //then
+        printLadder.print(Position.from(0));
+    }
 }

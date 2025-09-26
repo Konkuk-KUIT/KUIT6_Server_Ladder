@@ -27,4 +27,18 @@ public class LadderCreator {
     public void drawLine(Position row, Position col) {
         rows[row.getPosition()].drawLine(col);
     }
+
+    public void randomDrawLine(){
+        final int totalLine = (int)Math.floor(getHeight().getNumber() * getNumberOfPerson().getNumber() * 0.3);
+        for(int i = 0; i < totalLine; i++) {
+            int row = (int)(Math.random() * getHeight().getNumber());
+            int col = (int)(Math.random() * (getNumberOfPerson().getNumber() - 1));
+            try{
+                rows[row].drawLine(Position.from(col));
+            }catch(IllegalArgumentException e){
+                i--;
+            }
+
+        }
+    }
 }
