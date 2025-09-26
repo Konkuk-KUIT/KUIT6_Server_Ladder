@@ -60,5 +60,17 @@ public class Row {
 
     private boolean isLineAtPosition(Position position) {
         return nodes[position.getPosition()].isAlreadySet();
-}
+    }
+
+    public int getNodeLength() {
+        return nodes.length;
+    }
+
+    public StringBuilder[] getNodeValues() {
+        StringBuilder[] values = new StringBuilder[getNodeLength()];
+        for(int j = 0; j < nodes.length; j++) {
+            values[j] = nodes[j].valueToStringBuilder();
+        }
+        return values;
+    }
 }

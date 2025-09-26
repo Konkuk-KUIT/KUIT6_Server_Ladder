@@ -8,8 +8,20 @@ public class LadderCreator {
         }
     }
 
-    public Row[] getRows() {
+    public Row[] getLadder() {
         return rows;
+    }
+
+    public GreaterThanOne getHeight() {
+        return GreaterThanOne.from(rows.length);
+    }
+
+    public GreaterThanOne getNumberOfPerson() {
+        return GreaterThanOne.from(rows[0].getNodeLength());
+    }
+
+    public Row getLadderRow(int row) {
+        return rows[row];
     }
 
     public void drawLine(Position row, Position col) {

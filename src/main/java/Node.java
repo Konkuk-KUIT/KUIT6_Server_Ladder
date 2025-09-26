@@ -40,4 +40,12 @@ public class Node {
     public boolean isAlreadySet() {
         return !isNone();
     }
+
+    public int getDirectionValue() {
+        return direction.getValue();
+    }
+
+    public StringBuilder valueToStringBuilder() {
+        return new StringBuilder().append(getDirectionValue());
+    }
 }

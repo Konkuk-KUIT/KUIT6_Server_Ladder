@@ -5,7 +5,7 @@ public class LadderGame {
     }
 
     public int runGame(Position position) {
-        Row[] rows = ladderCreator.getRows();
+        Row[] rows = ladderCreator.getLadder();
         LadderRunner ladderRunner = new LadderRunner(rows);
         return ladderRunner.run(position);
     }
