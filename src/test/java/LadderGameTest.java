@@ -8,7 +8,7 @@ class LadderGameTest {
     @DisplayName("사다리 게임 생성 테스트")
     void LadderGameCreateTest() {
         // given
-        LadderGame ladderGame = new LadderGame(new LadderCreator(GreaterThanOne.from(5), GreaterThanOne.from(5)));
+        LadderGame ladderGame = new LadderGame(new NormalLadderCreator(GreaterThanOne.from(5), GreaterThanOne.from(5)));
         //when
 
         //then

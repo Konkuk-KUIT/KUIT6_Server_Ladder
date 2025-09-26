@@ -16,9 +16,10 @@ public class Main {
 //        int finalPosition = ladderGame.run(0);
 //        System.out.println("\n---- finalPosition = " + finalPosition + " ----");
 
-        LadderCreator ladderCreator2 = LadderGameFactory.createRandomLadderGame(numberOfRows, numberOfPlayers);
-        LadderGame ladderGame = new LadderGame(ladderCreator2);
+        LadderProvider ladderProvider2 = LadderGameFactory.createRandomLadderGame(numberOfRows, numberOfPlayers);
+        LadderGame ladderGame = new LadderGame(ladderProvider2);
         int finalPosition = ladderGame.run(0);
 
+        System.out.println("\n---- finalPosition = " + finalPosition + " ----");
     }
 }

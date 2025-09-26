@@ -1,4 +1,4 @@
-public class LadderCreator implements LadderProvider {
+public class NormalLadderCreator implements LadderProvider {
     private final Row[] rows;
 
     public int getLadderInfoByPosition(Position position) {
@@ -11,7 +11,7 @@ public class LadderCreator implements LadderProvider {
         return rows;
     }
 
-    public LadderCreator(GreaterThanOne numberOfRows, GreaterThanOne numberOfPerson) {
+    public NormalLadderCreator(GreaterThanOne numberOfRows, GreaterThanOne numberOfPerson) {
         rows = new Row[numberOfRows.getNumber()];
         for (int i = 0; i < numberOfRows.getNumber(); i++) {
             rows[i] = new Row(numberOfPerson);
