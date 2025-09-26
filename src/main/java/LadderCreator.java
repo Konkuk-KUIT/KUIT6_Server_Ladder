@@ -1,4 +1,4 @@
-public class LadderCreator {
+public class LadderCreator implements LadderProvider {
     private final Row[] rows;
 
     public int getLadderInfoByPosition(Position position) {
@@ -6,12 +6,13 @@ public class LadderCreator {
         return rows[position.getY()].getValue(position.getX());
     }
 
+    @Override
     public Row[] getRows() {
         return rows;
     }
 
     public LadderCreator(GreaterThanOne numberOfRows, GreaterThanOne numberOfPerson) {
-        rows = new Row[numberOfPerson.getNumber()];
+        rows = new Row[numberOfRows.getNumber()];
         for (int i = 0; i < numberOfRows.getNumber(); i++) {
             rows[i] = new Row(numberOfPerson);
         }

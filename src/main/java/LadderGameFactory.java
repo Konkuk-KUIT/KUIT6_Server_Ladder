@@ -1,9 +1,9 @@
 public class LadderGameFactory {
-    public static LadderCreator createNormalLadderGame(GreaterThanOne numberOfRows, GreaterThanOne numberOfPerson) {
+    public static LadderProvider createNormalLadderGame(GreaterThanOne numberOfRows, GreaterThanOne numberOfPerson) {
         return new LadderCreator(numberOfRows, numberOfPerson);
     }
 
-    public static LadderCreator createRandomLadderGame(GreaterThanOne numberOfRows, GreaterThanOne numberOfPerson) {
+    public static LadderProvider createRandomLadderGame(GreaterThanOne numberOfRows, GreaterThanOne numberOfPerson) {
         LadderCreator ladderCreator = new LadderCreator(numberOfRows, numberOfPerson);
 
         // y=0: (0 <-> 1)
