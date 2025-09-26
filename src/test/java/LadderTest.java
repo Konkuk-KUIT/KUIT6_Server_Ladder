@@ -1,36 +1,86 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.assertj.core.api.Assertions.*;
+
 class LadderTest {
-    @Test
-    @DisplayName("선그리기")
-    public void DrawlineAndRun(){
-        Ladder ladder = new Ladder(3,4);
-        ladder.drawline(0,0);
-        ladder.drawline(1, 2);
-        ladder.drawline(2, 3);
 
-        assertEquals(1,ladder.run(0));
-        assertEquals(3,ladder.run(2));
-        assertEquals(3,ladder.run(3));
+    @Test
+    @DisplayName("사다리 생성 확인")
+    void testCreateLadder() {
+        //given
+        GreaterThanOne numberOfRow = GreaterThanOne.from(3);
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(5);
+
+        //when
+        Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
+
+        //then
+        assertThat(ladder).isNotNull();
     }
 
     @Test
-    @DisplayName("선을 그리지 않음")
-    public void InValidLine(){
-        Ladder ladder = new Ladder(3,4);
-        assertEquals(0,ladder.run(0));
-        assertEquals(1,ladder.run(1));
-        assertEquals(2,ladder.run(2));
+    @DisplayName("사람 예외 처리 확인")
+    void throwInvalidPersonException() {
+        //when
+        GreaterThanOne numberOfRow = GreaterThanOne.from(1);
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
+        Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
+
+        //given
+        int nthOfPerson = 4;
+
+        //then
+        assertThatThrownBy(() -> ladder.run(nthOfPerson))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("선을 이상한곳에다가 그림")
-    public void StrangeLine(){
-        Ladder ladder = new Ladder(3,4);
-        ladder.drawline(-1,0);
-        ladder.drawline(10,10);
-        assertEquals(0,ladder.run(0));
-        assertEquals(1,ladder.run(1));
+    @DisplayName("사다리 결과 확인")
+    void testLadderResult() {
+        //when
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
+        GreaterThanOne row = GreaterThanOne.from(3);
+        Ladder ladder = new Ladder(row, numberOfPerson);
+
+        ladder.drawLine(0,0);
+        ladder.drawLine(1,1);
+        ladder.drawLine(2,0);
+
+        //given
+        int nthOfPerson = 0;
+
+        //then
+        assertThat(ladder.run(nthOfPerson)).isEqualTo(2);
+
+        //given
+        nthOfPerson = 1;
+
+        //then
+        assertThat(ladder.run(nthOfPerson)).isEqualTo(1);
+
+        //given
+        nthOfPerson = 2;
+
+        //then
+        assertThat(ladder.run(nthOfPerson)).isEqualTo(0);
+    }
+    @Test
+    @DisplayName("점을 찍어 출력합니다.")
+    void testDrawLadder() {
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(5);
+        GreaterThanOne row = GreaterThanOne.from(4);
+
+        Ladder ladder = new Ladder(row, numberOfPerson);
+        ladder.clearAllLines();
+
+        ladder.drawLine(0,0);
+        ladder.drawLine(1,1);
+        ladder.drawLine(2,2);
+
+        //LadderViewer ladderViewer = new LadderViewer();
+        //LadderRunner ladderRunner = new LadderRunner(ladder,ladderViewer);
+
+        ladder.run(0);
     }
 }
