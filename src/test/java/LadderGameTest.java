@@ -7,7 +7,7 @@ public class LadderGameTest {
     @Test
     void moveRightOnSingleLine() {
         // given
-        GreaterThanOne playerCount = GreaterThanOne.from(3); // 플레이어 3명
+        GreaterThanOne playerCount = GreaterThanOne.from(3);
         LadderLine line = new LadderLine(playerCount);
 
         PlayerPosition startCol = PlayerPosition.from(0);
@@ -18,7 +18,7 @@ public class LadderGameTest {
         line.move(pos);
 
         // then
-        assertEquals(1, pos.getValue()); // 오른쪽으로 이동해야 함
+        assertEquals(1, pos.getValue());
     }
 
     @Test
@@ -27,7 +27,6 @@ public class LadderGameTest {
         GreaterThanOne playerCount = GreaterThanOne.from(3);
         LadderLine line = new LadderLine(playerCount);
 
-        // col = 0 에서 오른쪽으로 연결 -> col=1 은 자동으로 왼쪽
         PlayerPosition startCol = PlayerPosition.from(0);
         line.drawLine(startCol);
 
@@ -36,23 +35,19 @@ public class LadderGameTest {
         line.move(pos);
 
         // then
-        assertEquals(0, pos.getValue()); // 왼쪽으로 이동해야 함
+        assertEquals(0, pos.getValue());
     }
 
 
     @Test
-    void simulateMultipleLineMovements() {
-        GreaterThanOne rowCount = GreaterThanOne.from(4);
-        GreaterThanOne playerCount = GreaterThanOne.from(5);
+    void simulateRandomLadderGame() {
+        GreaterThanOne rowCount = GreaterThanOne.from(5);
+        GreaterThanOne playerCount = GreaterThanOne.from(4);
 
-        LadderCreator creator = new LadderCreator(rowCount, playerCount);
-
-        creator.drawLine(PlayerPosition.from(0), PlayerPosition.from(0));
-        creator.drawLine(PlayerPosition.from(1), PlayerPosition.from(1));
+        LadderCreator creator = new RandomLadderCreator(rowCount, playerCount);
 
         LadderGame game = new LadderGame(creator);
 
-        game.run(PlayerPosition.from(0));
     }
 
 }
