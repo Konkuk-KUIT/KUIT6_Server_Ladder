@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,16 +39,37 @@ public class LadderGameTest {
         assertEquals(0, pos.getValue());
     }
 
+    @Test
+    @DisplayName("CustomLadderCreator 기반 사다리 게임 실행 테스트")
+    void runGameWithCustomCreator() {
+        GreaterThanOne rowCount = GreaterThanOne.from(4);
+        GreaterThanOne playerCount = GreaterThanOne.from(4);
+
+        LadderCreator creator = new CustomLadderCreator(rowCount, playerCount);
+        creator.drawLine(PlayerPosition.from(0), PlayerPosition.from(0));
+        creator.drawLine(PlayerPosition.from(1), PlayerPosition.from(2));
+        creator.drawLine(PlayerPosition.from(2), PlayerPosition.from(1));
+
+
+        LadderGame game = new LadderGame(creator);
+
+        int startCol = 0;
+        game.run(PlayerPosition.from(startCol));
+    }
 
     @Test
-    void simulateRandomLadderGame() {
+    @DisplayName("RandomLadderCreator 기반 사다리 게임 실행 테스트")
+    void runGameWithRandomCreator() {
         GreaterThanOne rowCount = GreaterThanOne.from(5);
         GreaterThanOne playerCount = GreaterThanOne.from(4);
 
         LadderCreator creator = new RandomLadderCreator(rowCount, playerCount);
-
         LadderGame game = new LadderGame(creator);
 
+        int startCol = 2;
+        game.run(PlayerPosition.from(startCol));
+
     }
+
 
 }
