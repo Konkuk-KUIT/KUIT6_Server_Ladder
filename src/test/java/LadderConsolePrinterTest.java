@@ -1,15 +1,18 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-
 public class LadderConsolePrinterTest {
 
+    @Test
     public void run() {
         rendersBeforeAndAfterStates();
     }
 
+    // ... other tests or helper methods ...
+}
     private void rendersBeforeAndAfterStates() {
         LadderCreator creator = new LadderCreator(1, 3);
         creator.placeBridge(0, 1);
