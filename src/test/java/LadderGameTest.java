@@ -2,9 +2,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class LadderGameTest {
 
+    @Test
     public void run() {
         delegatesCreationAndRunningToCollaborators();
         usesInjectedObserver();
