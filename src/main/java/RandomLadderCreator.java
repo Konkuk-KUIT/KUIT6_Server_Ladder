@@ -1,15 +1,18 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class RandomLadderCreator implements LadderProvider {
     private final LadderCreator delegate;
 
     public RandomLadderCreator(int height, int numberOfPerson, Random random) {
+        Objects.requireNonNull(random, "Random generator must not be null");
         this.delegate = new LadderCreator(height, numberOfPerson);
         generateRandomBridges(height, numberOfPerson, random);
     }
+}
 
     private void generateRandomBridges(int height, int numberOfPerson, Random random) {
         int availableColumns = numberOfPerson - 1;
