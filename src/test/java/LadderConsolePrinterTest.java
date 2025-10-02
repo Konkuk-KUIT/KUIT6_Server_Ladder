@@ -12,7 +12,7 @@ public class LadderConsolePrinterTest {
     }
 
     // ... other tests or helper methods ...
-}
+
     private void rendersBeforeAndAfterStates() {
         LadderCreator creator = new LadderCreator(1, 3);
         creator.placeBridge(0, 1);
