@@ -1,0 +1,24 @@
+public class TestLauncher {
+    public static void main(String[] args) {
+        runTest(new LadderCreatorTest());
+        runTest(new LadderRunnerTest());
+        runTest(new LadderGameTest());
+        runTest(new LadderConsolePrinterTest());
+        runTest(new RandomLadderCreatorTest());
+        System.out.println("All tests passed");
+    }
+
+    private static void runTest(Object testInstance) {
+        try {
+            testInstance.getClass().getMethod("run").invoke(testInstance);
+        } catch (java.lang.reflect.InvocationTargetException e) {
+            Throwable cause = e.getCause();
+            if (cause instanceof AssertionError) {
+                throw (AssertionError) cause;
+            }
+            throw new AssertionError("Failed to execute tests for " + testInstance.getClass().getSimpleName(), cause);
+        } catch (ReflectiveOperationException e) {
+            throw new AssertionError("Failed to execute tests for " + testInstance.getClass().getSimpleName(), e);
+        }
+    }
+}
