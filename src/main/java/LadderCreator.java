@@ -47,7 +47,12 @@ public class LadderCreator implements LadderProvider {
     }
 
     Row[] getRows() {
-        return Arrays.copyOf(rows, rows.length);
+        //return Arrays.copyOf(rows, rows.length);
+        Row[] copy = Arrays.copyOf(rows, rows.length);
+        for (int i = 0; i < copy.length; i++) {
+            copy[i] = copy[i].snapshot();
+        }
+        return copy;
     }
 
     private void validateRowIndex(int rowIndex) {

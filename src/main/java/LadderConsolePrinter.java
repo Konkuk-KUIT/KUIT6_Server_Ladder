@@ -8,7 +8,8 @@ public class LadderConsolePrinter implements LadderTraversalObserver {
     }
 
     public LadderConsolePrinter(PrintStream out) {
-        this.out = out;
+        // this.out = out;
+        this.out = java.util.Objects.requireNonNull(out, "out");
     }
 
     @Override

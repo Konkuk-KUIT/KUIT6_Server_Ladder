@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
@@ -8,6 +9,7 @@ public class RandomLadderCreatorTest {
         generatesRequestedAmountWithoutAdjacentLines();
     }
 
+    @Test
     private void generatesRequestedAmountWithoutAdjacentLines() {
         int height = 4;
         int numberOfPerson = 5;

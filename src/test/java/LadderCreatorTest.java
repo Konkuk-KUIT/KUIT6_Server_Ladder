@@ -1,7 +1,9 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class LadderCreatorTest {
 
+    @Test
     public void run() {
         createsEmptyLadderWithRequestedDimensions();
         placesBridgeAtRequestedRowAndColumn();

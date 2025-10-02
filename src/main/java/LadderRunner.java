@@ -2,7 +2,8 @@ public class LadderRunner {
     private final Ladder ladder;
 
     public LadderRunner(Ladder ladder) {
-        this.ladder = ladder;
+        // this.ladder = ladder;
+        this.ladder = java.util.Objects.requireNonNull(ladder, "ladder");
     }
 
     public int run(int startPosition) {
@@ -11,6 +12,7 @@ public class LadderRunner {
 
     public int run(int startPosition, LadderTraversalObserver observer) {
         validateStartPosition(startPosition);
+        java.util.Objects.requireNonNull(observer, "observer");
         int currentPosition = startPosition;
         Row[] rows = ladder.getRows();
         for (int rowIndex = 0; rowIndex < rows.length; rowIndex++) {
